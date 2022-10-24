@@ -1,6 +1,6 @@
-type HeaderProps = {
-  children?: JSX.Element;
-}
+import {PropsWithChildren} from 'react';
+
+type HeaderProps = PropsWithChildren;
 
 export default function Header({children}: HeaderProps): JSX.Element {
   return (
