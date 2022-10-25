@@ -1,5 +1,11 @@
-function App(): JSX.Element {
-  return <p>Hello, world!</p>;
+import MainPage from '../../pages/main-page/main-page';
+
+type AppProps = {
+  cardCount: number;
 }
 
-export default App;
+export default function App({cardCount}: AppProps): JSX.Element {
+  return (
+    <MainPage cardCount={cardCount} />
+  );
+}
