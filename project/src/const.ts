@@ -4,3 +4,9 @@ export enum AppRoute {
   Offer = '/offer/:id',
   NotFound = '*'
 }
+
+export enum AuthorizationStatus {
+  Authorized = 'AUTHORIZED',
+  NoAuthorized = 'NO_AUTHORIZED',
+  Unknown = 'UNKNOWN'
+}
