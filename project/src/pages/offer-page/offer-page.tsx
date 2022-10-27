@@ -25,7 +25,7 @@ export default function OfferPage(): JSX.Element {
         </section>
         <div className="container">
           <section className="near-places places">
-            <h2 className="near-places__title">Other places in the neighbourhood</h2>
+            <h2 className="near-places__title">Other places in the neighborhood</h2>
             <div className="near-places__list places__list">
               {/* TODO при появлении данных, переделать на map */}
               <OfferCard />

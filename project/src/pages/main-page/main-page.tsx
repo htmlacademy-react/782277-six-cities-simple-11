@@ -6,7 +6,7 @@ import OfferCard from '../../components/offer-card/offer-card';
 
 type MainPageProps = {
   cardCount: number;
-}
+};
 
 export default function MainPage({cardCount}: MainPageProps): JSX.Element {
   return (
