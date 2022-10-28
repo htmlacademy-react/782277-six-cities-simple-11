@@ -1,3 +1,5 @@
+import {Helmet} from 'react-helmet-async';
+
 import Header from '../../components/header/header';
 import UserNavigation from '../../components/user-navigation/user-navigation';
 import Gallery from '../../components/gallery/gallery';
@@ -8,6 +10,10 @@ import OfferCard from '../../components/offer-card/offer-card';
 export default function OfferPage(): JSX.Element {
   return (
     <div className="page">
+      <Helmet>
+        <title>Six cities: offer</title>
+      </Helmet>
+
       <Header>
         <UserNavigation />
       </Header>
@@ -25,7 +31,7 @@ export default function OfferPage(): JSX.Element {
         </section>
         <div className="container">
           <section className="near-places places">
-            <h2 className="near-places__title">Other places in the neighbourhood</h2>
+            <h2 className="near-places__title">Other places in the neighborhood</h2>
             <div className="near-places__list places__list">
               {/* TODO при появлении данных, переделать на map */}
               <OfferCard />

@@ -4,17 +4,17 @@ export default function LocationNavigation(): JSX.Element {
       <section className="locations container">
         <ul className="locations__list tabs__list">
           <li className="locations__item">
-            <a className="locations__item-link tabs__item" href="#">
+            <a className="locations__item-link tabs__item" href="#todo">
               <span>Paris</span>
             </a>
           </li>
           <li className="locations__item">
-            <a className="locations__item-link tabs__item" href="#">
+            <a className="locations__item-link tabs__item" href="#todo">
               <span>Cologne</span>
             </a>
           </li>
           <li className="locations__item">
-            <a className="locations__item-link tabs__item" href="#">
+            <a className="locations__item-link tabs__item" href="#todo">
               <span>Brussels</span>
             </a>
           </li>
@@ -24,12 +24,12 @@ export default function LocationNavigation(): JSX.Element {
             </a>
           </li>
           <li className="locations__item">
-            <a className="locations__item-link tabs__item" href="#">
+            <a className="locations__item-link tabs__item" href="#todo">
               <span>Hamburg</span>
             </a>
           </li>
           <li className="locations__item">
-            <a className="locations__item-link tabs__item" href="#">
+            <a className="locations__item-link tabs__item" href="#todo">
               <span>Dusseldorf</span>
             </a>
           </li>

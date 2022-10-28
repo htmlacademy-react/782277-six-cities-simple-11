@@ -1,3 +1,6 @@
+import {Link} from 'react-router-dom';
+import {AppRoute} from '../../const';
+
 export default function UserNavigation(): JSX.Element {
   return (
     <nav className="header__nav">
@@ -9,9 +12,9 @@ export default function UserNavigation(): JSX.Element {
           </div>
         </li>
         <li className="header__nav-item">
-          <a className="header__nav-link" href="#">
+          <Link className="header__nav-link" to={AppRoute.Main}>
             <span className="header__signout">Sign out</span>
-          </a>
+          </Link>
         </li>
       </ul>
     </nav>
