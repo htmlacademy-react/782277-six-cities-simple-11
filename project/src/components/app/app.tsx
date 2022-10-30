@@ -11,30 +11,27 @@ import OfferPage from '../../pages/offer-page/offer-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 
 type AppProps = {
-  cardCount: number;
   offers: Offers;
   reviews: Reviews;
 };
 
-export default function App(props: AppProps): JSX.Element {
-  const {cardCount, offers, reviews} = props;
-
+export default function App({offers, reviews}: AppProps): JSX.Element {
   return (
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
           <Route
             path={AppRoute.Main}
-            element={<MainPage cardCount={cardCount} />}
+            element={<MainPage offers={offers} />}
           />
           <Route
             path={AppRoute.Login}
             element={<LoginPage />}
           />
-          <Route
+          {/* <Route
             path={AppRoute.Offer}
-            element={<OfferPage />}
-          />
+            element={<OfferPage reviews={reviews} />}
+          /> */}
           <Route
             path={AppRoute.NotFound}
             element={<NotFoundPage />}

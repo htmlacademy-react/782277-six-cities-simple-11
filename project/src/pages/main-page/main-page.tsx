@@ -1,5 +1,7 @@
 import {Helmet} from 'react-helmet-async';
 
+import {Offers} from '../../types/offer';
+
 import Header from '../../components/header/header';
 import UserNavigation from '../../components/user-navigation/user-navigation';
 import LocationNavigation from '../../components/location-navigation/location-navigation';
@@ -7,10 +9,10 @@ import Sort from '../../components/sort/sort';
 import OfferCard from '../../components/offer-card/offer-card';
 
 type MainPageProps = {
-  cardCount: number;
+  offers: Offers;
 };
 
-export default function MainPage({cardCount}: MainPageProps): JSX.Element {
+export default function MainPage({offers}: MainPageProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <Helmet>
@@ -28,15 +30,12 @@ export default function MainPage({cardCount}: MainPageProps): JSX.Element {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{cardCount} places to stay in Amsterdam</b>
+              <b className="places__found">{offers.length} places to stay in Amsterdam</b>
               <Sort />
               <div className="cities__places-list places__list tabs__content">
-                {/* TODO при появлении данных, переделать на map */}
-                <OfferCard />
-                <OfferCard />
-                <OfferCard />
-                <OfferCard />
-                <OfferCard />
+                {offers && offers.map(
+                  (offer) => <OfferCard key = {offer.id} offer = {offer}/>
+                )}
               </div>
             </section>
             <div className="cities__right-section">
