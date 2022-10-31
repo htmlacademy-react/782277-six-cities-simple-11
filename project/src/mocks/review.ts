@@ -1,7 +1,7 @@
-import {Reviews} from '../types/review';
+import {AllReviews} from '../types/review';
 import {PHOTO_URL} from '../const';
 
-export const reviews: Reviews = {
+export const allReviews: AllReviews = {
   1: [
     {
       id: 1,

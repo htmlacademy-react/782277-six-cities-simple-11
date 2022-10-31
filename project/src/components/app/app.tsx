@@ -7,16 +7,16 @@ import OfferPage from '../../pages/offer-page/offer-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 
 import {Offers} from '../../types/offer';
-import {Reviews} from '../../types/review';
+import {AllReviews} from '../../types/review';
 
 import {AppRoute} from '../../const';
 
 type AppProps = {
   offers: Offers;
-  reviews: Reviews;
+  allReviews: AllReviews;
 };
 
-export default function App({offers, reviews}: AppProps): JSX.Element {
+export default function App({offers, allReviews}: AppProps): JSX.Element {
   return (
     <HelmetProvider>
       <BrowserRouter>
@@ -30,8 +30,8 @@ export default function App({offers, reviews}: AppProps): JSX.Element {
             element={<LoginPage />}
           />
           <Route
-            path={AppRoute.Offer}
-            element={<OfferPage offers={offers} reviews={reviews}/>}
+            path={`${AppRoute.Offer}/:id`}
+            element={<OfferPage offers={offers} allReviews={allReviews}/>}
           />
           <Route
             path={AppRoute.NotFound}

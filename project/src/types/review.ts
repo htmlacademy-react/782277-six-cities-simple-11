@@ -8,6 +8,8 @@ export type Review = {
   date: string;
 };
 
-export type Reviews = {
+export type Reviews = Review[];
+
+export type AllReviews = {
   [key: number]: Review[];
 };

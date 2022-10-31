@@ -1,4 +1,5 @@
 import {Link} from 'react-router-dom';
+import {formatFirstLetter, calculateRatingWidth} from '../../utils';
 import {AppRoute} from '../../const';
 
 import {Offer} from '../../types/offer';
@@ -30,14 +31,14 @@ export default function OfferCard({offer}: OfferCardProps): JSX.Element {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `${offer.rating / 5 * 100}%`}}></span>
+            <span style={{width: calculateRatingWidth(offer.rating)}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
         <h2 className="place-card__name">
           <Link to={`${AppRoute.Offer}/${offer.id}`}>{offer.title}</Link>
         </h2>
-        <p className="place-card__type">{offer.type}</p>
+        <p className="place-card__type">{formatFirstLetter(offer.type)}</p>
       </div>
     </article>
   );
