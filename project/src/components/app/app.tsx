@@ -13,10 +13,11 @@ import {AppRoute} from '../../const';
 
 type AppProps = {
   offers: Offers;
+  nearOffers: Offers;
   allReviews: AllReviews;
 };
 
-export default function App({offers, allReviews}: AppProps): JSX.Element {
+export default function App({offers, nearOffers, allReviews}: AppProps): JSX.Element {
   return (
     <HelmetProvider>
       <BrowserRouter>
@@ -31,7 +32,13 @@ export default function App({offers, allReviews}: AppProps): JSX.Element {
           />
           <Route
             path={`${AppRoute.Offer}/:id`}
-            element={<OfferPage offers={offers} allReviews={allReviews}/>}
+            element={
+              <OfferPage
+                offers={offers}
+                nearOffers={nearOffers}
+                allReviews={allReviews}
+              />
+            }
           />
           <Route
             path={AppRoute.NotFound}

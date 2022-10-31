@@ -139,3 +139,5 @@ export const offers: Offers = [
     }
   }
 ];
+
+export const nearOffers = offers.slice(0, 2);

@@ -10,14 +10,15 @@ import OfferGallery from '../../components/offer-gallery/offer-gallery';
 import OfferProperty from '../../components/offer-property/offer-property';
 import OfferHost from '../../components/offer-host/offer-host';
 import OfferReview from '../../components/offer-review/offer-review';
-// import OfferCard from '../../components/offer-card/offer-card';
+import OfferCard from '../../components/offer-card/offer-card';
 
 type OfferPageProps = {
   offers: Offers;
+  nearOffers: Offers;
   allReviews: AllReviews;
 };
 
-export default function OfferPage({offers, allReviews}: OfferPageProps): JSX.Element {
+export default function OfferPage({offers, nearOffers, allReviews}: OfferPageProps): JSX.Element {
   const {id} = useParams();
   const offer = offers.find((item) => item.id === Number(id)) as Offer;
   const reviews = allReviews[Number(id)];
@@ -50,7 +51,9 @@ export default function OfferPage({offers, allReviews}: OfferPageProps): JSX.Ele
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighborhood</h2>
             <div className="near-places__list places__list">
-              {/* <OfferCard /> */}
+              {nearOffers && nearOffers.map((item) =>
+                <OfferCard key={item.id} offer={item} />
+              )}
             </div>
           </section>
         </div>
