@@ -2,7 +2,7 @@ import {Link} from 'react-router-dom';
 import {AppRoute} from '../../const';
 
 type HeaderProps = {
-  children: JSX.Element;
+  children?: JSX.Element;
 }
 
 export default function Header({children}: HeaderProps): JSX.Element {
