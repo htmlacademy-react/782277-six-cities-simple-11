@@ -1,10 +1,10 @@
 import {Helmet} from 'react-helmet-async';
 
-import {Offers} from '../../types/offer';
-
 import Header from '../../components/header/header';
 import UserNavigation from '../../components/user-navigation/user-navigation';
 import OfferList from '../../components/offer-list/offer-list';
+
+import {Offers} from '../../types/offer';
 
 type MainPageProps = {
   offers: Offers;

@@ -1,5 +1,5 @@
-import {formatFirstLetter, calculateRatingWidth} from '../../utils';
 import {Offer} from '../../types/offer';
+import {formatFirstLetter, calculateRatingWidth} from '../../utils';
 
 type OfferPropertyProps = {
   offer: Offer;

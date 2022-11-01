@@ -1,9 +1,6 @@
 import {useParams} from 'react-router-dom';
 import {Helmet} from 'react-helmet-async';
 
-import {Offers, Offer} from '../../types/offer';
-import {AllReviews} from '../../types/review';
-
 import Header from '../../components/header/header';
 import UserNavigation from '../../components/user-navigation/user-navigation';
 import OfferGallery from '../../components/offer-gallery/offer-gallery';
@@ -11,6 +8,9 @@ import OfferProperty from '../../components/offer-property/offer-property';
 import OfferHost from '../../components/offer-host/offer-host';
 import OfferReview from '../../components/offer-review/offer-review';
 import OfferCard from '../../components/offer-card/offer-card';
+
+import {Offers, Offer} from '../../types/offer';
+import {AllReviews} from '../../types/review';
 
 type OfferPageProps = {
   offers: Offers;

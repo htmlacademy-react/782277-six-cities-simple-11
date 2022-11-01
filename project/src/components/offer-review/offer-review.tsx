@@ -1,6 +1,6 @@
-import {calculateRatingWidth, formatDate} from '../../utils';
-import {Reviews} from '../../types/review';
 import ReviewForm from '../review-form/review-form';
+import {Reviews} from '../../types/review';
+import {calculateRatingWidth, formatDate} from '../../utils';
 
 type OfferReviewProps = {
   reviews: Reviews;
