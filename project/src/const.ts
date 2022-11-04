@@ -1,3 +1,11 @@
+export const GRADES = [
+  'perfect',
+  'good',
+  'not bad',
+  'badly',
+  'terribly'
+];
+
 export enum AppRoute {
   Main = '/',
   Login = '/login',
@@ -15,11 +23,3 @@ export enum PHOTO_URL {
   Avatar = 'https://i.pravatar.cc/74?rnd=',
   Offer = 'http://picsum.photos/260/200?r='
 }
-
-export const GRADES: string[] = [
-  'perfect',
-  'good',
-  'not bad',
-  'badly',
-  'terribly'
-];
