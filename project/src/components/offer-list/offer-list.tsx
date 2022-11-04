@@ -7,10 +7,10 @@ type OfferListProps = {
 };
 
 export default function OfferList({offers}: OfferListProps): JSX.Element {
-  const [, setActiveCard] = useState<number>();
+  const [activeCard, setActiveCard] = useState<number | null>(null);
 
   return (
-    <div className="cities__places-list places__list tabs__content">
+    <div className="cities__places-list places__list tabs__content" data-active-card={activeCard}>
       {offers && offers.map((offer) => (
         <OfferCard
           key={offer.id.toString()}
