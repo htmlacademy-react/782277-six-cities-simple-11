@@ -20,7 +20,7 @@ type OfferPageProps = {
 };
 
 export default function OfferPage({offers, nearOffers, allReviews}: OfferPageProps): JSX.Element {
-  const [activeCard, setActiveCard] = useState<number | null>(null);
+  const [, setActiveCardId] = useState<number | null>(null);
 
   const {id} = useParams();
   const offer = offers.find((item) => item.id === Number(id)) as Offer;
@@ -50,7 +50,7 @@ export default function OfferPage({offers, nearOffers, allReviews}: OfferPagePro
           </div>
           <section className="property__map map"></section>
         </section>
-        <div className="container" data-active-card={activeCard}>
+        <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighborhood</h2>
             <div className="near-places__list places__list">
@@ -58,7 +58,7 @@ export default function OfferPage({offers, nearOffers, allReviews}: OfferPagePro
                 <OfferCard
                   key={item.id}
                   offer={item}
-                  onCardHover={setActiveCard}
+                  onListItemHover={setActiveCardId}
                 />
               ))}
             </div>

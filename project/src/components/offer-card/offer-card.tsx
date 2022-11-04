@@ -5,15 +5,15 @@ import {AppRoute} from '../../const';
 
 type OfferCardProps = {
   offer: Offer;
-  onCardHover: (id: number | null) => void;
+  onListItemHover: (id: number | null) => void;
 };
 
-export default function OfferCard({offer, onCardHover}: OfferCardProps): JSX.Element {
+export default function OfferCard({offer, onListItemHover}: OfferCardProps): JSX.Element {
   return (
     <article
       className="cities__card place-card"
-      onMouseEnter={() => onCardHover(offer.id)}
-      onMouseLeave={() => onCardHover(null)}
+      onMouseEnter={() => onListItemHover(offer.id)}
+      onMouseLeave={() => onListItemHover(null)}
     >
 
       {offer.isPremium &&

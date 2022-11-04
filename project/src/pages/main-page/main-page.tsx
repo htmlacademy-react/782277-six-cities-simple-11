@@ -1,8 +1,10 @@
+import {useState} from 'react';
 import {Helmet} from 'react-helmet-async';
 
 import Header from '../../components/header/header';
 import UserNavigation from '../../components/user-navigation/user-navigation';
 import OfferList from '../../components/offer-list/offer-list';
+import Map from '../../components/map/map';
 
 import {Offers} from '../../types/offer';
 
@@ -11,6 +13,12 @@ type MainPageProps = {
 };
 
 export default function MainPage({offers}: MainPageProps): JSX.Element {
+  const [activeCardId, setActiveCardId] = useState<number | null>(null);
+
+  const onListItemHover = (id: number | null) => {
+    setActiveCardId(id);
+  };
+
   return (
     <div className="page page--gray page--main">
       <Helmet>
@@ -82,11 +90,18 @@ export default function MainPage({offers}: MainPageProps): JSX.Element {
                 </ul>
               </form>
 
-              <OfferList offers={offers} />
+              <OfferList
+                offers={offers}
+                onListItemHover={onListItemHover}
+              />
 
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              <Map
+                city={offers[0].city.location}
+                offers={offers}
+                selectedOffer={activeCardId}
+              />
             </div>
           </div>
         </div>
