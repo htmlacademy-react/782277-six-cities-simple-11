@@ -1,32 +1,44 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import {HelmetProvider} from 'react-helmet-async';
-import {AppRoute} from '../../const';
 
 import MainPage from '../../pages/main-page/main-page';
 import LoginPage from '../../pages/login-page/login-page';
 import OfferPage from '../../pages/offer-page/offer-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 
+import {Offers} from '../../types/offer';
+import {AllReviews} from '../../types/review';
+
+import {AppRoute} from '../../const';
+
 type AppProps = {
-  cardCount: number;
+  offers: Offers;
+  nearOffers: Offers;
+  allReviews: AllReviews;
 };
 
-export default function App({cardCount}: AppProps): JSX.Element {
+export default function App({offers, nearOffers, allReviews}: AppProps): JSX.Element {
   return (
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
           <Route
             path={AppRoute.Main}
-            element={<MainPage cardCount={cardCount} />}
+            element={<MainPage offers={offers} />}
           />
           <Route
             path={AppRoute.Login}
             element={<LoginPage />}
           />
           <Route
-            path={AppRoute.Offer}
-            element={<OfferPage />}
+            path={`${AppRoute.Offer}/:id`}
+            element={
+              <OfferPage
+                offers={offers}
+                nearOffers={nearOffers}
+                allReviews={allReviews}
+              />
+            }
           />
           <Route
             path={AppRoute.NotFound}

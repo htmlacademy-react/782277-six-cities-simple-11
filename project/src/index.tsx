@@ -2,9 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
 
-enum Setting {
-  cardCount = 5
-}
+import {offers, nearOffers} from './mocks/offer';
+import {allReviews} from './mocks/review';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -12,6 +11,10 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App cardCount={Setting.cardCount} />
+    <App
+      offers={offers}
+      nearOffers={nearOffers}
+      allReviews={allReviews}
+    />
   </React.StrictMode>
 );

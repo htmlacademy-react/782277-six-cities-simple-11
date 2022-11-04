@@ -1,8 +1,9 @@
 import {Link} from 'react-router-dom';
 import {Helmet} from 'react-helmet-async';
-import {AppRoute} from '../../const';
 
 import Header from '../../components/header/header';
+
+import {AppRoute} from '../../const';
 
 export default function NotFoundPage(): JSX.Element {
   return (
