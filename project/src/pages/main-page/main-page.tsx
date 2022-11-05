@@ -101,6 +101,7 @@ export default function MainPage({offers}: MainPageProps): JSX.Element {
                 city={offers[0].city.location}
                 offers={offers}
                 selectedOffer={activeCardId}
+                isMainMap
               />
             </div>
           </div>

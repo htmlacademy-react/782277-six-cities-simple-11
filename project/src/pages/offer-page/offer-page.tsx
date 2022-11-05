@@ -8,6 +8,7 @@ import OfferGallery from '../../components/offer-gallery/offer-gallery';
 import OfferProperty from '../../components/offer-property/offer-property';
 import OfferHost from '../../components/offer-host/offer-host';
 import ReviewList from '../../components/review-list/review-list';
+import Map from '../../components/map/map';
 import OfferCard from '../../components/offer-card/offer-card';
 
 import {Offers, Offer} from '../../types/offer';
@@ -20,7 +21,7 @@ type OfferPageProps = {
 };
 
 export default function OfferPage({offers, nearOffers, allReviews}: OfferPageProps): JSX.Element {
-  const [, setActiveCardId] = useState<number | null>(null);
+  const [activeCardId, setActiveCardId] = useState<number | null>(null);
 
   const {id} = useParams();
   const offer = offers.find((item) => item.id === Number(id)) as Offer;
@@ -48,7 +49,13 @@ export default function OfferPage({offers, nearOffers, allReviews}: OfferPagePro
               <ReviewList reviews={reviews} />
             </div>
           </div>
-          <section className="property__map map"></section>
+
+          <Map
+            city={nearOffers[0].city.location}
+            offers={nearOffers}
+            selectedOffer={activeCardId}
+          />
+
         </section>
         <div className="container">
           <section className="near-places places">
