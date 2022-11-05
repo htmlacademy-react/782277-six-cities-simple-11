@@ -15,8 +15,8 @@ type MainPageProps = {
 export default function MainPage({offers}: MainPageProps): JSX.Element {
   const [activeCardId, setActiveCardId] = useState<number | null>(null);
 
-  const onListItemHover = (id: number | null) => {
-    setActiveCardId(id);
+  const onListItemHover = (offerId: number | null) => {
+    setActiveCardId(offerId);
   };
 
   return (
@@ -93,6 +93,7 @@ export default function MainPage({offers}: MainPageProps): JSX.Element {
               <OfferList
                 offers={offers}
                 onListItemHover={onListItemHover}
+                isMainOfferList
               />
 
             </section>

@@ -1,17 +1,23 @@
 import {Link} from 'react-router-dom';
+import cn from 'classnames';
+
 import {Offer} from '../../types/offer';
 import {formatFirstLetter, calculateRatingWidth} from '../../utils';
 import {AppRoute} from '../../const';
 
 type OfferCardProps = {
   offer: Offer;
-  onListItemHover: (id: number | null) => void;
+  onListItemHover: (offerId: number | null) => void;
+  isMainOfferList?: boolean;
 };
 
-export default function OfferCard({offer, onListItemHover}: OfferCardProps): JSX.Element {
+export default function OfferCard({offer, onListItemHover, isMainOfferList}: OfferCardProps): JSX.Element {
   return (
     <article
-      className="cities__card place-card"
+      className={cn('place-card', {
+        'cities__card': isMainOfferList,
+        'near-places__card': !isMainOfferList
+      })}
       onMouseEnter={() => onListItemHover(offer.id)}
       onMouseLeave={() => onListItemHover(null)}
     >
@@ -21,7 +27,12 @@ export default function OfferCard({offer, onListItemHover}: OfferCardProps): JSX
         <span>Premium</span>
       </div>}
 
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div
+        className={cn('place-card__image-wrapper', {
+          'cities__image-wrapper': isMainOfferList,
+          'near-places__image-wrapper': !isMainOfferList
+        })}
+      >
         <Link to={`${AppRoute.Offer}/${offer.id}`}>
           <img className="place-card__image" src={offer.previewImage} width="260" height="200" alt={offer.title} />
         </Link>

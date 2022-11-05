@@ -9,7 +9,7 @@ import OfferProperty from '../../components/offer-property/offer-property';
 import OfferHost from '../../components/offer-host/offer-host';
 import ReviewList from '../../components/review-list/review-list';
 import Map from '../../components/map/map';
-import OfferCard from '../../components/offer-card/offer-card';
+import OfferList from '../../components/offer-list/offer-list';
 
 import {Offers, Offer} from '../../types/offer';
 import {AllReviews} from '../../types/review';
@@ -26,6 +26,10 @@ export default function OfferPage({offers, nearOffers, allReviews}: OfferPagePro
   const {id} = useParams();
   const offer = offers.find((item) => item.id === Number(id)) as Offer;
   const reviews = allReviews[Number(id)];
+
+  const onListItemHover = (offerId: number | null) => {
+    setActiveCardId(offerId);
+  };
 
   return (
     <div className="page">
@@ -60,15 +64,12 @@ export default function OfferPage({offers, nearOffers, allReviews}: OfferPagePro
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighborhood</h2>
-            <div className="near-places__list places__list">
-              {nearOffers && nearOffers.map((item) => (
-                <OfferCard
-                  key={item.id}
-                  offer={item}
-                  onListItemHover={setActiveCardId}
-                />
-              ))}
-            </div>
+
+            <OfferList
+              offers={nearOffers}
+              onListItemHover={onListItemHover}
+            />
+
           </section>
         </div>
       </main>
