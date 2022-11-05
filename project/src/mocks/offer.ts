@@ -32,8 +32,8 @@ export const offers: Offers = [
     },
     location: {
       zoom: 8,
-      latitude: 52.35514938496378,
-      longitude: 4.673877537499948
+      latitude: 52.3909553943508,
+      longitude: 4.85309666406198
     }
   },
   {
@@ -59,15 +59,15 @@ export const offers: Offers = [
     city: {
       location: {
         zoom: 10,
-        latitude: 52.380216,
-        longitude: 4.905168
+        latitude: 52.370216,
+        longitude: 4.895168
       },
       name: 'Amsterdam'
     },
     location: {
       zoom: 8,
-      latitude: 52.39514938496378,
-      longitude: 4.693877537499948
+      latitude: 52.3609553943508,
+      longitude: 4.85309666406198
     }
   },
   {
@@ -93,15 +93,15 @@ export const offers: Offers = [
     city: {
       location: {
         zoom: 10,
-        latitude: 52.310216,
-        longitude: 4.955168
+        latitude: 52.370216,
+        longitude: 4.895168
       },
       name: 'Amsterdam'
     },
     location: {
       zoom: 8,
-      latitude: 52.35514938496378,
-      longitude: 4.653877537499948
+      latitude: 52.3909553943508,
+      longitude: 4.929309666406198
     }
   },
   {
@@ -127,15 +127,15 @@ export const offers: Offers = [
     city: {
       location: {
         zoom: 10,
-        latitude: 51.310216,
-        longitude: 5.955168
+        latitude: 52.370216,
+        longitude: 4.895168
       },
       name: 'Amsterdam'
     },
     location: {
       zoom: 8,
-      latitude: 51.35514938496378,
-      longitude: 5.653877537499948
+      latitude: 52.3809553943508,
+      longitude: 4.939309666406198
     }
   }
 ];
