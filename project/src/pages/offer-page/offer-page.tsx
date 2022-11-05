@@ -7,7 +7,7 @@ import UserNavigation from '../../components/user-navigation/user-navigation';
 import OfferGallery from '../../components/offer-gallery/offer-gallery';
 import OfferProperty from '../../components/offer-property/offer-property';
 import OfferHost from '../../components/offer-host/offer-host';
-import OfferReview from '../../components/offer-review/offer-review';
+import ReviewList from '../../components/review-list/review-list';
 import OfferCard from '../../components/offer-card/offer-card';
 
 import {Offers, Offer} from '../../types/offer';
@@ -45,7 +45,7 @@ export default function OfferPage({offers, nearOffers, allReviews}: OfferPagePro
             <div className="property__wrapper">
               <OfferProperty offer={offer} />
               <OfferHost offer={offer} />
-              <OfferReview reviews={reviews} />
+              <ReviewList reviews={reviews} />
             </div>
           </div>
           <section className="property__map map"></section>
