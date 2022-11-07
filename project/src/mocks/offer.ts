@@ -140,4 +140,4 @@ export const offers: Offers = [
   }
 ];
 
-export const nearOffers = offers.slice(0, 2);
+export const nearOffers = offers.slice(0, 3);

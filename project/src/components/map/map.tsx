@@ -1,5 +1,6 @@
 import {useRef, useEffect} from 'react';
 
+import cn from 'classnames';
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
@@ -10,6 +11,7 @@ type MapProps = {
   city: Location;
   offers: Offers;
   selectedOffer: number | null;
+  isMainMap?: boolean;
 }
 
 const defaultMarkerIcon = leaflet.icon({
@@ -24,7 +26,7 @@ const activeMarkerIcon = leaflet.icon({
   iconAnchor: [14, 40]
 });
 
-export default function Map({city, offers, selectedOffer}: MapProps): JSX.Element {
+export default function Map({city, offers, selectedOffer, isMainMap}: MapProps): JSX.Element {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 
@@ -50,9 +52,12 @@ export default function Map({city, offers, selectedOffer}: MapProps): JSX.Elemen
 
   return (
     <section
-      className="cities__map map"
+      className={cn('map', {
+        'cities__map': isMainMap,
+        'property__map': !isMainMap
+      })}
       ref={mapRef}
-      style={{height: '100%'}}
+      style={{minHeight: '100%'}}
     >
     </section>
   );
