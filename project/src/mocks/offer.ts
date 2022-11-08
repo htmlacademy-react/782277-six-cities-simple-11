@@ -1,4 +1,4 @@
-import {Offers} from '../types/offer';
+import {City, Offers} from '../types/offer';
 import {PHOTO_URL} from '../const';
 
 export const offers: Offers = [
@@ -141,3 +141,12 @@ export const offers: Offers = [
 ];
 
 export const nearOffers = offers.slice(0, 3);
+
+export const city: City = {
+  location: {
+    zoom: 10,
+    latitude: 52.370216,
+    longitude: 4.895168
+  },
+  name: 'Amsterdam'
+};
