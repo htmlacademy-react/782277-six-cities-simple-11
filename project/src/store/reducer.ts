@@ -7,8 +7,12 @@ const initialState = {
   offers
 };
 
-export const updateStore = createReducer(initialState, (builder) => {
+export const reducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(changeLocation, (state) => state)
-    .addCase(fillOfferList, (state) => state);
+    .addCase(changeLocation, (state) => {
+      state.city = city;
+    })
+    .addCase(fillOfferList, (state) => {
+      state.offers = offers;
+    });
 });
