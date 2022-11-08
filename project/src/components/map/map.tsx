@@ -4,7 +4,7 @@ import cn from 'classnames';
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-import useMap from '../../hooks/useMap/useMap';
+import useMap from '../../hooks/useMap';
 import {Offers, Location} from '../../types/offer';
 
 type MapProps = {

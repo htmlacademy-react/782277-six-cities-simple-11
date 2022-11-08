@@ -1,6 +1,6 @@
 import {useRef, useState, useEffect, MutableRefObject} from 'react';
 import leaflet, {Map} from 'leaflet';
-import {Location} from '../../types/offer';
+import {Location} from '../types/offer';
 
 const LAYER_OPTION = {
   url: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
