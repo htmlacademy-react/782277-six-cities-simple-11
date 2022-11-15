@@ -1,4 +1,3 @@
-import {useState} from 'react';
 import {useParams} from 'react-router-dom';
 import {Helmet} from 'react-helmet-async';
 
@@ -21,15 +20,9 @@ type OfferPageProps = {
 };
 
 export default function OfferPage({offers, nearOffers, allReviews}: OfferPageProps): JSX.Element {
-  const [activeCardId, setActiveCardId] = useState<number | null>(null);
-
   const {id} = useParams();
   const offer = offers.find((item) => item.id === Number(id)) as Offer;
   const reviews = allReviews[Number(id)];
-
-  const onListItemHover = (offerId: number | null) => {
-    setActiveCardId(offerId);
-  };
 
   return (
     <div className="page">
@@ -43,7 +36,6 @@ export default function OfferPage({offers, nearOffers, allReviews}: OfferPagePro
 
       <main className="page__main page__main--property">
         <section className="property">
-
           <OfferGallery offer={offer} />
 
           <div className="property__container container">
@@ -57,19 +49,13 @@ export default function OfferPage({offers, nearOffers, allReviews}: OfferPagePro
           <Map
             city={nearOffers[0].city.location}
             offers={nearOffers}
-            selectedOffer={activeCardId}
           />
-
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighborhood</h2>
 
-            <OfferList
-              offers={nearOffers}
-              onListItemHover={onListItemHover}
-            />
-
+            <OfferList offers={nearOffers} />
           </section>
         </div>
       </main>

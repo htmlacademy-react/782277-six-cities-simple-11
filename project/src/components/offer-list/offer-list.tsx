@@ -5,11 +5,10 @@ import {Offers} from '../../types/offer';
 
 type OfferListProps = {
   offers: Offers;
-  onListItemHover: (offerId: number | null) => void;
   isMainOfferList?: boolean;
 };
 
-export default function OfferList({offers, onListItemHover, isMainOfferList}: OfferListProps): JSX.Element {
+export default function OfferList({offers, isMainOfferList}: OfferListProps): JSX.Element {
   return (
     <div
       className={cn('places__list', {
@@ -22,7 +21,6 @@ export default function OfferList({offers, onListItemHover, isMainOfferList}: Of
         <OfferCard
           key={offer.id.toString()}
           offer={offer}
-          onListItemHover={onListItemHover}
           isMainOfferList={isMainOfferList}
         />
       ))}

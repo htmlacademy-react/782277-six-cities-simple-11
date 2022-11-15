@@ -5,12 +5,12 @@ import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 import useMap from '../../hooks/useMap';
+import {useAppSelector} from '../../hooks/useAppSelector';
 import {Offers, Location} from '../../types/offer';
 
 type MapProps = {
   city: Location;
   offers: Offers;
-  selectedOffer: number | null;
   isMainMap?: boolean;
 }
 
@@ -26,9 +26,10 @@ const activeMarkerIcon = leaflet.icon({
   iconAnchor: [14, 40]
 });
 
-export default function Map({city, offers, selectedOffer, isMainMap}: MapProps): JSX.Element {
+export default function Map({city, offers, isMainMap}: MapProps): JSX.Element {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
+  const selectedOfferId = useAppSelector((state) => state.selectedOfferId);
 
   useEffect(() => {
     if (map) {
@@ -40,7 +41,7 @@ export default function Map({city, offers, selectedOffer, isMainMap}: MapProps):
               lng: offer.location.longitude
             },
             {
-              icon: (selectedOffer !== null && offer.id === selectedOffer)
+              icon: (selectedOfferId !== null && offer.id === selectedOfferId)
                 ? activeMarkerIcon
                 : defaultMarkerIcon
             }
@@ -48,7 +49,7 @@ export default function Map({city, offers, selectedOffer, isMainMap}: MapProps):
           .addTo(map);
       });
     }
-  }, [map, offers, selectedOffer]);
+  }, [map, offers, selectedOfferId]);
 
   return (
     <section

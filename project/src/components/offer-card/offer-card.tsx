@@ -1,25 +1,29 @@
 import {Link} from 'react-router-dom';
 import cn from 'classnames';
 
+import {useAppDispatch} from '../../hooks/useAppDispatch';
+import {selectOffer} from '../../store/actions';
+
 import {Offer} from '../../types/offer';
 import {formatFirstLetter, calculateRatingWidth} from '../../utils';
 import {AppRoute} from '../../const';
 
 type OfferCardProps = {
   offer: Offer;
-  onListItemHover: (offerId: number | null) => void;
   isMainOfferList?: boolean;
 };
 
-export default function OfferCard({offer, onListItemHover, isMainOfferList}: OfferCardProps): JSX.Element {
+export default function OfferCard({offer, isMainOfferList}: OfferCardProps): JSX.Element {
+  const dispatch = useAppDispatch();
+
   return (
     <article
       className={cn('place-card', {
         'cities__card': isMainOfferList,
         'near-places__card': !isMainOfferList
       })}
-      onMouseEnter={() => onListItemHover(offer.id)}
-      onMouseLeave={() => onListItemHover(null)}
+      onMouseEnter={() => dispatch(selectOffer(offer.id))}
+      onMouseLeave={() => dispatch(selectOffer(null))}
     >
 
       {offer.isPremium &&

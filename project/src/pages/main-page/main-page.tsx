@@ -1,4 +1,3 @@
-import {useState} from 'react';
 import {Helmet} from 'react-helmet-async';
 
 import Header from '../../components/header/header';
@@ -14,12 +13,6 @@ type MainPageProps = {
 };
 
 export default function MainPage({offers}: MainPageProps): JSX.Element {
-  const [activeCardId, setActiveCardId] = useState<number | null>(null);
-
-  const onListItemHover = (offerId: number | null) => {
-    setActiveCardId(offerId);
-  };
-
   return (
     <div className="page page--gray page--main">
       <Helmet>
@@ -60,16 +53,13 @@ export default function MainPage({offers}: MainPageProps): JSX.Element {
 
               <OfferList
                 offers={offers}
-                onListItemHover={onListItemHover}
                 isMainOfferList
               />
-
             </section>
             <div className="cities__right-section">
               <Map
                 city={offers[0].city.location}
                 offers={offers}
-                selectedOffer={activeCardId}
                 isMainMap
               />
             </div>

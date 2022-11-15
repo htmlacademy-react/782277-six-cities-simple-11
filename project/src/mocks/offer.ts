@@ -140,7 +140,7 @@ export const offers: Offers = [
   }
 ];
 
-export const nearOffers = offers.slice(0, 3);
+export const nearOffers: Offers = offers.slice(0, 3);
 
 export const city: City = {
   location: {
