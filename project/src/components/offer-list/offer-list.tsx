@@ -1,14 +1,14 @@
+import {useAppSelector} from '../../hooks/useAppSelector';
 import cn from 'classnames';
-
 import OfferCard from '../offer-card/offer-card';
-import {Offers} from '../../types/offer';
 
 type OfferListProps = {
-  offers: Offers;
   isMainOfferList?: boolean;
 };
 
-export default function OfferList({offers, isMainOfferList}: OfferListProps): JSX.Element {
+export default function OfferList({isMainOfferList}: OfferListProps): JSX.Element {
+  const offers = useAppSelector((state) => state.offers);
+
   return (
     <div
       className={cn('places__list', {

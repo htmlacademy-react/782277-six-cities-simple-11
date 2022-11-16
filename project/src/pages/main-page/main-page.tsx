@@ -1,4 +1,5 @@
 import {Helmet} from 'react-helmet-async';
+import {useAppSelector} from '../../hooks/useAppSelector';
 
 import Header from '../../components/header/header';
 import UserNavigation from '../../components/user-navigation/user-navigation';
@@ -13,6 +14,9 @@ type MainPageProps = {
 };
 
 export default function MainPage({offers}: MainPageProps): JSX.Element {
+  const currentLocation = useAppSelector((state) => state.location);
+  const numberOfOffers = useAppSelector((state) => state.offers).length;
+
   return (
     <div className="page page--gray page--main">
       <Helmet>
@@ -34,7 +38,13 @@ export default function MainPage({offers}: MainPageProps): JSX.Element {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{offers.length} places to stay in Amsterdam</b>
+
+              <b className="places__found">
+                {numberOfOffers ?
+                  `${numberOfOffers} places to stay in ${currentLocation}`
+                  : 'There aren`t available offers'}
+              </b>
+
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0}>
@@ -51,10 +61,7 @@ export default function MainPage({offers}: MainPageProps): JSX.Element {
                 </ul>
               </form>
 
-              <OfferList
-                offers={offers}
-                isMainOfferList
-              />
+              <OfferList isMainOfferList />
             </section>
             <div className="cities__right-section">
               <Map

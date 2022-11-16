@@ -8,7 +8,7 @@ import OfferProperty from '../../components/offer-property/offer-property';
 import OfferHost from '../../components/offer-host/offer-host';
 import ReviewList from '../../components/review-list/review-list';
 import Map from '../../components/map/map';
-import OfferList from '../../components/offer-list/offer-list';
+// import OfferList from '../../components/offer-list/offer-list';
 
 import {Offers, Offer} from '../../types/offer';
 import {AllReviews} from '../../types/review';
@@ -55,7 +55,7 @@ export default function OfferPage({offers, nearOffers, allReviews}: OfferPagePro
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighborhood</h2>
 
-            <OfferList offers={nearOffers} />
+            {/* <OfferList offers={nearOffers} /> */}
           </section>
         </div>
       </main>

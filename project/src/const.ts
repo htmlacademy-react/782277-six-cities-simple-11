@@ -1,11 +1,13 @@
 export const LOCATIONS = [
-  'paris',
-  'cologne',
-  'brussels',
-  'amsterdam',
-  'hamburg',
-  'dusseldorf'
+  'Paris',
+  'Cologne',
+  'Brussels',
+  'Amsterdam',
+  'Hamburg',
+  'Dusseldorf'
 ];
+
+export const DEFAULT_LOCATION = LOCATIONS[0];
 
 export const GRADES = [
   'perfect',

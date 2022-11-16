@@ -1,3 +1,5 @@
+import {offers} from './mocks/offer';
+
 export const formatFirstLetter = (text: string): string =>
   text.charAt(0).toUpperCase() + text.slice(1);
 
@@ -6,3 +8,6 @@ export const formatDate = (date: string, locales = 'en-US'): string =>
 
 export const calculateRatingWidth = (rating: number, maxRating = 5): string =>
   `${rating / maxRating * 100}%`;
+
+export const getOffersByLocation = (location: string) =>
+  offers.filter((offer) => offer.city.name === location);
