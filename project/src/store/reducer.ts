@@ -11,8 +11,8 @@ type InitialState = {
 };
 
 const initialState: InitialState = {
-  location: DEFAULT_LOCATION,
-  offers: getOffersByLocation(DEFAULT_LOCATION),
+  location: DEFAULT_LOCATION.name,
+  offers: getOffersByLocation(DEFAULT_LOCATION.name),
   selectedOfferId: null,
 };
 

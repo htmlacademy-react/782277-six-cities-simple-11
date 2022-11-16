@@ -7,7 +7,14 @@ export const LOCATIONS = [
   'Dusseldorf'
 ];
 
-export const DEFAULT_LOCATION = LOCATIONS[0];
+export const DEFAULT_LOCATION = {
+  location: {
+    latitude: 48.856663,
+    longitude: 2.351556,
+    zoom: 5
+  },
+  name: 'Paris'
+};
 
 export const GRADES = [
   'perfect',

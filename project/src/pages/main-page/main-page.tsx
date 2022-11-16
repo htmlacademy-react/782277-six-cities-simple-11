@@ -7,13 +7,7 @@ import LocationList from '../../components/location-list/location-list';
 import OfferList from '../../components/offer-list/offer-list';
 import Map from '../../components/map/map';
 
-import {Offers} from '../../types/offer';
-
-type MainPageProps = {
-  offers: Offers;
-};
-
-export default function MainPage({offers}: MainPageProps): JSX.Element {
+export default function MainPage(): JSX.Element {
   const currentLocation = useAppSelector((state) => state.location);
   const numberOfOffers = useAppSelector((state) => state.offers).length;
 
@@ -64,11 +58,7 @@ export default function MainPage({offers}: MainPageProps): JSX.Element {
               <OfferList isMainOfferList />
             </section>
             <div className="cities__right-section">
-              <Map
-                city={offers[0].city.location}
-                offers={offers}
-                isMainMap
-              />
+              <Map isMainMap />
             </div>
           </div>
         </div>
