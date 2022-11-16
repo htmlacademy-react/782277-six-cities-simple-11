@@ -1,16 +1,14 @@
 import {useRef, useEffect} from 'react';
+import useMap from '../../hooks/useMap';
+import {useAppSelector} from '../../hooks/useAppSelector';
 
 import cn from 'classnames';
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-import useMap from '../../hooks/useMap/useMap';
-import {Offers, Location} from '../../types/offer';
+import {DEFAULT_LOCATION} from '../../const';
 
 type MapProps = {
-  city: Location;
-  offers: Offers;
-  selectedOffer: number | null;
   isMainMap?: boolean;
 }
 
@@ -26,12 +24,26 @@ const activeMarkerIcon = leaflet.icon({
   iconAnchor: [14, 40]
 });
 
-export default function Map({city, offers, selectedOffer, isMainMap}: MapProps): JSX.Element {
+export default function Map({isMainMap}: MapProps): JSX.Element {
   const mapRef = useRef(null);
-  const map = useMap(mapRef, city);
+  const map = useMap(mapRef, DEFAULT_LOCATION.location);
+
+  const location = useAppSelector((state) => state.offers[0]?.location) || DEFAULT_LOCATION.location;
+  const offers = useAppSelector((state) => state.offers);
+  const selectedOfferId = useAppSelector((state) => state.selectedOfferId);
 
   useEffect(() => {
     if (map) {
+      const markerGroup = leaflet.layerGroup().addTo(map);
+
+      map.setView(
+        {
+          lat: location.latitude,
+          lng: location.longitude
+        },
+        location.zoom
+      );
+
       offers.forEach((offer) => {
         leaflet
           .marker(
@@ -40,15 +52,19 @@ export default function Map({city, offers, selectedOffer, isMainMap}: MapProps):
               lng: offer.location.longitude
             },
             {
-              icon: (selectedOffer !== null && offer.id === selectedOffer)
+              icon: (isMainMap && selectedOfferId !== null && offer.id === selectedOfferId)
                 ? activeMarkerIcon
                 : defaultMarkerIcon
             }
           )
-          .addTo(map);
+          .addTo(markerGroup);
       });
+
+      return () => {
+        markerGroup.clearLayers();
+      };
     }
-  }, [map, offers, selectedOffer]);
+  }, [map, location, offers, isMainMap, selectedOfferId]);
 
   return (
     <section

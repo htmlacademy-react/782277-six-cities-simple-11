@@ -137,7 +137,41 @@ export const offers: Offers = [
       latitude: 52.3809553943508,
       longitude: 4.939309666406198
     }
+  },
+  {
+    id: 5,
+    isFavorite: false,
+    isPremium: false,
+    title: 'Paris',
+    type: 'Paris',
+    price: 180,
+    rating: 5,
+    previewImage: `${PHOTO_URL.Offer}${Math.random()}`,
+    images: Array.from({length: 3}, () => `${PHOTO_URL.Offer}${Math.random()}`),
+    bedrooms: 5,
+    maxAdults: 3,
+    goods: ['Towels'],
+    description: 'The building is green and from 18th century.',
+    host: {
+      id: 2,
+      name: 'Max',
+      isPro: true,
+      avatarUrl: `${PHOTO_URL.Avatar}${Math.random()}`
+    },
+    city: {
+      location: {
+        zoom: 10,
+        latitude: 48.856663,
+        longitude: 2.351556
+      },
+      name: 'Paris'
+    },
+    location: {
+      zoom: 12,
+      latitude: 48.856663,
+      longitude: 2.351556
+    }
   }
 ];
 
-export const nearOffers = offers.slice(0, 3);
+export const nearOffers: Offers = offers.slice(0, 3);

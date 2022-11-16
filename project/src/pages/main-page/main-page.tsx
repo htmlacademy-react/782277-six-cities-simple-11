@@ -1,23 +1,15 @@
-import {useState} from 'react';
 import {Helmet} from 'react-helmet-async';
+import {useAppSelector} from '../../hooks/useAppSelector';
 
 import Header from '../../components/header/header';
 import UserNavigation from '../../components/user-navigation/user-navigation';
+import LocationList from '../../components/location-list/location-list';
 import OfferList from '../../components/offer-list/offer-list';
 import Map from '../../components/map/map';
 
-import {Offers} from '../../types/offer';
-
-type MainPageProps = {
-  offers: Offers;
-};
-
-export default function MainPage({offers}: MainPageProps): JSX.Element {
-  const [activeCardId, setActiveCardId] = useState<number | null>(null);
-
-  const onListItemHover = (offerId: number | null) => {
-    setActiveCardId(offerId);
-  };
+export default function MainPage(): JSX.Element {
+  const currentLocation = useAppSelector((state) => state.location);
+  const numberOfOffers = useAppSelector((state) => state.offers).length;
 
   return (
     <div className="page page--gray page--main">
@@ -33,47 +25,20 @@ export default function MainPage({offers}: MainPageProps): JSX.Element {
         <h1 className="visually-hidden">Cities</h1>
 
         <div className="tabs">
-          <section className="locations container">
-            <ul className="locations__list tabs__list">
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#todo">
-                  <span>Paris</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#todo">
-                  <span>Cologne</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#todo">
-                  <span>Brussels</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item tabs__item--active">
-                  <span>Amsterdam</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#todo">
-                  <span>Hamburg</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#todo">
-                  <span>Dusseldorf</span>
-                </a>
-              </li>
-            </ul>
-          </section>
+          <LocationList />
         </div>
 
         <div className="cities">
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{offers.length} places to stay in Amsterdam</b>
+
+              <b className="places__found">
+                {numberOfOffers ?
+                  `${numberOfOffers} places to stay in ${currentLocation}`
+                  : 'There aren`t available offers'}
+              </b>
+
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0}>
@@ -90,20 +55,10 @@ export default function MainPage({offers}: MainPageProps): JSX.Element {
                 </ul>
               </form>
 
-              <OfferList
-                offers={offers}
-                onListItemHover={onListItemHover}
-                isMainOfferList
-              />
-
+              <OfferList isMainOfferList />
             </section>
             <div className="cities__right-section">
-              <Map
-                city={offers[0].city.location}
-                offers={offers}
-                selectedOffer={activeCardId}
-                isMainMap
-              />
+              <Map isMainMap />
             </div>
           </div>
         </div>

@@ -24,7 +24,7 @@ export default function App({offers, nearOffers, allReviews}: AppProps): JSX.Ele
         <Routes>
           <Route
             path={AppRoute.Main}
-            element={<MainPage offers={offers} />}
+            element={<MainPage />}
           />
           <Route
             path={AppRoute.Login}
