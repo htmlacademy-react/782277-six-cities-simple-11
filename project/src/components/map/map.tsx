@@ -28,13 +28,14 @@ export default function Map({isMainMap}: MapProps): JSX.Element {
   const mapRef = useRef(null);
   const map = useMap(mapRef, DEFAULT_LOCATION.location);
 
-  const location = useAppSelector((state) => state.offers[0]?.location) || DEFAULT_LOCATION.location;
   const offers = useAppSelector((state) => state.offers);
   const selectedOfferId = useAppSelector((state) => state.selectedOfferId);
 
   useEffect(() => {
     if (map) {
-      const markerGroup = leaflet.layerGroup().addTo(map);
+      const location = offers.length
+        ? offers[0].location
+        : DEFAULT_LOCATION.location;
 
       map.setView(
         {
@@ -43,6 +44,12 @@ export default function Map({isMainMap}: MapProps): JSX.Element {
         },
         location.zoom
       );
+    }
+  }, [map, offers]);
+
+  useEffect(() => {
+    if (map) {
+      const markerGroup = leaflet.layerGroup().addTo(map);
 
       offers.forEach((offer) => {
         leaflet
@@ -64,7 +71,7 @@ export default function Map({isMainMap}: MapProps): JSX.Element {
         markerGroup.clearLayers();
       };
     }
-  }, [map, location, offers, isMainMap, selectedOfferId]);
+  }, [map, isMainMap, offers, selectedOfferId]);
 
   return (
     <section

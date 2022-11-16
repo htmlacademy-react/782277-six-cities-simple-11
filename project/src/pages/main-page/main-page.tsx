@@ -34,8 +34,8 @@ export default function MainPage(): JSX.Element {
               <h2 className="visually-hidden">Places</h2>
 
               <b className="places__found">
-                {numberOfOffers ?
-                  `${numberOfOffers} places to stay in ${currentLocation}`
+                {numberOfOffers
+                  ? `${numberOfOffers} places to stay in ${currentLocation}`
                   : 'There aren`t available offers'}
               </b>
 
