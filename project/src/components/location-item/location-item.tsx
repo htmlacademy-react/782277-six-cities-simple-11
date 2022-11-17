@@ -1,6 +1,6 @@
 import {useAppDispatch} from '../../hooks/useAppDispatch';
 import {useAppSelector} from '../../hooks/useAppSelector';
-import {changeLocation, updateOfferList} from '../../store/actions';
+import {changeLocation, updateOffers} from '../../store/actions';
 
 import cn from 'classnames';
 
@@ -23,7 +23,7 @@ export default function LocationItem({location}: LocationItemProps): JSX.Element
           event.preventDefault();
 
           dispatch(changeLocation(location));
-          dispatch(updateOfferList());
+          dispatch(updateOffers());
         }}
       >
         <span>{location}</span>

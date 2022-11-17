@@ -5,9 +5,16 @@ export const changeLocation = createAction(
   (location: string) => ({payload: location})
 );
 
-export const updateOfferList = createAction('offer/updateOfferList');
+export const sortOffers = createAction(
+  'offers/sortOffers',
+  (sort: string) => ({payload: sort})
+);
+
+export const updateOffers = createAction(
+  'offers/updateOffers'
+);
 
 export const selectOffer = createAction(
-  'offer/selectOffer',
+  'offers/selectOffer',
   (offerId: number | null) => ({payload: offerId})
 );
