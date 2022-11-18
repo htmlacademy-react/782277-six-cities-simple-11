@@ -1,18 +1,20 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {changeLocation, updateOfferList, selectOffer} from './actions';
+import {changeLocation, changeSort, updateOffers, selectOffer} from './actions';
 import {Offers} from '../types/offer';
-import {getOffersByLocation} from '../utils';
-import {DEFAULT_LOCATION} from '../const';
+import {getOffers} from '../utils';
+import {DEFAULT_LOCATION, DEFAULT_SORT} from '../const';
 
 type InitialState = {
   location: string;
+  sortType: string;
   offers: Offers;
   selectedOfferId: number | null;
 };
 
 const initialState: InitialState = {
-  location: DEFAULT_LOCATION.name,
-  offers: getOffersByLocation(DEFAULT_LOCATION.name),
+  location: DEFAULT_LOCATION,
+  sortType: DEFAULT_SORT,
+  offers: getOffers(),
   selectedOfferId: null,
 };
 
@@ -21,8 +23,11 @@ export const reducer = createReducer(initialState, (builder) => {
     .addCase(changeLocation, (state, action) => {
       state.location = action.payload;
     })
-    .addCase(updateOfferList, (state) => {
-      state.offers = getOffersByLocation(state.location);
+    .addCase(changeSort, (state, action) => {
+      state.sortType = action.payload;
+    })
+    .addCase(updateOffers, (state) => {
+      state.offers = getOffers(state.location, state.sortType);
     })
     .addCase(selectOffer, (state, action) => {
       state.selectedOfferId = action.payload;

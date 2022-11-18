@@ -1,29 +1,3 @@
-export const LOCATIONS = [
-  'Paris',
-  'Cologne',
-  'Brussels',
-  'Amsterdam',
-  'Hamburg',
-  'Dusseldorf'
-];
-
-export const DEFAULT_LOCATION = {
-  location: {
-    latitude: 48.856663,
-    longitude: 2.351556,
-    zoom: 5
-  },
-  name: 'Paris'
-};
-
-export const GRADES = [
-  'perfect',
-  'good',
-  'not bad',
-  'badly',
-  'terribly'
-];
-
 export enum AppRoute {
   Main = '/',
   Login = '/login',
@@ -41,3 +15,31 @@ export enum PHOTO_URL {
   Avatar = 'https://i.pravatar.cc/74?rnd=',
   Offer = 'http://picsum.photos/260/200?r='
 }
+
+export const LOCATIONS = [
+  'Paris',
+  'Cologne',
+  'Brussels',
+  'Amsterdam',
+  'Hamburg',
+  'Dusseldorf'
+];
+
+export const DEFAULT_LOCATION = 'Paris';
+
+export const SORTS = [
+  'Popular',
+  'Price: low to high',
+  'Price: high to low',
+  'Top rated first'
+];
+
+export const DEFAULT_SORT = 'Popular';
+
+export const GRADES = [
+  'perfect',
+  'good',
+  'not bad',
+  'badly',
+  'terribly'
+];

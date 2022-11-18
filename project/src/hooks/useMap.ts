@@ -9,7 +9,7 @@ const LAYER_OPTION = {
 
 export default function useMap(
   mapRef: MutableRefObject<HTMLElement | null>,
-  city: Location
+  location: Location
 ): Map | null {
   const [map, setMap] = useState<Map | null>(null);
   const isRenderedRef = useRef(false);
@@ -19,10 +19,10 @@ export default function useMap(
 
       const instance = leaflet.map(mapRef.current, {
         center: {
-          lat: city.latitude,
-          lng: city.longitude
+          lat: location.latitude,
+          lng: location.longitude
         },
-        zoom: city.zoom
+        zoom: location.zoom
       });
 
       leaflet
@@ -35,7 +35,7 @@ export default function useMap(
       setMap(instance);
       isRenderedRef.current = true;
     }
-  }, [mapRef, city]);
+  }, [mapRef, location]);
 
   return map;
 }
