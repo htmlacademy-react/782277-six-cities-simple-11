@@ -6,7 +6,11 @@ import cn from 'classnames';
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-import {DEFAULT_LOCATION} from '../../const';
+const DEFAULT_COORDINATE = {
+  latitude: 48.856663,
+  longitude: 2.351556,
+  zoom: 5
+};
 
 type MapProps = {
   isMainMap?: boolean;
@@ -26,7 +30,7 @@ const activeMarkerIcon = leaflet.icon({
 
 export default function Map({isMainMap}: MapProps): JSX.Element {
   const mapRef = useRef(null);
-  const map = useMap(mapRef, DEFAULT_LOCATION.location);
+  const map = useMap(mapRef, DEFAULT_COORDINATE);
 
   const offers = useAppSelector((state) => state.offers);
   const selectedOfferId = useAppSelector((state) => state.selectedOfferId);
@@ -35,7 +39,7 @@ export default function Map({isMainMap}: MapProps): JSX.Element {
     if (map) {
       const location = offers.length
         ? offers[0].location
-        : DEFAULT_LOCATION.location;
+        : DEFAULT_COORDINATE;
 
       map.setView(
         {

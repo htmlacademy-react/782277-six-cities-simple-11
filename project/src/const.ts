@@ -25,23 +25,12 @@ export const LOCATIONS = [
   'Dusseldorf'
 ];
 
-export const DEFAULT_LOCATION = {
-  location: {
-    latitude: 48.856663,
-    longitude: 2.351556,
-    zoom: 5
-  },
-  name: 'Paris'
-};
-
 export const SORTS = [
   'Popular',
   'Price: low to high',
   'Price: high to low',
   'Top rated first'
 ];
-
-export const DEFAULT_SORT = 'Popular';
 
 export const GRADES = [
   'perfect',

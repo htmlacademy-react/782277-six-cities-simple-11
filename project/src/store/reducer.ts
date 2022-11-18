@@ -2,7 +2,9 @@ import {createReducer} from '@reduxjs/toolkit';
 import {changeLocation, sortOffers, updateOffers, selectOffer} from './actions';
 import {Offers} from '../types/offer';
 import {getOffersByLocation, getOffersBySort} from '../utils';
-import {DEFAULT_LOCATION, DEFAULT_SORT} from '../const';
+
+const DEFAULT_LOCATION = 'Paris';
+const DEFAULT_SORT = 'Popular';
 
 type InitialState = {
   location: string;
@@ -12,9 +14,9 @@ type InitialState = {
 };
 
 const initialState: InitialState = {
-  location: DEFAULT_LOCATION.name,
+  location: DEFAULT_LOCATION,
   sortType: DEFAULT_SORT,
-  offers: getOffersByLocation(DEFAULT_LOCATION.name),
+  offers: getOffersByLocation(DEFAULT_LOCATION),
   selectedOfferId: null,
 };
 
