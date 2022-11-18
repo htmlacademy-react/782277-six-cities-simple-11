@@ -1,4 +1,4 @@
-import {useRef} from 'react';
+import {useState} from 'react';
 import {useAppSelector} from '../../hooks/useAppSelector';
 import {useAppDispatch} from '../../hooks/useAppDispatch';
 import {changeSort, updateOffers} from '../../store/actions';
@@ -8,7 +8,7 @@ import cn from 'classnames';
 import {SORTS} from '../../const';
 
 export default function Sort(): JSX.Element {
-  const sortList = useRef<HTMLUListElement>(null);
+  const [toggleList, setToggleList] = useState<boolean>(false);
   const sortType = useAppSelector((state) => state.sortType);
   const dispatch = useAppDispatch();
 
@@ -19,7 +19,7 @@ export default function Sort(): JSX.Element {
         className="places__sorting-type"
         tabIndex={0}
         onClick={() => {
-          sortList.current?.classList.toggle('places__options--opened');
+          setToggleList(!toggleList);
         }}
       >
         {sortType}
@@ -27,7 +27,11 @@ export default function Sort(): JSX.Element {
           <use xlinkHref="#icon-arrow-select"></use>
         </svg>
       </span>
-      <ul ref={sortList} className="places__options places__options--custom">
+      <ul
+        className={cn('places__options places__options--custom', {
+          'places__options--opened': toggleList
+        })}
+      >
         {SORTS && SORTS.map((sort) => (
           <li
             key={sort}
@@ -36,7 +40,7 @@ export default function Sort(): JSX.Element {
             })}
             tabIndex={0}
             onClick={() => {
-              sortList.current?.classList.toggle('places__options--opened');
+              setToggleList(false);
               dispatch(changeSort(sort));
               dispatch(updateOffers());
             }}
