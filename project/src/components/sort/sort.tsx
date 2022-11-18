@@ -1,7 +1,7 @@
 import {useRef} from 'react';
 import {useAppSelector} from '../../hooks/useAppSelector';
 import {useAppDispatch} from '../../hooks/useAppDispatch';
-import {sortOffers} from '../../store/actions';
+import {changeSort, updateOffers} from '../../store/actions';
 
 import cn from 'classnames';
 
@@ -36,8 +36,9 @@ export default function Sort(): JSX.Element {
             })}
             tabIndex={0}
             onClick={() => {
-              dispatch(sortOffers(sort));
               sortList.current?.classList.toggle('places__options--opened');
+              dispatch(changeSort(sort));
+              dispatch(updateOffers());
             }}
           >
             {sort}

@@ -1,12 +1,12 @@
 import {createAction} from '@reduxjs/toolkit';
 
 export const changeLocation = createAction(
-  'location/changeLocation',
+  'offers/changeLocation',
   (location: string) => ({payload: location})
 );
 
-export const sortOffers = createAction(
-  'offers/sortOffers',
+export const changeSort = createAction(
+  'offers/changeSort',
   (sort: string) => ({payload: sort})
 );
 

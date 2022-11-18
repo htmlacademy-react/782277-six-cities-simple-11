@@ -1,6 +1,6 @@
 import {useAppDispatch} from '../../hooks/useAppDispatch';
 import {useAppSelector} from '../../hooks/useAppSelector';
-import {changeLocation, updateOffers} from '../../store/actions';
+import {changeLocation, changeSort, updateOffers} from '../../store/actions';
 
 import cn from 'classnames';
 
@@ -10,6 +10,7 @@ type LocationItemProps = {
 
 export default function LocationItem({location}: LocationItemProps): JSX.Element {
   const currentLocation = useAppSelector((state) => state.location);
+  const sortType = useAppSelector((state) => state.sortType);
   const dispatch = useAppDispatch();
 
   return (
@@ -23,6 +24,7 @@ export default function LocationItem({location}: LocationItemProps): JSX.Element
           event.preventDefault();
 
           dispatch(changeLocation(location));
+          dispatch(changeSort(sortType));
           dispatch(updateOffers());
         }}
       >
