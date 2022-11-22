@@ -1,5 +1,5 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {changeLocation, changeSort, updateOffers, selectOffer} from './actions';
+import {changeLocation, changeSort, loadOffers, updateOffers, selectOffer} from './actions';
 import {Offers} from '../types/offer';
 import {getOffers} from '../utils';
 import {DEFAULT_LOCATION, DEFAULT_SORT} from '../const';
@@ -25,6 +25,9 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(changeSort, (state, action) => {
       state.sortType = action.payload;
+    })
+    .addCase(loadOffers, (state, action) => {
+      state.offers = action.payload;
     })
     .addCase(updateOffers, (state) => {
       state.offers = getOffers(state.location, state.sortType);
