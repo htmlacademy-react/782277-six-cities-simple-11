@@ -4,7 +4,7 @@ import {Offers} from '../types/offer';
 import {AuthorizationStatus, DEFAULT_LOCATION, DEFAULT_SORT} from '../const';
 
 type InitialState = {
-  AuthorizationStatus: AuthorizationStatus;
+  authorizationStatus: AuthorizationStatus;
   location: string;
   sortType: string;
   offers: Offers;
@@ -12,7 +12,7 @@ type InitialState = {
 };
 
 const initialState: InitialState = {
-  AuthorizationStatus: AuthorizationStatus.Unknown,
+  authorizationStatus: AuthorizationStatus.Unknown,
   location: DEFAULT_LOCATION,
   sortType: DEFAULT_SORT,
   offers: [],
