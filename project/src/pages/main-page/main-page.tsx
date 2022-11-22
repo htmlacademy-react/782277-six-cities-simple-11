@@ -8,9 +8,12 @@ import Sort from '../../components/sort/sort';
 import OfferList from '../../components/offer-list/offer-list';
 import Map from '../../components/map/map';
 
+import {getOffersByLocation} from '../../utils';
+
 export default function MainPage(): JSX.Element {
-  const currentLocation = useAppSelector((state) => state.location);
-  const numberOfOffers = useAppSelector((state) => state.offers).length;
+  const location = useAppSelector((state) => state.location);
+  const offers = useAppSelector((state) => getOffersByLocation(state.offers, location));
+  const numberOfOffers = offers.length;
 
   return (
     <div className="page page--gray page--main">
@@ -35,9 +38,7 @@ export default function MainPage(): JSX.Element {
               <h2 className="visually-hidden">Places</h2>
 
               <b className="places__found">
-                {numberOfOffers
-                  ? `${numberOfOffers} places to stay in ${currentLocation}`
-                  : 'There aren`t available offers'}
+                {numberOfOffers} places to stay in {location}
               </b>
 
               <Sort />

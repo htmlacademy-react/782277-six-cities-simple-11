@@ -3,7 +3,7 @@ import cn from 'classnames';
 import OfferCard from '../offer-card/offer-card';
 
 import {useAppSelector} from '../../hooks/useAppSelector';
-import {compareOffers} from '../../utils';
+import {getOffersByLocation, compareOffers} from '../../utils';
 
 type OfferListProps = {
   isMainOfferList?: boolean;
@@ -12,11 +12,7 @@ type OfferListProps = {
 export default function OfferList({isMainOfferList}: OfferListProps): JSX.Element {
   const location = useAppSelector((state) => state.location);
   const sortType = useAppSelector((state) => state.sortType);
-  const offers = useAppSelector(
-    (state) => state.offers
-      .filter((offer) => offer.city.name === location)
-      .sort(compareOffers[sortType])
-  );
+  const offers = useAppSelector((state) => getOffersByLocation(state.offers, location).sort(compareOffers[sortType]));
 
   return (
     <div

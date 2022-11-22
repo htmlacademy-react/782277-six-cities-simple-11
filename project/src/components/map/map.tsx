@@ -1,12 +1,11 @@
 import {useRef, useEffect} from 'react';
-
 import cn from 'classnames';
-
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 import useMap from '../../hooks/useMap';
 import {useAppSelector} from '../../hooks/useAppSelector';
+import {getOffersByLocation} from '../../utils';
 
 const DEFAULT_COORDINATE = {
   latitude: 48.85661,
@@ -35,7 +34,7 @@ export default function Map({isMainMap}: MapProps): JSX.Element {
   const map = useMap(mapRef, DEFAULT_COORDINATE);
 
   const location = useAppSelector((state) => state.location);
-  const offers = useAppSelector((state) => state.offers.filter((offer) => offer.city.name === location));
+  const offers = useAppSelector((state) => getOffersByLocation(state.offers, location));
   const selectedOfferId = useAppSelector((state) => state.selectedOfferId);
 
   useEffect(() => {

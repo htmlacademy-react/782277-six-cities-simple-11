@@ -1,4 +1,4 @@
-import {Offer} from './types/offer';
+import {Offers, Offer} from './types/offer';
 import {SORTS} from './const';
 
 const [popular, lowPrice, hightPrice, rating] = SORTS;
@@ -9,6 +9,9 @@ export const compareOffers: Record<string, (offer: Offer, nextOffer: Offer) => n
   [hightPrice]: (offer, nextOffer) => nextOffer.price - offer.price,
   [rating]: (offer, nextOffer) => nextOffer.rating - offer.rating
 };
+
+export const getOffersByLocation = (offers: Offers, location: string): Offers =>
+  offers.filter((offer) => offer.city.name === location);
 
 export const formatFirstLetter = (text: string): string =>
   text.charAt(0).toUpperCase() + text.slice(1);
