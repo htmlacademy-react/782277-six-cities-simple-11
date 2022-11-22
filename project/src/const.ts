@@ -44,3 +44,5 @@ export const GRADES = [
   'badly',
   'terribly'
 ];
+
+export const TIMEOUT_SHOW_ERROR = 2000;
