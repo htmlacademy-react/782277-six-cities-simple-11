@@ -22,10 +22,6 @@ export const loadOffers = createAction(
   (offers: Offers) => ({payload: offers})
 );
 
-export const updateOffers = createAction(
-  'offers/updateOffers'
-);
-
 export const selectOffer = createAction(
   'map/selectOffer',
   (offerId: number | null) => ({payload: offerId})

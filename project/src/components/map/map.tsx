@@ -1,20 +1,18 @@
 import {useRef, useEffect} from 'react';
-import useMap from '../../hooks/useMap';
-import {useAppSelector} from '../../hooks/useAppSelector';
 
 import cn from 'classnames';
+
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-const DEFAULT_COORDINATE = {
-  latitude: 48.856663,
-  longitude: 2.351556,
-  zoom: 5
-};
+import useMap from '../../hooks/useMap';
+import {useAppSelector} from '../../hooks/useAppSelector';
 
-type MapProps = {
-  isMainMap?: boolean;
-}
+const DEFAULT_COORDINATE = {
+  latitude: 48.85661,
+  longitude: 2.351499,
+  zoom: 11
+};
 
 const defaultMarkerIcon = leaflet.icon({
   iconUrl: './img/pin.svg',
@@ -28,25 +26,30 @@ const activeMarkerIcon = leaflet.icon({
   iconAnchor: [14, 40]
 });
 
+type MapProps = {
+  isMainMap?: boolean;
+}
+
 export default function Map({isMainMap}: MapProps): JSX.Element {
   const mapRef = useRef(null);
   const map = useMap(mapRef, DEFAULT_COORDINATE);
 
-  const offers = useAppSelector((state) => state.offers);
+  const location = useAppSelector((state) => state.location);
+  const offers = useAppSelector((state) => state.offers.filter((offer) => offer.city.name === location));
   const selectedOfferId = useAppSelector((state) => state.selectedOfferId);
 
   useEffect(() => {
     if (map) {
-      const location = offers.length
-        ? offers[0].location
+      const mapCenter = offers.length
+        ? offers[0].city.location
         : DEFAULT_COORDINATE;
 
       map.setView(
         {
-          lat: location.latitude,
-          lng: location.longitude
+          lat: mapCenter.latitude,
+          lng: mapCenter.longitude
         },
-        location.zoom
+        mapCenter.zoom
       );
     }
   }, [map, offers]);

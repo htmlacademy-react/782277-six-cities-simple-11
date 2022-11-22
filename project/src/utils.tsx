@@ -1,23 +1,14 @@
-import {Offers, Offer} from './types/offer';
-import {offers} from './mocks/offer';
-import {DEFAULT_LOCATION, SORTS, DEFAULT_SORT} from './const';
+import {Offer} from './types/offer';
+import {SORTS} from './const';
 
 const [popular, lowPrice, hightPrice, rating] = SORTS;
 
-const offerFromServer = offers.slice();
-
-const compareOffers: Record<string, (offer: Offer, nextOffer: Offer) => number> = {
+export const compareOffers: Record<string, (offer: Offer, nextOffer: Offer) => number> = {
   [popular]: () => 0,
   [lowPrice]: (offer, nextOffer) => offer.price - nextOffer.price,
   [hightPrice]: (offer, nextOffer) => nextOffer.price - offer.price,
   [rating]: (offer, nextOffer) => nextOffer.rating - offer.rating
 };
-
-export const getOffers = (
-  location = DEFAULT_LOCATION,
-  sortType = DEFAULT_SORT
-): Offers =>
-  offerFromServer.filter((offer) => offer.city.name === location).sort(compareOffers[sortType]);
 
 export const formatFirstLetter = (text: string): string =>
   text.charAt(0).toUpperCase() + text.slice(1);
