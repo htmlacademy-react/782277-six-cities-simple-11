@@ -1,10 +1,11 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {requireAuthorization, changeLocation, changeSort, loadOffers, selectOffer} from './actions';
+import {requireAuthorization, checkError, changeLocation, changeSort, loadOffers, selectOffer} from './actions';
 import {Offers} from '../types/offer';
 import {AuthorizationStatus, DEFAULT_LOCATION, DEFAULT_SORT} from '../const';
 
 type InitialState = {
   authorizationStatus: AuthorizationStatus;
+  error: string | null;
   location: string;
   sortType: string;
   offers: Offers;
@@ -13,6 +14,7 @@ type InitialState = {
 
 const initialState: InitialState = {
   authorizationStatus: AuthorizationStatus.Unknown,
+  error: null,
   location: DEFAULT_LOCATION,
   sortType: DEFAULT_SORT,
   offers: [],
@@ -23,6 +25,9 @@ export const reducer = createReducer(initialState, (builder) => {
   builder
     .addCase(requireAuthorization, (state, action) => {
       state.location = action.payload;
+    })
+    .addCase(checkError, (state, action) => {
+      state.error = action.payload;
     })
     .addCase(changeLocation, (state, action) => {
       state.location = action.payload;

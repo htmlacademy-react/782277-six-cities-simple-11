@@ -7,6 +7,11 @@ export const requireAuthorization = createAction(
   (status: AuthorizationStatus) => ({payload: status})
 );
 
+export const checkError = createAction(
+  'data/checkError',
+  (error: string | null) => ({payload: error})
+);
+
 export const changeLocation = createAction(
   'location/changeLocation',
   (location: string) => ({payload: location})
