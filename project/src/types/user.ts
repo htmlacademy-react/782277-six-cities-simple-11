@@ -5,8 +5,7 @@ export type User = {
   avatarUrl: string;
 };
 
-export type UserData = {
-  id: number;
+export type UserData = User & {
   email: string;
   token: string;
 };
