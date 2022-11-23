@@ -8,8 +8,8 @@ import {fetchOfferAction} from '../../store/api-action';
 import Header from '../../components/header/header';
 import UserNavigation from '../../components/user-navigation/user-navigation';
 import LocationList from '../../components/location-list/location-list';
-import Sort from '../../components/sort/sort';
-import OfferList from '../../components/offer-list/offer-list';
+import Loader from '../../components/loader/loader';
+import OffersSection from '../../components/offers-section/offers-section';
 import Map from '../../components/map/map';
 
 import {getOffersByLocation} from '../../utils';
@@ -17,7 +17,7 @@ import {getOffersByLocation} from '../../utils';
 export default function MainPage(): JSX.Element {
   const location = useAppSelector((state) => state.location);
   const offers = useAppSelector((state) => getOffersByLocation(state.offers, location));
-  const numberOfOffers = offers.length;
+  const countOfOffers = offers.length;
 
   useEffect(() => {
     store.dispatch(fetchOfferAction());
@@ -36,23 +36,16 @@ export default function MainPage(): JSX.Element {
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
 
-        <div className="tabs">
-          <LocationList />
-        </div>
+        <LocationList />
 
         <div className="cities">
           <div className="cities__places-container container">
-            <section className="cities__places places">
-              <h2 className="visually-hidden">Places</h2>
+            {
+              !countOfOffers
+                ? <Loader />
+                : <OffersSection location={location} countOfOffers={countOfOffers} />
+            }
 
-              <b className="places__found">
-                {numberOfOffers} places to stay in {location}
-              </b>
-
-              <Sort />
-
-              <OfferList isMainOfferList />
-            </section>
             <div className="cities__right-section">
               <Map isMainMap />
             </div>
