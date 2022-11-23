@@ -1,10 +1,11 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {changeLocation, changeSort, updateOffers, selectOffer} from './actions';
+import {requireAuthorization, checkError, changeLocation, changeSort, loadOffers, selectOffer} from './actions';
 import {Offers} from '../types/offer';
-import {getOffers} from '../utils';
-import {DEFAULT_LOCATION, DEFAULT_SORT} from '../const';
+import {AuthorizationStatus, DEFAULT_LOCATION, DEFAULT_SORT} from '../const';
 
 type InitialState = {
+  authorizationStatus: AuthorizationStatus;
+  error: string | null;
   location: string;
   sortType: string;
   offers: Offers;
@@ -12,22 +13,30 @@ type InitialState = {
 };
 
 const initialState: InitialState = {
+  authorizationStatus: AuthorizationStatus.Unknown,
+  error: null,
   location: DEFAULT_LOCATION,
   sortType: DEFAULT_SORT,
-  offers: getOffers(),
+  offers: [],
   selectedOfferId: null,
 };
 
 export const reducer = createReducer(initialState, (builder) => {
   builder
+    .addCase(requireAuthorization, (state, action) => {
+      state.location = action.payload;
+    })
+    .addCase(checkError, (state, action) => {
+      state.error = action.payload;
+    })
     .addCase(changeLocation, (state, action) => {
       state.location = action.payload;
     })
     .addCase(changeSort, (state, action) => {
       state.sortType = action.payload;
     })
-    .addCase(updateOffers, (state) => {
-      state.offers = getOffers(state.location, state.sortType);
+    .addCase(loadOffers, (state, action) => {
+      state.offers = action.payload;
     })
     .addCase(selectOffer, (state, action) => {
       state.selectedOfferId = action.payload;

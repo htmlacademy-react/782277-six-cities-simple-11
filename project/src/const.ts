@@ -5,15 +5,16 @@ export enum AppRoute {
   NotFound = '*'
 }
 
+export enum APIRoute {
+  Offers = '/hotels',
+  Login = '/login',
+  Logout = '/logout'
+}
+
 export enum AuthorizationStatus {
   Authorized = 'AUTHORIZED',
   NoAuthorized = 'NO_AUTHORIZED',
   Unknown = 'UNKNOWN'
-}
-
-export enum PHOTO_URL {
-  Avatar = 'https://i.pravatar.cc/74?rnd=',
-  Offer = 'http://picsum.photos/260/200?r='
 }
 
 export const LOCATIONS = [
@@ -43,3 +44,5 @@ export const GRADES = [
   'badly',
   'terribly'
 ];
+
+export const TIMEOUT_SHOW_ERROR = 2000;

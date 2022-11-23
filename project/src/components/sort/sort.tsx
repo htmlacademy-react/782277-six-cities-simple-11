@@ -1,9 +1,9 @@
 import {useState} from 'react';
+import cn from 'classnames';
+
 import {useAppSelector} from '../../hooks/useAppSelector';
 import {useAppDispatch} from '../../hooks/useAppDispatch';
-import {changeSort, updateOffers} from '../../store/actions';
-
-import cn from 'classnames';
+import {changeSort} from '../../store/actions';
 
 import {SORTS} from '../../const';
 
@@ -42,7 +42,6 @@ export default function Sort(): JSX.Element {
             onClick={() => {
               setToggleList(false);
               dispatch(changeSort(sort));
-              dispatch(updateOffers());
             }}
           >
             {sort}

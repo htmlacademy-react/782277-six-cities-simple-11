@@ -5,9 +5,6 @@ import {Provider} from 'react-redux';
 import {store} from './store/store';
 import App from './components/app/app';
 
-import {offers, nearOffers} from './mocks/offer';
-import {allReviews} from './mocks/review';
-
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
@@ -15,11 +12,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App
-        offers={offers}
-        nearOffers={nearOffers}
-        allReviews={allReviews}
-      />
+      <App />
     </Provider>
   </React.StrictMode>
 );
