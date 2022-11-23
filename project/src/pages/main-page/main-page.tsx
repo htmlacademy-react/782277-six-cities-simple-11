@@ -1,5 +1,9 @@
+import {useEffect} from 'react';
 import {Helmet} from 'react-helmet-async';
 import {useAppSelector} from '../../hooks/useAppSelector';
+
+import {store} from '../../store/store';
+import {fetchOfferAction} from '../../store/api-action';
 
 import Header from '../../components/header/header';
 import UserNavigation from '../../components/user-navigation/user-navigation';
@@ -14,6 +18,10 @@ export default function MainPage(): JSX.Element {
   const location = useAppSelector((state) => state.location);
   const offers = useAppSelector((state) => getOffersByLocation(state.offers, location));
   const numberOfOffers = offers.length;
+
+  useEffect(() => {
+    store.dispatch(fetchOfferAction());
+  }, []);
 
   return (
     <div className="page page--gray page--main">
