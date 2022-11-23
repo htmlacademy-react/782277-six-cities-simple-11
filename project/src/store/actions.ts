@@ -7,8 +7,8 @@ export const requireAuthorization = createAction(
   (status: AuthorizationStatus) => ({payload: status})
 );
 
-export const checkError = createAction(
-  'data/checkError',
+export const setError = createAction(
+  'data/setError',
   (error: string | null) => ({payload: error})
 );
 

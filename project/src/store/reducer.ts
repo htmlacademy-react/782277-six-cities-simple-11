@@ -1,5 +1,5 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {requireAuthorization, checkError, changeLocation, changeSort, loadOffers, selectOffer} from './actions';
+import {requireAuthorization, setError, changeLocation, changeSort, loadOffers, selectOffer} from './actions';
 import {Offers} from '../types/offer';
 import {AuthorizationStatus, DEFAULT_LOCATION, DEFAULT_SORT} from '../const';
 
@@ -26,7 +26,7 @@ export const reducer = createReducer(initialState, (builder) => {
     .addCase(requireAuthorization, (state, action) => {
       state.location = action.payload;
     })
-    .addCase(checkError, (state, action) => {
+    .addCase(setError, (state, action) => {
       state.error = action.payload;
     })
     .addCase(changeLocation, (state, action) => {

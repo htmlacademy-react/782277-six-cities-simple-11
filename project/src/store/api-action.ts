@@ -2,7 +2,7 @@ import {AxiosInstance} from 'axios';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 
 import {store} from './store';
-import {requireAuthorization, checkError, loadOffers} from './actions';
+import {requireAuthorization, setError, loadOffers} from './actions';
 import {removeToken, saveToken} from '../services/token';
 
 import {AppDispatch, State} from '../types/state';
@@ -70,7 +70,7 @@ export const clearErrorAction = createAsyncThunk(
   'data/clearError',
   () => {
     setTimeout(
-      () => store.dispatch(checkError(null)),
+      () => store.dispatch(setError(null)),
       TIMEOUT_SHOW_ERROR
     );
   }
