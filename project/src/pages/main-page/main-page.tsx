@@ -15,6 +15,7 @@ import Map from '../../components/map/map';
 import {getOffersByLocation} from '../../utils';
 
 export default function MainPage(): JSX.Element {
+  const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
   const location = useAppSelector((state) => state.location);
   const offers = useAppSelector((state) => getOffersByLocation(state.offers, location));
   const countOfOffers = offers.length;
@@ -41,7 +42,7 @@ export default function MainPage(): JSX.Element {
         <div className="cities">
           <div className="cities__places-container container">
             {
-              !countOfOffers
+              isOffersDataLoading
                 ? <Loader />
                 : <OffersSection location={location} countOfOffers={countOfOffers} />
             }

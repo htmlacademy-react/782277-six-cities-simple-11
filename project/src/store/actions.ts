@@ -12,6 +12,11 @@ export const setError = createAction(
   (error: string | null) => ({payload: error})
 );
 
+export const setOffersDataLoadingStatus = createAction(
+  'data/setOffersDataLoadingStatus',
+  (status: boolean) => ({payload: status})
+);
+
 export const changeLocation = createAction(
   'location/changeLocation',
   (location: string) => ({payload: location})
