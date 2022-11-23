@@ -46,7 +46,7 @@ export const reducer = createReducer(initialState, (builder) => {
       state.selectedOfferId = action.payload;
     })
     .addCase(requireAuthorization, (state, action) => {
-      state.location = action.payload;
+      state.authorizationStatus = action.payload;
     })
     .addCase(setError, (state, action) => {
       state.error = action.payload;

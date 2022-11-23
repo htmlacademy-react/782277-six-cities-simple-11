@@ -3,7 +3,7 @@ import {Helmet} from 'react-helmet-async';
 import {useAppSelector} from '../../hooks/useAppSelector';
 
 import {store} from '../../store/store';
-import {fetchOfferAction} from '../../store/api-action';
+import {checkAuthorizationAction, fetchOfferAction} from '../../store/api-action';
 
 import Header from '../../components/header/header';
 import UserNavigation from '../../components/user-navigation/user-navigation';
@@ -21,6 +21,7 @@ export default function MainPage(): JSX.Element {
   const countOfOffers = offers.length;
 
   useEffect(() => {
+    store.dispatch(checkAuthorizationAction());
     store.dispatch(fetchOfferAction());
   }, []);
 
