@@ -1,10 +1,16 @@
 import {createAction} from '@reduxjs/toolkit';
 import {Offers} from '../types/offer';
+import {UserData} from '../types/user';
 import {AuthorizationStatus} from '../const';
 
 export const requireAuthorization = createAction(
   'user/requireAuthorization',
   (status: AuthorizationStatus) => ({payload: status})
+);
+
+export const loadUserData = createAction(
+  'user/loadUserData',
+  (userData: UserData) => ({payload: userData})
 );
 
 export const setError = createAction(
@@ -17,6 +23,11 @@ export const setOffersDataLoadingStatus = createAction(
   (status: boolean) => ({payload: status})
 );
 
+export const loadOffers = createAction(
+  'data/loadOffers',
+  (offers: Offers) => ({payload: offers})
+);
+
 export const changeLocation = createAction(
   'location/changeLocation',
   (location: string) => ({payload: location})
@@ -25,11 +36,6 @@ export const changeLocation = createAction(
 export const changeSort = createAction(
   'sort/changeSort',
   (sort: string) => ({payload: sort})
-);
-
-export const loadOffers = createAction(
-  'data/loadOffers',
-  (offers: Offers) => ({payload: offers})
 );
 
 export const selectOffer = createAction(

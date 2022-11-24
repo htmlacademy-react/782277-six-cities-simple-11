@@ -26,8 +26,6 @@ export const LOCATIONS = [
   'Dusseldorf'
 ];
 
-export const DEFAULT_LOCATION = 'Paris';
-
 export const SORTS = [
   'Popular',
   'Price: low to high',
@@ -35,7 +33,10 @@ export const SORTS = [
   'Top rated first'
 ];
 
-export const DEFAULT_SORT = 'Popular';
+export const LOGIN_FIELDS = [
+  'email',
+  'password'
+];
 
 export const GRADES = [
   'perfect',
@@ -45,4 +46,6 @@ export const GRADES = [
   'terribly'
 ];
 
-export const TIMEOUT_SHOW_ERROR = 5000;
+export const DEFAULT_LOCATION = 'Paris';
+export const DEFAULT_SORT = 'Popular';
+export const TIMEOUT_SHOW_ERROR = 3000;

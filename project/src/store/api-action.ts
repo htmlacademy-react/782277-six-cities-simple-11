@@ -2,7 +2,7 @@ import {AxiosInstance} from 'axios';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 
 import {store} from './store';
-import {requireAuthorization, setError, setOffersDataLoadingStatus, loadOffers} from './actions';
+import {requireAuthorization, loadUserData, setError, setOffersDataLoadingStatus, loadOffers} from './actions';
 import {removeToken, saveToken} from '../services/token';
 
 import {AppDispatch, State} from '../types/state';
@@ -34,8 +34,9 @@ export const checkAuthorizationAction = createAsyncThunk<void, undefined, {
   'user/checkAuth',
   async (_arg, {dispatch, extra: api}) => {
     try {
-      await api.get(APIRoute.Login);
+      const {data} = await api.get<UserData>(APIRoute.Login);
       dispatch(requireAuthorization(AuthorizationStatus.Authorized));
+      dispatch(loadUserData(data));
     } catch {
       dispatch(requireAuthorization(AuthorizationStatus.NoAuthorized));
     }
@@ -49,9 +50,10 @@ export const loginAction = createAsyncThunk<void, AuthorizationData, {
 }>(
   'user/login',
   async ({login: email, password}, {dispatch, extra: api}) => {
-    const {data: {token}} = await api.post<UserData>(APIRoute.Login, {email, password});
-    saveToken(token);
+    const {data} = await api.post<UserData>(APIRoute.Login, {email, password});
+    saveToken(data.token);
     dispatch(requireAuthorization(AuthorizationStatus.Authorized));
+    dispatch(loadUserData(data));
   }
 );
 
