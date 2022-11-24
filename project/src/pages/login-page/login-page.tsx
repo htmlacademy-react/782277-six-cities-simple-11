@@ -1,5 +1,4 @@
 import {useState, FormEvent, ChangeEvent} from 'react';
-import {useNavigate} from 'react-router-dom';
 import {Helmet} from 'react-helmet-async';
 
 import {loginAction} from '../../store/api-action';
@@ -7,11 +6,10 @@ import {useAppDispatch} from '../../hooks/useAppDispatch';
 
 import Header from '../../components/header/header';
 
-import {AppRoute, LOGIN_FIELDS} from '../../const';
+import {LOGIN_FIELDS} from '../../const';
 import { formatFirstLetter } from '../../utils';
 
 export default function LoginPage(): JSX.Element {
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const [formData, setFormData] = useState({
@@ -32,8 +30,6 @@ export default function LoginPage(): JSX.Element {
         login: formData.email,
         password: formData.password
       }));
-
-      navigate(AppRoute.Main);
     }
   };
 
