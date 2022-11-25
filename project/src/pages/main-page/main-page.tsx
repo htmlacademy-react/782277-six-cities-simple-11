@@ -1,9 +1,5 @@
-import {useEffect} from 'react';
 import {Helmet} from 'react-helmet-async';
 import {useAppSelector} from '../../hooks/useAppSelector';
-
-import {store} from '../../store/store';
-import {fetchOfferAction} from '../../store/api-action';
 
 import Header from '../../components/header/header';
 import UserNavigation from '../../components/user-navigation/user-navigation';
@@ -15,13 +11,10 @@ import Map from '../../components/map/map';
 import {getOffersByLocation} from '../../utils';
 
 export default function MainPage(): JSX.Element {
+  const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
   const location = useAppSelector((state) => state.location);
   const offers = useAppSelector((state) => getOffersByLocation(state.offers, location));
   const countOfOffers = offers.length;
-
-  useEffect(() => {
-    store.dispatch(fetchOfferAction());
-  }, []);
 
   return (
     <div className="page page--gray page--main">
@@ -41,7 +34,7 @@ export default function MainPage(): JSX.Element {
         <div className="cities">
           <div className="cities__places-container container">
             {
-              !countOfOffers
+              isOffersDataLoading
                 ? <Loader />
                 : <OffersSection location={location} countOfOffers={countOfOffers} />
             }
