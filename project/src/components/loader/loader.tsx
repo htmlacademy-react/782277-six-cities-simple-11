@@ -1,7 +1,14 @@
+import cn from 'classnames';
 import './loader.css';
 
-export default function Loader(): JSX.Element {
+type LoaderProps = {
+  fullScreen?: boolean;
+};
+
+export default function Loader({fullScreen}: LoaderProps): JSX.Element {
   return (
-    <div className="loader">Loading...</div>
+    <div className={cn('loader', {'loader--full': fullScreen})}>
+      Loading...
+    </div>
   );
 }

@@ -1,12 +1,16 @@
 import Sort from '../sort/sort';
 import OfferList from '../offer-list/offer-list';
 
+import {Offers} from '../../types/offer';
+
 type OffersSectionProps = {
-  countOfOffers: number;
   location: string;
+  offers: Offers;
 };
 
-export default function OffersSection({countOfOffers, location}: OffersSectionProps): JSX.Element {
+export default function OfferSection({location, offers}: OffersSectionProps): JSX.Element {
+  const countOfOffers = offers.length;
+
   return (
     <section className="cities__places places">
       <h2 className="visually-hidden">Places</h2>
@@ -16,8 +20,7 @@ export default function OffersSection({countOfOffers, location}: OffersSectionPr
       </b>
 
       <Sort />
-
-      <OfferList isMainOfferList />
+      <OfferList offers={offers} isMainOffer />
     </section>
   );
 }
