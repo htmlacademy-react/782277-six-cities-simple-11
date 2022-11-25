@@ -5,6 +5,7 @@ import {
   setOffersDataLoadingStatus,
   loadOffers,
   loadOfferItem,
+  loadNearOffers,
   changeLocation,
   changeSort,
   selectOffer
@@ -19,6 +20,7 @@ type InitialState = {
   isOffersDataLoading: boolean;
   offers: Offers;
   offerItem: Offer;
+  nearOffers: Offers;
   location: string;
   sortType: string;
   selectedOfferId: OfferId | null;
@@ -30,6 +32,7 @@ const initialState: InitialState = {
   isOffersDataLoading: false,
   offers: [] as Offers,
   offerItem: {} as Offer,
+  nearOffers: [] as Offers,
   location: DEFAULT_LOCATION,
   sortType: DEFAULT_SORT,
   selectedOfferId: null,
@@ -51,6 +54,9 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadOfferItem, (state, action) => {
       state.offerItem = action.payload;
+    })
+    .addCase(loadNearOffers, (state, action) => {
+      state.nearOffers = action.payload;
     })
     .addCase(changeLocation, (state, action) => {
       state.location = action.payload;

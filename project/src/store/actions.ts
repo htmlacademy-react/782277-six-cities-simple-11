@@ -33,6 +33,11 @@ export const loadOfferItem = createAction(
   (offerItem: Offer) => ({payload: offerItem})
 );
 
+export const loadNearOffers = createAction(
+  'data/loadNearOffers',
+  (nearestOffers: Offers) => ({payload: nearestOffers})
+);
+
 export const changeLocation = createAction(
   'location/changeLocation',
   (location: string) => ({payload: location})

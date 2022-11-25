@@ -1,7 +1,15 @@
 import {AxiosInstance} from 'axios';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 
-import {requireAuthorization, loadUserData, setOffersDataLoadingStatus, loadOffers, redirectToRoute, loadOfferItem} from './actions';
+import {
+  requireAuthorization,
+  loadUserData,
+  setOffersDataLoadingStatus,
+  loadOffers,
+  loadOfferItem,
+  loadNearOffers,
+  redirectToRoute
+} from './actions';
 import {removeToken, saveToken} from '../services/token';
 
 import {AppDispatch, State} from '../types/state';
@@ -34,6 +42,18 @@ export const fetchOfferItemAction = createAsyncThunk<void, OfferId, {
   async (offerId, {dispatch, extra: api}) => {
     const {data} = await api.get<Offer>(`${APIRoute.Offers}/${offerId}`);
     dispatch(loadOfferItem(data));
+  }
+);
+
+export const fetchNearOffersAction = createAsyncThunk<void, OfferId, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchNearOffers',
+  async (offerId, {dispatch, extra: api}) => {
+    const {data} = await api.get<Offers>(`${APIRoute.Offers}/${offerId}/nearby`);
+    dispatch(loadNearOffers(data));
   }
 );
 
