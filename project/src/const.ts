@@ -48,4 +48,3 @@ export const GRADES = [
 
 export const DEFAULT_LOCATION = 'Paris';
 export const DEFAULT_SORT = 'Popular';
-export const TIMEOUT_SHOW_ERROR = 3000;

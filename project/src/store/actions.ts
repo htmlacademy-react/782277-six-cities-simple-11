@@ -18,11 +18,6 @@ export const loadUserData = createAction(
   (userData: UserData) => ({payload: userData})
 );
 
-export const setError = createAction(
-  'data/setError',
-  (error: string | null) => ({payload: error})
-);
-
 export const setOffersDataLoadingStatus = createAction(
   'data/setOffersDataLoadingStatus',
   (status: boolean) => ({payload: status})

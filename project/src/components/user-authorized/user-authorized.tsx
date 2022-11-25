@@ -16,13 +16,13 @@ export default function UserAuthorized(): JSX.Element {
           <div className="header__avatar-wrapper user__avatar-wrapper">
             <img
               className="header__avatar-image"
-              src={avatarUrl || './img/avatar.svg'}
+              src={avatarUrl ?? './img/avatar.svg'}
               width="20"
               height="20"
-              alt={name || 'User avatar.'}
+              alt={name ?? 'User avatar.'}
             />
           </div>
-          <span className="header__user-name user__name">{email || name}</span>
+          <span className="header__user-name user__name">{email ?? name}</span>
         </div>
       </li>
       <li className="header__nav-item">

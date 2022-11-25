@@ -6,7 +6,8 @@ import {store} from './store/store';
 import {checkAuthorizationAction, fetchOfferAction} from './store/api-action';
 
 import App from './components/app/app';
-import ErrorMessage from './components/error-message/error-message';
+import {ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 store.dispatch(checkAuthorizationAction());
 store.dispatch(fetchOfferAction());
@@ -18,8 +19,8 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <ErrorMessage />
       <App />
+      <ToastContainer />
     </Provider>
   </React.StrictMode>
 );

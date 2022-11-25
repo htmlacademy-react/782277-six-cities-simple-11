@@ -2,7 +2,6 @@ import {createReducer} from '@reduxjs/toolkit';
 import {
   requireAuthorization,
   loadUserData,
-  setError,
   setOffersDataLoadingStatus,
   loadOffers,
   changeLocation,
@@ -16,7 +15,6 @@ import {AuthorizationStatus, DEFAULT_LOCATION, DEFAULT_SORT} from '../const';
 type InitialState = {
   authorizationStatus: AuthorizationStatus;
   userData: UserData;
-  error: string | null;
   isOffersDataLoading: boolean;
   offers: Offers;
   location: string;
@@ -27,7 +25,6 @@ type InitialState = {
 const initialState: InitialState = {
   authorizationStatus: AuthorizationStatus.Unknown,
   userData: {} as UserData,
-  error: null,
   isOffersDataLoading: false,
   offers: [] as Offers,
   location: DEFAULT_LOCATION,
@@ -42,9 +39,6 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadUserData, (state, action) => {
       state.userData = action.payload;
-    })
-    .addCase(setError, (state, action) => {
-      state.error = action.payload;
     })
     .addCase(setOffersDataLoadingStatus, (state, action) => {
       state.isOffersDataLoading = action.payload;
