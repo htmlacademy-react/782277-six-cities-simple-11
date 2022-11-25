@@ -22,7 +22,7 @@ type InitialState = {
   offers: Offers;
   isOffersDataLoading: boolean;
   offerItem: Offer | null;
-  nearOffers: Offers;
+  nearOffers: Offers | null;
   reviews: Reviews | null;
   location: string;
   sortType: string;
@@ -35,7 +35,7 @@ const initialState: InitialState = {
   offers: [] as Offers,
   isOffersDataLoading: false,
   offerItem: null,
-  nearOffers: [] as Offers,
+  nearOffers: null,
   reviews: null,
   location: DEFAULT_LOCATION,
   sortType: DEFAULT_SORT,
