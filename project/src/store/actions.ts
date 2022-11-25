@@ -18,14 +18,14 @@ export const loadUserData = createAction(
   (userData: UserData) => ({payload: userData})
 );
 
-export const setOffersDataLoadingStatus = createAction(
-  'data/setOffersDataLoadingStatus',
-  (status: boolean) => ({payload: status})
-);
-
 export const loadOffers = createAction(
   'data/loadOffers',
   (offers: Offers) => ({payload: offers})
+);
+
+export const setOffersDataLoadingStatus = createAction(
+  'data/setOffersDataLoadingStatus',
+  (status: boolean) => ({payload: status})
 );
 
 export const loadOfferItem = createAction(

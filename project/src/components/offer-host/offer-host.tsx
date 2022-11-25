@@ -21,9 +21,7 @@ export default function OfferHost({offer}: OfferHostProps): JSX.Element {
           />
         </div>
 
-        <span className="property__user-name">
-          {host.name}
-        </span>
+        <span className="property__user-name">{host.name}</span>
 
         {host.isPro &&
         <span className="property__user-status">
@@ -32,9 +30,7 @@ export default function OfferHost({offer}: OfferHostProps): JSX.Element {
       </div>
 
       <div className="property__description">
-        <p className="property__text">
-          {description}
-        </p>
+        <p className="property__text">{description}</p>
       </div>
     </div>
   );

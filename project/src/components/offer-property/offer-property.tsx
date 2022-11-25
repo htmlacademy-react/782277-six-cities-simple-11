@@ -1,5 +1,4 @@
 import {Fragment} from 'react';
-
 import {Offer} from '../../types/offer';
 import {formatFirstLetter, calculateRatingWidth} from '../../utils';
 

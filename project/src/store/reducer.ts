@@ -2,8 +2,8 @@ import {createReducer} from '@reduxjs/toolkit';
 import {
   requireAuthorization,
   loadUserData,
-  setOffersDataLoadingStatus,
   loadOffers,
+  setOffersDataLoadingStatus,
   loadOfferItem,
   loadNearOffers,
   changeLocation,
@@ -17,9 +17,9 @@ import {AuthorizationStatus, DEFAULT_LOCATION, DEFAULT_SORT} from '../const';
 type InitialState = {
   authorizationStatus: AuthorizationStatus;
   userData: UserData;
-  isOffersDataLoading: boolean;
   offers: Offers;
-  offerItem: Offer;
+  isOffersDataLoading: boolean;
+  offerItem: Offer | null;
   nearOffers: Offers;
   location: string;
   sortType: string;
@@ -29,9 +29,9 @@ type InitialState = {
 const initialState: InitialState = {
   authorizationStatus: AuthorizationStatus.Unknown,
   userData: {} as UserData,
-  isOffersDataLoading: false,
   offers: [] as Offers,
-  offerItem: {} as Offer,
+  isOffersDataLoading: false,
+  offerItem: null,
   nearOffers: [] as Offers,
   location: DEFAULT_LOCATION,
   sortType: DEFAULT_SORT,
@@ -46,11 +46,11 @@ export const reducer = createReducer(initialState, (builder) => {
     .addCase(loadUserData, (state, action) => {
       state.userData = action.payload;
     })
-    .addCase(setOffersDataLoadingStatus, (state, action) => {
-      state.isOffersDataLoading = action.payload;
-    })
     .addCase(loadOffers, (state, action) => {
       state.offers = action.payload;
+    })
+    .addCase(setOffersDataLoadingStatus, (state, action) => {
+      state.isOffersDataLoading = action.payload;
     })
     .addCase(loadOfferItem, (state, action) => {
       state.offerItem = action.payload;

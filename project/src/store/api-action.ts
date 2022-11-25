@@ -4,8 +4,8 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
 import {
   requireAuthorization,
   loadUserData,
-  setOffersDataLoadingStatus,
   loadOffers,
+  setOffersDataLoadingStatus,
   loadOfferItem,
   loadNearOffers,
   redirectToRoute
