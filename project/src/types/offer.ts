@@ -11,8 +11,10 @@ export type City = {
   location: Location;
 };
 
+export type OfferId = number;
+
 export type Offer = {
-  id: number;
+  id: OfferId;
   isFavorite: boolean;
   isPremium: boolean;
   title: string;

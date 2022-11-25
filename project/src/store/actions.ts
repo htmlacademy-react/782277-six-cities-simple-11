@@ -1,5 +1,5 @@
 import {createAction} from '@reduxjs/toolkit';
-import {Offers} from '../types/offer';
+import {Offers, Offer} from '../types/offer';
 import {UserData} from '../types/user';
 import {AppRoute, AuthorizationStatus} from '../const';
 
@@ -26,6 +26,11 @@ export const setOffersDataLoadingStatus = createAction(
 export const loadOffers = createAction(
   'data/loadOffers',
   (offers: Offers) => ({payload: offers})
+);
+
+export const loadOfferItem = createAction(
+  'data/loadOfferItem',
+  (offerItem: Offer) => ({payload: offerItem})
 );
 
 export const changeLocation = createAction(

@@ -4,11 +4,12 @@ import {
   loadUserData,
   setOffersDataLoadingStatus,
   loadOffers,
+  loadOfferItem,
   changeLocation,
   changeSort,
   selectOffer
 } from './actions';
-import {Offers} from '../types/offer';
+import {Offers, OfferId, Offer} from '../types/offer';
 import {UserData} from '../types/user';
 import {AuthorizationStatus, DEFAULT_LOCATION, DEFAULT_SORT} from '../const';
 
@@ -17,9 +18,10 @@ type InitialState = {
   userData: UserData;
   isOffersDataLoading: boolean;
   offers: Offers;
+  offerItem: Offer;
   location: string;
   sortType: string;
-  selectedOfferId: number | null;
+  selectedOfferId: OfferId | null;
 };
 
 const initialState: InitialState = {
@@ -27,6 +29,7 @@ const initialState: InitialState = {
   userData: {} as UserData,
   isOffersDataLoading: false,
   offers: [] as Offers,
+  offerItem: {} as Offer,
   location: DEFAULT_LOCATION,
   sortType: DEFAULT_SORT,
   selectedOfferId: null,
@@ -45,6 +48,9 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadOffers, (state, action) => {
       state.offers = action.payload;
+    })
+    .addCase(loadOfferItem, (state, action) => {
+      state.offerItem = action.payload;
     })
     .addCase(changeLocation, (state, action) => {
       state.location = action.payload;

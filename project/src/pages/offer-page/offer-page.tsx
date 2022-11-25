@@ -1,8 +1,13 @@
-// import {useParams} from 'react-router-dom';
+import {useEffect} from 'react';
+import {useParams} from 'react-router-dom';
 import {Helmet} from 'react-helmet-async';
+
+import {store} from '../../store/store';
+import {fetchOfferItemAction} from '../../store/api-action';
 
 import Header from '../../components/header/header';
 import UserNavigation from '../../components/user-navigation/user-navigation';
+
 // import OfferGallery from '../../components/offer-gallery/offer-gallery';
 // import OfferProperty from '../../components/offer-property/offer-property';
 // import OfferHost from '../../components/offer-host/offer-host';
@@ -14,9 +19,11 @@ import UserNavigation from '../../components/user-navigation/user-navigation';
 // import {AllReviews} from '../../types/review';
 
 export default function OfferPage(): JSX.Element {
-  // const {id} = useParams();
-  // const offer = offers.find((item) => item.id === Number(id)) as Offer;
-  // const reviews = allReviews[Number(id)];
+  const {id} = useParams();
+
+  useEffect(() => {
+    store.dispatch(fetchOfferItemAction(Number(id)));
+  }, [id]);
 
   return (
     <div className="page">
