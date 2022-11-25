@@ -1,6 +1,7 @@
 import {createAction} from '@reduxjs/toolkit';
-import {Offers, Offer} from '../types/offer';
+import {Offers, Offer, OfferId} from '../types/offer';
 import {UserData} from '../types/user';
+import {Reviews} from '../types/review';
 import {AppRoute, AuthorizationStatus} from '../const';
 
 export const redirectToRoute = createAction(
@@ -38,6 +39,11 @@ export const loadNearOffers = createAction(
   (nearestOffers: Offers) => ({payload: nearestOffers})
 );
 
+export const loadReviews = createAction(
+  'data/loadReviews',
+  (reviews: Reviews) => ({payload: reviews})
+);
+
 export const changeLocation = createAction(
   'location/changeLocation',
   (location: string) => ({payload: location})
@@ -50,5 +56,5 @@ export const changeSort = createAction(
 
 export const selectOffer = createAction(
   'map/selectOffer',
-  (offerId: number | null) => ({payload: offerId})
+  (offerId: OfferId | null) => ({payload: offerId})
 );

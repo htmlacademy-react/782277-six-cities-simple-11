@@ -8,6 +8,7 @@ import {
   setOffersDataLoadingStatus,
   loadOfferItem,
   loadNearOffers,
+  loadReviews,
   redirectToRoute
 } from './actions';
 import {removeToken, saveToken} from '../services/token';
@@ -15,6 +16,7 @@ import {removeToken, saveToken} from '../services/token';
 import {AppDispatch, State} from '../types/state';
 import {AuthorizationData} from '../types/authorization-data';
 import {UserData} from '../types/user';
+import {Reviews} from '../types/review';
 import {Offers, Offer, OfferId} from '../types/offer';
 
 import {APIRoute, AppRoute, AuthorizationStatus} from '../const';
@@ -54,6 +56,18 @@ export const fetchNearOffersAction = createAsyncThunk<void, OfferId, {
   async (offerId, {dispatch, extra: api}) => {
     const {data} = await api.get<Offers>(`${APIRoute.Offers}/${offerId}/nearby`);
     dispatch(loadNearOffers(data));
+  }
+);
+
+export const fetchReviewAction = createAsyncThunk<void, OfferId, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchReviewAction',
+  async (offerId, {dispatch, extra: api}) => {
+    const {data} = await api.get<Reviews>(`${APIRoute.Reviews}/${offerId}`);
+    dispatch(loadReviews(data));
   }
 );
 

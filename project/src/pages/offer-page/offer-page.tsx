@@ -3,7 +3,7 @@ import {useParams} from 'react-router-dom';
 import {Helmet} from 'react-helmet-async';
 
 import {store} from '../../store/store';
-import {fetchOfferItemAction} from '../../store/api-action';
+import {fetchOfferItemAction, fetchReviewAction} from '../../store/api-action';
 import {useAppSelector} from '../../hooks/useAppSelector';
 import {Offer} from '../../types/offer';
 
@@ -14,6 +14,10 @@ import OfferGallery from '../../components/offer-gallery/offer-gallery';
 import OfferProperty from '../../components/offer-property/offer-property';
 import OfferHost from '../../components/offer-host/offer-host';
 import ReviewList from '../../components/review-list/review-list';
+
+import {AuthorizationStatus} from '../../const';
+
+
 // import Map from '../../components/map/map';
 // import OfferList from '../../components/offer-list/offer-list';
 
@@ -22,12 +26,20 @@ import ReviewList from '../../components/review-list/review-list';
 
 export default function OfferPage(): JSX.Element {
   const {id} = useParams();
+  const offerId = Number(id);
 
   useEffect(() => {
-    store.dispatch(fetchOfferItemAction(Number(id)));
-  }, [id]);
+    store.dispatch(fetchOfferItemAction(offerId));
+    store.dispatch(fetchReviewAction(offerId));
+  }, [offerId]);
 
   const offerItem = useAppSelector((state) => state.offerItem) as Offer;
+  const reviews = useAppSelector((state) => state.reviews);
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+
+  const isShowReviewSection = reviews !== null && authorizationStatus === AuthorizationStatus.Authorized;
+  // const isShowMapSection =
+  // const isShowNearOfferSection =
 
   if (offerItem === null) {
     return <Loader fullScreen />;
@@ -51,7 +63,8 @@ export default function OfferPage(): JSX.Element {
             <div className="property__wrapper">
               <OfferProperty offer={offerItem} />
               <OfferHost offer={offerItem} />
-              {/* <ReviewList reviews={reviews} /> */}
+
+              {isShowReviewSection && <ReviewList reviews={reviews} />}
             </div>
           </div>
 
