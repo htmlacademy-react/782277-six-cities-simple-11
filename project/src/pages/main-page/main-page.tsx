@@ -5,16 +5,25 @@ import Loader from '../../components/loader/loader';
 import Header from '../../components/header/header';
 import UserNavigation from '../../components/user-navigation/user-navigation';
 import LocationList from '../../components/location-list/location-list';
-import OfferSection from '../../components/offer-section/offer-section';
+import Sort from '../../components/sort/sort';
+import OfferList from '../../components/offer-list/offer-list';
 import Map from '../../components/map/map';
 
 import {getOffersByLocation, compareOffers} from '../../utils';
+import { AuthorizationStatus } from '../../const';
+
 
 export default function MainPage(): JSX.Element {
-  const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
   const location = useAppSelector((state) => state.location);
   const sortType = useAppSelector((state) => state.sortType);
   const offers = useAppSelector((state) => getOffersByLocation(state.offers, location).sort(compareOffers[sortType]));
+
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
+
+  if (isOffersDataLoading || authorizationStatus === AuthorizationStatus.Unknown) {
+    return <Loader />;
+  }
 
   return (
     <div className="page page--gray page--main">
@@ -33,9 +42,16 @@ export default function MainPage(): JSX.Element {
 
         <div className="cities">
           <div className="cities__places-container container">
-            {(isOffersDataLoading && offers)
-              ? <Loader />
-              : <OfferSection location={location} offers={offers} />}
+            <section className="cities__places places">
+              <h2 className="visually-hidden">Places</h2>
+
+              <b className="places__found">
+                {offers.length} places to stay in {location}
+              </b>
+
+              <Sort />
+              <OfferList offers={offers} isMainOffer />
+            </section>
 
             <div className="cities__right-section">
               <Map offers={offers} isMainMap />
