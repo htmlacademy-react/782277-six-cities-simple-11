@@ -32,28 +32,18 @@ type MapProps = {
 
 export default function Map({offers, isMainMap}: MapProps): JSX.Element {
   const mapRef = useRef(null);
-  const map = useMap(mapRef, DEFAULT_COORDINATE);
+  const mapLocation = offers.length ? offers[0].city.location : DEFAULT_COORDINATE;
+  const map = useMap(mapRef, mapLocation);
   const selectedOfferId = useAppSelector((state) => state.selectedOfferId);
 
   useEffect(() => {
     if (map) {
-      const mapCenter = offers.length
-        ? offers[0].city.location
-        : DEFAULT_COORDINATE;
-
-      map.setView(
-        {
-          lat: mapCenter.latitude,
-          lng: mapCenter.longitude
-        },
-        mapCenter.zoom
-      );
-    }
-  }, [map, offers]);
-
-  useEffect(() => {
-    if (map) {
       const markerGroup = leaflet.layerGroup().addTo(map);
+
+      map.setView({
+        lat: mapLocation.latitude,
+        lng: mapLocation.longitude
+      });
 
       offers.forEach((offer) => {
         leaflet
@@ -75,7 +65,7 @@ export default function Map({offers, isMainMap}: MapProps): JSX.Element {
         markerGroup.clearLayers();
       };
     }
-  }, [map, isMainMap, offers, selectedOfferId]);
+  }, [map, isMainMap, mapLocation, offers, selectedOfferId]);
 
   return (
     <section
