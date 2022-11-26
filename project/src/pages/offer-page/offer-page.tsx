@@ -1,11 +1,13 @@
 import {useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import {Helmet} from 'react-helmet-async';
+import {StatusCodes} from 'http-status-codes';
 
 import {store} from '../../store/store';
-import {fetchNearOffersAction, fetchOfferItemAction, fetchReviewAction} from '../../store/api-action';
+import {fetchOfferItemAction, fetchReviewAction, fetchNearOffersAction} from '../../store/api-action';
 import {useAppSelector} from '../../hooks/useAppSelector';
 
+import NotFoundPage from '../not-found-page/not-found-page';
 import Loader from '../../components/loader/loader';
 import Header from '../../components/header/header';
 import UserNavigation from '../../components/user-navigation/user-navigation';
@@ -30,15 +32,21 @@ export default function OfferPage(): JSX.Element {
   }, [offerId]);
 
   const offerItem = useAppSelector((state) => state.offerItem);
-  const nearOffers = useAppSelector((state) => state.nearOffers);
   const reviews = useAppSelector((state) => state.reviews);
+  const nearOffers = useAppSelector((state) => state.nearOffers);
+
+  const errorCode = useAppSelector((state) => state.errorCode);
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
 
-  const isShowReviewSection = reviews !== null && authorizationStatus === AuthorizationStatus.Authorized;
-  const isShowNearOfferSection = nearOffers !== null;
+  const shouldDisplayReviews = reviews !== null && authorizationStatus === AuthorizationStatus.Authorized;
+  const shouldDisplayNearOffers = nearOffers !== null;
+
+  if (errorCode === StatusCodes.NOT_FOUND || errorCode === StatusCodes.BAD_REQUEST) {
+    return <NotFoundPage />;
+  }
 
   if (offerItem === null) {
-    return <Loader fullScreen />;
+    return <Loader />;
   }
 
   return (
@@ -60,17 +68,17 @@ export default function OfferPage(): JSX.Element {
               <OfferProperty offer={offerItem} />
               <OfferHost offer={offerItem} />
 
-              {isShowReviewSection && <ReviewList reviews={reviews} />}
+              {shouldDisplayReviews && <ReviewList reviews={reviews} />}
             </div>
           </div>
 
-          {isShowNearOfferSection && <Map offers={nearOffers} />}
+          {shouldDisplayNearOffers && <Map offers={nearOffers} />}
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighborhood</h2>
 
-            {isShowNearOfferSection && <OfferList offers={nearOffers} isNearOffer />}
+            {shouldDisplayNearOffers && <OfferList offers={nearOffers} isNearOffer />}
           </section>
         </div>
       </main>

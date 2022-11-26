@@ -9,6 +9,11 @@ export const redirectToRoute = createAction(
   (route: AppRoute) => ({payload: route})
 );
 
+export const setError = createAction(
+  'data/setError',
+  (error: number | null) => ({payload: error})
+);
+
 export const requireAuthorization = createAction(
   'user/requireAuthorization',
   (status: AuthorizationStatus) => ({payload: status})

@@ -21,6 +21,7 @@ import {Offers, Offer, OfferId} from '../types/offer';
 
 import {APIRoute, AppRoute, AuthorizationStatus} from '../const';
 
+
 export const fetchOffersAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
   state: State;
