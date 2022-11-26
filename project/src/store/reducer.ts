@@ -8,6 +8,7 @@ import {
   loadOfferItem,
   loadNearOffers,
   loadReviews,
+  setReviewFormBlocked,
   changeLocation,
   changeSort,
   selectOffer
@@ -26,6 +27,7 @@ type InitialState = {
   offerItem: Offer | null;
   nearOffers: Offers | null;
   reviews: Reviews | null;
+  isReviewFormBlocked: boolean;
   location: string;
   sortType: string;
   selectedOfferId: OfferId | null;
@@ -40,6 +42,7 @@ const initialState: InitialState = {
   offerItem: null,
   nearOffers: null,
   reviews: null,
+  isReviewFormBlocked: false,
   location: DEFAULT_LOCATION,
   sortType: DEFAULT_SORT,
   selectedOfferId: null,
@@ -68,11 +71,14 @@ export const reducer = createReducer(initialState, (builder) => {
     .addCase(loadNearOffers, (state, action) => {
       state.nearOffers = action.payload;
     })
-    .addCase(changeLocation, (state, action) => {
-      state.location = action.payload;
-    })
     .addCase(loadReviews, (state, action) => {
       state.reviews = action.payload;
+    })
+    .addCase(setReviewFormBlocked, (state, action) => {
+      state.isReviewFormBlocked = action.payload;
+    })
+    .addCase(changeLocation, (state, action) => {
+      state.location = action.payload;
     })
     .addCase(changeSort, (state, action) => {
       state.sortType = action.payload;

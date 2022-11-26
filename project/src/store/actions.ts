@@ -49,6 +49,11 @@ export const loadReviews = createAction(
   (reviews: Reviews) => ({payload: reviews})
 );
 
+export const setReviewFormBlocked = createAction(
+  'data/setReviewFormBlocked',
+  (status: boolean) => ({payload: status})
+);
+
 export const changeLocation = createAction(
   'location/changeLocation',
   (location: string) => ({payload: location})

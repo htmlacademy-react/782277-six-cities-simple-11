@@ -9,6 +9,7 @@ import {
   loadOfferItem,
   loadNearOffers,
   loadReviews,
+  setReviewFormBlocked,
   redirectToRoute
 } from './actions';
 import {removeToken, saveToken} from '../services/token';
@@ -81,6 +82,7 @@ export const sendReviewAction = createAsyncThunk<void, ReviewData, {
   async ({id, rating, comment}, {dispatch, extra: api}) => {
     await api.post(`${APIRoute.Reviews}/${id}`, {rating, comment});
     dispatch(fetchReviewAction(id));
+    dispatch(setReviewFormBlocked(false));
   }
 );
 

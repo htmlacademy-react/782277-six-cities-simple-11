@@ -49,3 +49,4 @@ export const GRADES = [
 
 export const DEFAULT_LOCATION = 'Paris';
 export const DEFAULT_SORT = 'Popular';
+export const REVIEW_MIN_LENGTH = 50;

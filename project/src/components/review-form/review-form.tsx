@@ -1,10 +1,12 @@
 import {Fragment, useState, FormEvent, ChangeEvent} from 'react';
 
 import {useAppDispatch} from '../../hooks/useAppDispatch';
+import {useAppSelector} from '../../hooks/useAppSelector';
+import {setReviewFormBlocked} from '../../store/actions';
 import {sendReviewAction} from '../../store/api-action';
 
 import {OfferId} from '../../types/offer';
-import {GRADES} from '../../const';
+import {GRADES, REVIEW_MIN_LENGTH} from '../../const';
 
 type ReviewFormProps = {
   offerId: OfferId;
@@ -13,6 +15,7 @@ type ReviewFormProps = {
 
 export default function ReviewForm({offerId}: ReviewFormProps): JSX.Element {
   const dispatch = useAppDispatch();
+  const isReviewFormBlocked = useAppSelector((state) => state.isReviewFormBlocked);
 
   const [formData, setFormData] = useState({
     rating: '',
@@ -28,6 +31,8 @@ export default function ReviewForm({offerId}: ReviewFormProps): JSX.Element {
     event.preventDefault();
 
     if (offerId && formData.rating && formData.review) {
+      dispatch(setReviewFormBlocked(true));
+
       dispatch(sendReviewAction({
         id: offerId,
         rating: +formData.rating,
@@ -83,9 +88,16 @@ export default function ReviewForm({offerId}: ReviewFormProps): JSX.Element {
       </textarea>
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
-          To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
+          To submit review please make sure to set <span className="reviews__star">rating</span> and describe your
+          stay with at least <b className="reviews__text-amount">{REVIEW_MIN_LENGTH} characters</b>.
         </p>
-        <button className="reviews__submit form__submit button" type="submit">Submit</button>
+        <button
+          className="reviews__submit form__submit button"
+          type="submit"
+          disabled={formData.review.length < REVIEW_MIN_LENGTH || formData.rating === '' || isReviewFormBlocked}
+        >
+          {!isReviewFormBlocked ? 'Submit' : 'Sending...'}
+        </button>
       </div>
     </form>
   );
