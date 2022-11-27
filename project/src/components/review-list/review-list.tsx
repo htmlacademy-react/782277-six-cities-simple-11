@@ -5,7 +5,7 @@ import {Reviews} from '../../types/review';
 import {OfferId} from '../../types/offer';
 
 type ReviewListProps = {
-  reviews: Reviews;
+  reviews: Reviews | null;
   offerId: OfferId;
 };
 

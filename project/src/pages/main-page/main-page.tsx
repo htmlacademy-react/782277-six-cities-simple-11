@@ -10,7 +10,7 @@ import OfferList from '../../components/offer-list/offer-list';
 import Map from '../../components/map/map';
 
 import {getOffersByLocation, compareOffers} from '../../utils';
-import { AuthorizationStatus } from '../../const';
+import {AuthorizationStatus} from '../../const';
 
 
 export default function MainPage(): JSX.Element {
@@ -19,9 +19,9 @@ export default function MainPage(): JSX.Element {
   const offers = useAppSelector((state) => getOffersByLocation(state.offers, location).sort(compareOffers[sortType]));
 
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-  const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
+  const isDataLoading = useAppSelector((state) => state.isDataLoading);
 
-  if (isOffersDataLoading || authorizationStatus === AuthorizationStatus.Unknown) {
+  if (isDataLoading || authorizationStatus === AuthorizationStatus.Unknown) {
     return <Loader />;
   }
 

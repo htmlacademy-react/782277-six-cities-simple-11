@@ -9,9 +9,9 @@ export const redirectToRoute = createAction(
   (route: AppRoute) => ({payload: route})
 );
 
-export const setError = createAction(
-  'data/setError',
-  (error: number | null) => ({payload: error})
+export const checkRoute = createAction(
+  'app/checkRoute',
+  (isExist: boolean) => ({payload: isExist})
 );
 
 export const requireAuthorization = createAction(
@@ -24,14 +24,14 @@ export const loadUserData = createAction(
   (userData: UserData) => ({payload: userData})
 );
 
+export const setDataLoadingStatus = createAction(
+  'data/setDataLoadingStatus',
+  (status: boolean) => ({payload: status})
+);
+
 export const loadOffers = createAction(
   'data/loadOffers',
   (offers: Offers) => ({payload: offers})
-);
-
-export const setOffersDataLoadingStatus = createAction(
-  'data/setOffersDataLoadingStatus',
-  (status: boolean) => ({payload: status})
 );
 
 export const loadOfferItem = createAction(

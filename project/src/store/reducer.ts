@@ -1,10 +1,10 @@
 import {createReducer} from '@reduxjs/toolkit';
 import {
   requireAuthorization,
-  setError,
+  checkRoute,
   loadUserData,
+  setDataLoadingStatus,
   loadOffers,
-  setOffersDataLoadingStatus,
   loadOfferItem,
   loadNearOffers,
   loadReviews,
@@ -20,10 +20,10 @@ import {AuthorizationStatus, DEFAULT_LOCATION, DEFAULT_SORT} from '../const';
 
 type InitialState = {
   authorizationStatus: AuthorizationStatus;
-  errorCode: number | null;
+  isPathExist: boolean;
   userData: UserData;
+  isDataLoading: boolean;
   offers: Offers;
-  isOffersDataLoading: boolean;
   offerItem: Offer | null;
   nearOffers: Offers | null;
   reviews: Reviews | null;
@@ -35,10 +35,10 @@ type InitialState = {
 
 const initialState: InitialState = {
   authorizationStatus: AuthorizationStatus.Unknown,
-  errorCode: null,
+  isPathExist: true,
   userData: {} as UserData,
+  isDataLoading: false,
   offers: [] as Offers,
-  isOffersDataLoading: false,
   offerItem: null,
   nearOffers: null,
   reviews: null,
@@ -48,22 +48,23 @@ const initialState: InitialState = {
   selectedOfferId: null,
 };
 
+
 export const reducer = createReducer(initialState, (builder) => {
   builder
     .addCase(requireAuthorization, (state, action) => {
       state.authorizationStatus = action.payload;
     })
-    .addCase(setError, (state, action) => {
-      state.errorCode = action.payload;
+    .addCase(checkRoute, (state, action) => {
+      state.isPathExist = action.payload;
     })
     .addCase(loadUserData, (state, action) => {
       state.userData = action.payload;
     })
+    .addCase(setDataLoadingStatus, (state, action) => {
+      state.isDataLoading = action.payload;
+    })
     .addCase(loadOffers, (state, action) => {
       state.offers = action.payload;
-    })
-    .addCase(setOffersDataLoadingStatus, (state, action) => {
-      state.isOffersDataLoading = action.payload;
     })
     .addCase(loadOfferItem, (state, action) => {
       state.offerItem = action.payload;

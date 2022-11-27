@@ -1,7 +1,6 @@
 import {useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import {Helmet} from 'react-helmet-async';
-import {StatusCodes} from 'http-status-codes';
 
 import {store} from '../../store/store';
 import {fetchOfferItemAction, fetchReviewAction, fetchNearOffersAction} from '../../store/api-action';
@@ -16,7 +15,7 @@ import OfferProperty from '../../components/offer-property/offer-property';
 import OfferHost from '../../components/offer-host/offer-host';
 import ReviewList from '../../components/review-list/review-list';
 import Map from '../../components/map/map';
-import OfferList from '../../components/offer-list/offer-list';
+import NearOfferSection from '../../components/near-offer-section/near-offer-section';
 
 import {AuthorizationStatus} from '../../const';
 
@@ -25,27 +24,30 @@ export default function OfferPage(): JSX.Element {
   const {id} = useParams();
   const offerId = Number(id);
 
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const shouldDisplayReviews = authorizationStatus === AuthorizationStatus.Authorized;
+
   useEffect(() => {
     store.dispatch(fetchOfferItemAction(offerId));
-    store.dispatch(fetchReviewAction(offerId));
     store.dispatch(fetchNearOffersAction(offerId));
-  }, [offerId]);
+
+    if (shouldDisplayReviews) {
+      store.dispatch(fetchReviewAction(offerId));
+    }
+  }, [offerId, shouldDisplayReviews]);
 
   const offerItem = useAppSelector((state) => state.offerItem);
   const reviews = useAppSelector((state) => state.reviews);
   const nearOffers = useAppSelector((state) => state.nearOffers);
 
-  const errorCode = useAppSelector((state) => state.errorCode);
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const isPathExist = useAppSelector((state) => state.isPathExist);
+  const isDataLoading = useAppSelector((state) => state.isDataLoading);
 
-  const shouldDisplayReviews = reviews !== null && authorizationStatus === AuthorizationStatus.Authorized;
-  const shouldDisplayNearOffers = nearOffers !== null;
-
-  if (errorCode === StatusCodes.NOT_FOUND || errorCode === StatusCodes.BAD_REQUEST) {
+  if (!isPathExist) {
     return <NotFoundPage />;
   }
 
-  if (offerItem === null) {
+  if (!offerItem || isDataLoading) {
     return <Loader />;
   }
 
@@ -72,15 +74,10 @@ export default function OfferPage(): JSX.Element {
             </div>
           </div>
 
-          {shouldDisplayNearOffers && <Map offers={nearOffers} />}
+          {nearOffers && <Map offers={nearOffers} />}
         </section>
-        <div className="container">
-          <section className="near-places places">
-            <h2 className="near-places__title">Other places in the neighborhood</h2>
 
-            {shouldDisplayNearOffers && <OfferList offers={nearOffers} isNearOffer />}
-          </section>
-        </div>
+        {nearOffers && <NearOfferSection offers={nearOffers} />}
       </main>
     </div>
   );

@@ -3,9 +3,10 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
 
 import {
   requireAuthorization,
+  checkRoute,
   loadUserData,
+  setDataLoadingStatus,
   loadOffers,
-  setOffersDataLoadingStatus,
   loadOfferItem,
   loadNearOffers,
   loadReviews,
@@ -30,9 +31,9 @@ export const fetchOffersAction = createAsyncThunk<void, undefined, {
 }>(
   'data/fetchOffers',
   async (_arg, {dispatch, extra: api}) => {
-    dispatch(setOffersDataLoadingStatus(true));
+    dispatch(setDataLoadingStatus(true));
     const {data} = await api.get<Offers>(APIRoute.Offers);
-    dispatch(setOffersDataLoadingStatus(false));
+    dispatch(setDataLoadingStatus(false));
     dispatch(loadOffers(data));
   }
 );
@@ -44,8 +45,17 @@ export const fetchOfferItemAction = createAsyncThunk<void, OfferId, {
 }>(
   'data/fetchOfferItem',
   async (offerId, {dispatch, extra: api}) => {
-    const {data} = await api.get<Offer>(`${APIRoute.Offers}/${offerId}`);
-    dispatch(loadOfferItem(data));
+    dispatch(setDataLoadingStatus(true));
+
+    try {
+      const {data} = await api.get<Offer>(`${APIRoute.Offers}/${offerId}`);
+      dispatch(loadOfferItem(data));
+      dispatch(setDataLoadingStatus(false));
+      dispatch(checkRoute(true));
+    } catch {
+      dispatch(setDataLoadingStatus(false));
+      dispatch(checkRoute(false));
+    }
   }
 );
 
