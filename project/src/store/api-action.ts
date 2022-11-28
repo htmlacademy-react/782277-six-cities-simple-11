@@ -3,7 +3,6 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
 
 import {
   requireAuthorization,
-  checkRoute,
   loadUserData,
   setDataLoadingStatus,
   loadOffers,
@@ -51,10 +50,9 @@ export const fetchOfferItemAction = createAsyncThunk<void, OfferId, {
       const {data} = await api.get<Offer>(`${APIRoute.Offers}/${offerId}`);
       dispatch(loadOfferItem(data));
       dispatch(setDataLoadingStatus(false));
-      dispatch(checkRoute(true));
     } catch {
+      dispatch(redirectToRoute(AppRoute.NotFound));
       dispatch(setDataLoadingStatus(false));
-      dispatch(checkRoute(false));
     }
   }
 );

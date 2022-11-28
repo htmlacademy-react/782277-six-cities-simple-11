@@ -9,11 +9,6 @@ export const redirectToRoute = createAction(
   (route: AppRoute) => ({payload: route})
 );
 
-export const checkRoute = createAction(
-  'app/checkRoute',
-  (isExist: boolean) => ({payload: isExist})
-);
-
 export const requireAuthorization = createAction(
   'user/requireAuthorization',
   (status: AuthorizationStatus) => ({payload: status})

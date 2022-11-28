@@ -1,7 +1,6 @@
 import {createReducer} from '@reduxjs/toolkit';
 import {
   requireAuthorization,
-  checkRoute,
   loadUserData,
   setDataLoadingStatus,
   loadOffers,
@@ -20,7 +19,6 @@ import {AuthorizationStatus, DEFAULT_LOCATION, DEFAULT_SORT} from '../const';
 
 type InitialState = {
   authorizationStatus: AuthorizationStatus;
-  isPathExist: boolean;
   userData: UserData;
   isDataLoading: boolean;
   offers: Offers;
@@ -35,7 +33,6 @@ type InitialState = {
 
 const initialState: InitialState = {
   authorizationStatus: AuthorizationStatus.Unknown,
-  isPathExist: true,
   userData: {} as UserData,
   isDataLoading: false,
   offers: [] as Offers,
@@ -53,9 +50,6 @@ export const reducer = createReducer(initialState, (builder) => {
   builder
     .addCase(requireAuthorization, (state, action) => {
       state.authorizationStatus = action.payload;
-    })
-    .addCase(checkRoute, (state, action) => {
-      state.isPathExist = action.payload;
     })
     .addCase(loadUserData, (state, action) => {
       state.userData = action.payload;

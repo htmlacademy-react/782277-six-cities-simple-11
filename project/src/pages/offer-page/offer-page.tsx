@@ -6,7 +6,6 @@ import {store} from '../../store/store';
 import {fetchOfferItemAction, fetchReviewAction, fetchNearOffersAction} from '../../store/api-action';
 import {useAppSelector} from '../../hooks/useAppSelector';
 
-import NotFoundPage from '../not-found-page/not-found-page';
 import Loader from '../../components/loader/loader';
 import Header from '../../components/header/header';
 import UserNavigation from '../../components/user-navigation/user-navigation';
@@ -39,13 +38,7 @@ export default function OfferPage(): JSX.Element {
   const offerItem = useAppSelector((state) => state.offerItem);
   const reviews = useAppSelector((state) => state.reviews);
   const nearOffers = useAppSelector((state) => state.nearOffers);
-
-  const isPathExist = useAppSelector((state) => state.isPathExist);
   const isDataLoading = useAppSelector((state) => state.isDataLoading);
-
-  if (!isPathExist) {
-    return <NotFoundPage />;
-  }
 
   if (!offerItem || isDataLoading) {
     return <Loader />;
