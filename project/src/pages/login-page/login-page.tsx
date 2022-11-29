@@ -1,16 +1,19 @@
 import {useState, FormEvent, ChangeEvent} from 'react';
+import {useNavigate} from 'react-router-dom';
 import {Helmet} from 'react-helmet-async';
 
-import {loginAction} from '../../store/api-action';
 import {useAppDispatch} from '../../hooks/useAppDispatch';
+import {loginAction} from '../../store/user-data/api-actions';
 
 import Header from '../../components/header/header';
 
-import {LOGIN_FIELDS} from '../../const';
-import { formatFirstLetter } from '../../utils';
+import {formatFirstLetter} from '../../utils';
+import {AppRoute, LOGIN_FIELDS} from '../../const';
 
-export default function LoginPage(): JSX.Element {
+
+function LoginPage(): JSX.Element {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     email: '',
@@ -30,6 +33,8 @@ export default function LoginPage(): JSX.Element {
         login: formData.email,
         password: formData.password
       }));
+
+      navigate(AppRoute.Main);
     }
   };
 
@@ -46,7 +51,7 @@ export default function LoginPage(): JSX.Element {
           <section className="login">
             <h1 className="login__title">Sign in</h1>
 
-            <form className="login__form form" action="#" method="post"onSubmit={handleFormSubmit}>
+            <form className="login__form form" action="#" method="post" onSubmit={handleFormSubmit}>
               {LOGIN_FIELDS.map((field) => (
                 <div key={field} className="login__input-wrapper form__input-wrapper">
                   <label className="visually-hidden">{formatFirstLetter(field)}</label>
@@ -77,3 +82,5 @@ export default function LoginPage(): JSX.Element {
     </div>
   );
 }
+
+export default LoginPage;
