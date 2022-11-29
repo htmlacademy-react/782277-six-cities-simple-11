@@ -1,3 +1,4 @@
+import {memo} from 'react';
 import LocationItem from '../location-item/location-item';
 import {LOCATIONS} from '../../const';
 
@@ -19,4 +20,4 @@ function LocationList(): JSX.Element {
   );
 }
 
-export default LocationList;
+export default memo(LocationList);
