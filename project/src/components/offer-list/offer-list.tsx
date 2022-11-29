@@ -2,13 +2,14 @@ import cn from 'classnames';
 import OfferCard from '../offer-card/offer-card';
 import {Offers} from '../../types/offer';
 
+
 type OfferListProps = {
   offers: Offers;
   isMainOffer?: boolean;
   isNearOffer?: boolean;
 };
 
-export default function OfferList({offers, isMainOffer, isNearOffer}: OfferListProps): JSX.Element {
+function OfferList({offers, isMainOffer, isNearOffer}: OfferListProps): JSX.Element {
   return (
     <div
       className={cn('places__list', {
@@ -27,3 +28,5 @@ export default function OfferList({offers, isMainOffer, isNearOffer}: OfferListP
     </div>
   );
 }
+
+export default OfferList;

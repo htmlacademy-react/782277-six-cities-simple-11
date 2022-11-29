@@ -19,6 +19,7 @@ export enum AuthorizationStatus {
 }
 
 export enum Reducer {
+  AppProcess = 'APP_PROCESS',
   User = 'USER',
   Offers = 'OFFERS',
   OfferProperty = 'OFFER_PROPERTY'

@@ -1,5 +1,8 @@
 import {Helmet} from 'react-helmet-async';
 import {useAppSelector} from '../../hooks/useAppSelector';
+import {getAuthorizationStatus} from '../../store/user-data/selectors';
+import {getLocation, getSortType} from '../../store/app-process/selectors';
+import {getOffersData, getOffersLoadingStatus} from '../../store/offers-data/selectors';
 
 import Loader from '../../components/loader/loader';
 import Header from '../../components/header/header';
@@ -9,19 +12,22 @@ import Sort from '../../components/sort/sort';
 import OfferList from '../../components/offer-list/offer-list';
 import Map from '../../components/map/map';
 
-import {getOffersByLocation, compareOffers} from '../../utils';
+import {compareOffers} from '../../utils';
 import {AuthorizationStatus} from '../../const';
 
 
-export default function MainPage(): JSX.Element {
-  const location = useAppSelector((state) => state.location);
-  const sortType = useAppSelector((state) => state.sortType);
-  const offers = useAppSelector((state) => getOffersByLocation(state.offers, location).sort(compareOffers[sortType]));
+function MainPage(): JSX.Element {
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-  const isDataLoading = useAppSelector((state) => state.isDataLoading);
+  const location = useAppSelector(getLocation);
+  const sortType = useAppSelector(getSortType);
+  const offers = useAppSelector(getOffersData)
+    .filter((offer) => offer.city.name === location)
+    .sort(compareOffers[sortType]);
 
-  if (isDataLoading || authorizationStatus === AuthorizationStatus.Unknown) {
+  const isOffersLoading = useAppSelector(getOffersLoadingStatus);
+
+  if (isOffersLoading || authorizationStatus === AuthorizationStatus.Unknown) {
     return <Loader />;
   }
 
@@ -62,3 +68,5 @@ export default function MainPage(): JSX.Element {
     </div>
   );
 }
+
+export default MainPage;

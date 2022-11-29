@@ -3,12 +3,12 @@ import {AppProcessState} from '../../types/state';
 import {OfferId} from '../../types/offer';
 import {Reducer, DEFAULT_LOCATION, DEFAULT_SORT} from '../../const';
 
+
 const initialState: AppProcessState = {
   location: DEFAULT_LOCATION,
   sortType: DEFAULT_SORT,
   selectedOfferId: null
 };
-
 
 export const appProcess = createSlice({
   name: Reducer.Offers,
@@ -20,7 +20,7 @@ export const appProcess = createSlice({
     changeSort: (state, action: PayloadAction<string>) => {
       state.sortType = action.payload;
     },
-    selectOffer: (state, action: PayloadAction<OfferId>) => {
+    selectOffer: (state, action: PayloadAction<OfferId | null>) => {
       state.selectedOfferId = action.payload;
     }
   }

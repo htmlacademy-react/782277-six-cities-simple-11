@@ -1,16 +1,19 @@
 import {useState} from 'react';
 import cn from 'classnames';
 
-import {useAppSelector} from '../../hooks/useAppSelector';
 import {useAppDispatch} from '../../hooks/useAppDispatch';
-import {changeSort} from '../../store/actions';
+import {useAppSelector} from '../../hooks/useAppSelector';
+import {getSortType} from '../../store/app-process/selectors';
+import {changeSort} from '../../store/app-process/app-process';
 
 import {SORTS} from '../../const';
 
-export default function Sort(): JSX.Element {
+
+function Sort(): JSX.Element {
   const [toggleList, setToggleList] = useState<boolean>(false);
-  const sortType = useAppSelector((state) => state.sortType);
+
   const dispatch = useAppDispatch();
+  const sortType = useAppSelector(getSortType);
 
   return (
     <form className="places__sorting" action="#" method="get">
@@ -51,3 +54,5 @@ export default function Sort(): JSX.Element {
     </form>
   );
 }
+
+export default Sort;

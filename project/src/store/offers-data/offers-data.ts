@@ -1,15 +1,15 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {fetchOffersAction} from './api-action';
+import {fetchOffersAction} from './api-actions';
 
-import {OffersData} from '../../types/state';
+import {OffersDataState} from '../../types/state';
+import {Offers} from '../../types/offer';
 import {Reducer} from '../../const';
 
-const initialState: OffersData = {
-  offers: null,
-  isOffersLoading: false,
-  hasError: false
-};
 
+const initialState: OffersDataState = {
+  offers: [] as Offers,
+  isOffersLoading: false
+};
 
 export const offersData = createSlice({
   name: Reducer.Offers,
@@ -19,15 +19,10 @@ export const offersData = createSlice({
     builder
       .addCase(fetchOffersAction.pending, (state) => {
         state.isOffersLoading = true;
-        state.hasError = false;
       })
       .addCase(fetchOffersAction.fulfilled, (state, action) => {
         state.isOffersLoading = false;
         state.offers = action.payload;
-      })
-      .addCase(fetchOffersAction.rejected, (state) => {
-        state.isOffersLoading = false;
-        state.hasError = true;
       });
   }
 });

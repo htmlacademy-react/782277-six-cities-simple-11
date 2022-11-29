@@ -2,14 +2,16 @@ import cn from 'classnames';
 
 import {useAppDispatch} from '../../hooks/useAppDispatch';
 import {useAppSelector} from '../../hooks/useAppSelector';
-import {changeLocation} from '../../store/actions';
+import {getLocation} from '../../store/app-process/selectors';
+import {changeLocation} from '../../store/app-process/app-process';
+
 
 type LocationItemProps = {
   location: string;
 };
 
-export default function LocationItem({location}: LocationItemProps): JSX.Element {
-  const currentLocation = useAppSelector((state) => state.location);
+function LocationItem({location}: LocationItemProps): JSX.Element {
+  const currentLocation = useAppSelector(getLocation);
   const dispatch = useAppDispatch();
 
   return (
@@ -30,3 +32,5 @@ export default function LocationItem({location}: LocationItemProps): JSX.Element
     </li>
   );
 }
+
+export default LocationItem;

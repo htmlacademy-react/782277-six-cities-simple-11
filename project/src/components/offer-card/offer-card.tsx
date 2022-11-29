@@ -2,11 +2,12 @@ import {Link} from 'react-router-dom';
 import cn from 'classnames';
 
 import {useAppDispatch} from '../../hooks/useAppDispatch';
-import {selectOffer} from '../../store/actions';
+import {selectOffer} from '../../store/app-process/app-process';
 
 import {Offer} from '../../types/offer';
 import {formatFirstLetter, calculateRatingWidth} from '../../utils';
 import {AppRoute} from '../../const';
+
 
 type OfferCardProps = {
   offer: Offer;
@@ -14,7 +15,7 @@ type OfferCardProps = {
   isNearOffer?: boolean;
 };
 
-export default function OfferCard({offer, isMainOffer, isNearOffer}: OfferCardProps): JSX.Element {
+function OfferCard({offer, isMainOffer, isNearOffer}: OfferCardProps): JSX.Element {
   const dispatch = useAppDispatch();
 
   return (
@@ -63,3 +64,5 @@ export default function OfferCard({offer, isMainOffer, isNearOffer}: OfferCardPr
     </article>
   );
 }
+
+export default OfferCard;
