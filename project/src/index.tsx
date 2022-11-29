@@ -10,7 +10,6 @@ import App from './components/app/app';
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
 store.dispatch(checkAuthorizationAction());
 store.dispatch(fetchOffersAction());
 

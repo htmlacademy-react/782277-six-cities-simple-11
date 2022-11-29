@@ -1,14 +1,10 @@
 import {AxiosInstance} from 'axios';
 import {createAsyncThunk} from '@reduxjs/toolkit';
-
 import {removeToken, saveToken} from '../../services/token';
-
 import {AppDispatch, State} from '../../types/state';
 import {AuthorizationData} from '../../types/authorization';
 import {UserData} from '../../types/user';
-
 import {APIRoute} from '../../const';
-
 
 export const checkAuthorizationAction = createAsyncThunk<UserData, undefined, {
   dispatch: AppDispatch;

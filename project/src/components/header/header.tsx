@@ -1,11 +1,12 @@
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../const';
 
+
 type HeaderProps = {
   children?: JSX.Element;
 }
 
-export default function Header({children}: HeaderProps): JSX.Element {
+function Header({children}: HeaderProps): JSX.Element {
   return (
     <header className="header">
       <div className="container">
@@ -22,3 +23,5 @@ export default function Header({children}: HeaderProps): JSX.Element {
     </header>
   );
 }
+
+export default Header;

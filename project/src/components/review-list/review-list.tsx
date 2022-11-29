@@ -4,13 +4,13 @@ import ReviewForm from '../review-form/review-form';
 import {Reviews} from '../../types/review';
 import {OfferId} from '../../types/offer';
 
+
 type ReviewListProps = {
   reviews: Reviews | null;
   offerId: OfferId;
 };
 
-
-export default function ReviewList({reviews, offerId}: ReviewListProps): JSX.Element {
+function ReviewList({reviews, offerId}: ReviewListProps): JSX.Element {
   return (
     <section className="property__reviews reviews">
       <h2 className="reviews__title">
@@ -31,3 +31,5 @@ export default function ReviewList({reviews, offerId}: ReviewListProps): JSX.Ele
     </section>
   );
 }
+
+export default ReviewList;

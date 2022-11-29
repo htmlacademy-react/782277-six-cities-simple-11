@@ -4,7 +4,6 @@ import {Offers, Offer, OfferId} from './offer';
 import {Reviews} from './review';
 import {AuthorizationStatus} from '../const';
 
-
 export type AppDispatch = typeof store.dispatch;
 export type State = ReturnType<typeof store.getState>;
 

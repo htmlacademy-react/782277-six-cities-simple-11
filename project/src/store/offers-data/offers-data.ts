@@ -1,10 +1,8 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {fetchOffersAction} from './api-actions';
-
 import {OffersDataState} from '../../types/state';
 import {Offers} from '../../types/offer';
 import {Reducer} from '../../const';
-
 
 const initialState: OffersDataState = {
   offers: [] as Offers,

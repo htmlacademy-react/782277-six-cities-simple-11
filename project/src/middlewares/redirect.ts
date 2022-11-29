@@ -4,7 +4,6 @@ import {rootReducer} from '../store/root-reducer';
 
 type Reducer = ReturnType<typeof rootReducer>;
 
-
 export const redirect: Middleware<unknown, Reducer> =
   (_store) =>
     (next) =>

@@ -3,7 +3,6 @@ import {fetchOfferPropertyAction, fetchNearOffersAction, fetchReviewAction, send
 import {OfferPropertyDataState} from '../../types/state';
 import {Reducer} from '../../const';
 
-
 const initialState: OfferPropertyDataState = {
   offerProperty: null,
   isOfferPropertyLoading: false,

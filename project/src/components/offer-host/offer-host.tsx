@@ -1,10 +1,11 @@
 import {Offer} from '../../types/offer';
 
+
 type OfferHostProps = {
   offer: Offer;
 };
 
-export default function OfferHost({offer}: OfferHostProps): JSX.Element {
+function OfferHost({offer}: OfferHostProps): JSX.Element {
   const {host, description} = offer;
 
   return (
@@ -35,3 +36,5 @@ export default function OfferHost({offer}: OfferHostProps): JSX.Element {
     </div>
   );
 }
+
+export default OfferHost;

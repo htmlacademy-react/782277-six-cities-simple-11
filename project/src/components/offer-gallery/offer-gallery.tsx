@@ -1,10 +1,11 @@
 import {Offer} from '../../types/offer';
 
+
 type OfferGalleryProps = {
   offer: Offer;
 };
 
-export default function OfferGallery({offer}: OfferGalleryProps): JSX.Element {
+function OfferGallery({offer}: OfferGalleryProps): JSX.Element {
   const {title, images} = offer;
 
   return (
@@ -23,3 +24,5 @@ export default function OfferGallery({offer}: OfferGalleryProps): JSX.Element {
     </div>
   );
 }
+
+export default OfferGallery;

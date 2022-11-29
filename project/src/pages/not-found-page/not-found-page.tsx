@@ -4,7 +4,7 @@ import Header from '../../components/header/header';
 import {AppRoute} from '../../const';
 
 
-export default function NotFoundPage(): JSX.Element {
+function NotFoundPage(): JSX.Element {
   return (
     <div className="page page--gray">
       <Helmet>
@@ -25,3 +25,5 @@ export default function NotFoundPage(): JSX.Element {
     </div>
   );
 }
+
+export default NotFoundPage;

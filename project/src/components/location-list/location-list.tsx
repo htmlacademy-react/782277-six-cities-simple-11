@@ -1,7 +1,8 @@
 import LocationItem from '../location-item/location-item';
 import {LOCATIONS} from '../../const';
 
-export default function LocationList(): JSX.Element {
+
+function LocationList(): JSX.Element {
   return (
     <div className="tabs">
       <section className="locations container">
@@ -17,3 +18,5 @@ export default function LocationList(): JSX.Element {
     </div>
   );
 }
+
+export default LocationList;

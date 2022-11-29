@@ -3,7 +3,6 @@ import {AppProcessState} from '../../types/state';
 import {OfferId} from '../../types/offer';
 import {Reducer, DEFAULT_LOCATION, DEFAULT_SORT} from '../../const';
 
-
 const initialState: AppProcessState = {
   location: DEFAULT_LOCATION,
   sortType: DEFAULT_SORT,
