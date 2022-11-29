@@ -1,47 +1,10 @@
 import {createAction} from '@reduxjs/toolkit';
-import {Offers, Offer, OfferId} from '../types/offer';
-import {UserData} from '../types/user';
-import {Reviews} from '../types/review';
+import {OfferId} from '../types/offer';
 import {AppRoute} from '../const';
 
 export const redirectToRoute = createAction(
   'app/redirectToRoute',
   (route: AppRoute) => ({payload: route})
-);
-
-export const loadUserData = createAction(
-  'user/loadUserData',
-  (userData: UserData) => ({payload: userData})
-);
-
-export const setDataLoadingStatus = createAction(
-  'data/setDataLoadingStatus',
-  (status: boolean) => ({payload: status})
-);
-
-export const loadOffers = createAction(
-  'data/loadOffers',
-  (offers: Offers) => ({payload: offers})
-);
-
-export const loadOfferItem = createAction(
-  'data/loadOfferItem',
-  (offerItem: Offer) => ({payload: offerItem})
-);
-
-export const loadNearOffers = createAction(
-  'data/loadNearOffers',
-  (nearestOffers: Offers) => ({payload: nearestOffers})
-);
-
-export const loadReviews = createAction(
-  'data/loadReviews',
-  (reviews: Reviews) => ({payload: reviews})
-);
-
-export const setReviewFormBlocked = createAction(
-  'data/setReviewFormBlocked',
-  (status: boolean) => ({payload: status})
 );
 
 export const changeLocation = createAction(
