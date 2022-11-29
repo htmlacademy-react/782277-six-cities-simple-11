@@ -41,10 +41,12 @@ function Map({offers, selectedOfferId, isMainMap}: MapProps): JSX.Element {
     if (map) {
       const markerGroup = leaflet.layerGroup().addTo(map);
 
-      map.setView({
+      map.flyTo({
         lat: mapLocation.latitude,
         lng: mapLocation.longitude
-      });
+      },
+      mapLocation.zoom
+      );
 
       offers.forEach((offer) => {
         leaflet
