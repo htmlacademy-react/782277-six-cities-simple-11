@@ -1,6 +1,5 @@
 import {createReducer} from '@reduxjs/toolkit';
 import {
-  loadUserData,
   setDataLoadingStatus,
   loadOffers,
   loadOfferItem,
@@ -12,12 +11,10 @@ import {
   selectOffer
 } from './actions';
 import {Offers, OfferId, Offer} from '../types/offer';
-import {UserData} from '../types/user';
 import {Reviews} from '../types/review';
 import {DEFAULT_LOCATION, DEFAULT_SORT} from '../const';
 
 type InitialState = {
-  userData: UserData;
   isDataLoading: boolean;
   offers: Offers;
   offerItem: Offer | null;
@@ -30,7 +27,6 @@ type InitialState = {
 };
 
 const initialState: InitialState = {
-  userData: {} as UserData,
   isDataLoading: false,
   offers: [] as Offers,
   offerItem: null,
@@ -45,9 +41,6 @@ const initialState: InitialState = {
 
 export const reducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(loadUserData, (state, action) => {
-      state.userData = action.payload;
-    })
     .addCase(setDataLoadingStatus, (state, action) => {
       state.isDataLoading = action.payload;
     })
