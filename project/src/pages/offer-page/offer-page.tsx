@@ -6,7 +6,7 @@ import {store} from '../../store/store';
 import {useAppSelector} from '../../hooks/useAppSelector';
 import {getAuthorizationStatus} from '../../store/user-data/selectors';
 import {fetchNearOffersAction, fetchOfferPropertyAction, fetchReviewAction} from '../../store/offer-property-data/api-action';
-import {getOfferProperty, getOfferPropertyLoadingStatus, getOfferPropertyError, getReviews, getNearOffers} from '../../store/offer-property-data/selectors';
+import {getOfferProperty, getOfferPropertyLoadingStatus, getOfferPropertyErrorStatus, getReviews, getNearOffers} from '../../store/offer-property-data/selectors';
 
 import NotFoundPage from '../not-found-page/not-found-page';
 import Loader from '../../components/loader/loader';
@@ -40,7 +40,7 @@ function OfferPage(): JSX.Element {
 
   const offerProperty = useAppSelector(getOfferProperty);
   const isOfferPropertyLoading = useAppSelector(getOfferPropertyLoadingStatus);
-  const hasOfferPropertyError = useAppSelector(getOfferPropertyError);
+  const hasOfferPropertyError = useAppSelector(getOfferPropertyErrorStatus);
 
   const reviews = useAppSelector(getReviews);
   const nearOffers = useAppSelector(getNearOffers);

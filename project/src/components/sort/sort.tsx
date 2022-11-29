@@ -1,19 +1,19 @@
-import {useState} from 'react';
+import {memo, useState} from 'react';
 import cn from 'classnames';
 
 import {useAppDispatch} from '../../hooks/useAppDispatch';
-import {useAppSelector} from '../../hooks/useAppSelector';
-import {getSortType} from '../../store/app-process/selectors';
 import {changeSort} from '../../store/app-process/app-process';
 
 import {SORTS} from '../../const';
 
 
-function Sort(): JSX.Element {
-  const [toggleList, setToggleList] = useState<boolean>(false);
+type SortProps = {
+  sortType: string;
+}
 
+function Sort({sortType}: SortProps): JSX.Element {
   const dispatch = useAppDispatch();
-  const sortType = useAppSelector(getSortType);
+  const [toggleList, setToggleList] = useState<boolean>(false);
 
   return (
     <form className="places__sorting" action="#" method="get">
@@ -55,4 +55,4 @@ function Sort(): JSX.Element {
   );
 }
 
-export default Sort;
+export default memo(Sort);

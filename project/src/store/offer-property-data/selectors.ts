@@ -5,7 +5,7 @@ import {Reviews} from '../../types/review';
 
 export const getOfferProperty = (state: State): Offer | null => state[Reducer.OfferProperty].offerProperty;
 export const getOfferPropertyLoadingStatus = (state: State): boolean => state[Reducer.OfferProperty].isOfferPropertyLoading;
-export const getOfferPropertyError = (state: State): boolean => state[Reducer.OfferProperty].hasOfferPropertyError;
+export const getOfferPropertyErrorStatus = (state: State): boolean => state[Reducer.OfferProperty].hasOfferPropertyError;
 
 export const getNearOffers = (state: State): Offers | null => state[Reducer.OfferProperty].nearOffers;
 

@@ -55,7 +55,7 @@ function MainPage(): JSX.Element {
                 {offers.length} places to stay in {location}
               </b>
 
-              <Sort />
+              <Sort sortType={sortType} />
               <OfferList offers={offers} isMainOffer />
             </section>
 

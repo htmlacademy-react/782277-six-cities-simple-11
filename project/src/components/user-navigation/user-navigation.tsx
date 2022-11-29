@@ -1,3 +1,5 @@
+import {memo} from 'react';
+
 import {useAppSelector} from '../../hooks/useAppSelector';
 import {getAuthorizationStatus} from '../../store/user-data/selectors';
 
@@ -21,4 +23,4 @@ function UserNavigation(): JSX.Element {
   );
 }
 
-export default UserNavigation;
+export default memo(UserNavigation);
