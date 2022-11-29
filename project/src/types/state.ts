@@ -11,7 +11,7 @@ export type State = ReturnType<typeof store.getState>;
 
 export type UserProcess = {
   authorizationStatus: AuthorizationStatus;
-  userData: UserData;
+  userData: UserData | null;
 };
 
 export type OffersData = {
