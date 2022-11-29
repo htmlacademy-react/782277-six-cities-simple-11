@@ -1,6 +1,7 @@
 import {store} from '../store/store';
 import {UserData} from './user';
 import {Offers, Offer} from './offer';
+import {Reviews} from './review';
 import {AuthorizationStatus} from '../const';
 
 
@@ -20,9 +21,12 @@ export type OffersData = {
 };
 
 export type OfferPropertyData = {
-  offerItem: Offer | null;
-  isOfferItemLoading: boolean;
+  offerProperty: Offer | null;
+  isOfferPropertyLoading: boolean;
   nearOffers: Offers | null;
   isNearOffersLoading: boolean;
+  reviews: Reviews | null;
+  isReviewsLoading: boolean;
+  isReviewFormBlocked: boolean;
   hasError: boolean;
 };

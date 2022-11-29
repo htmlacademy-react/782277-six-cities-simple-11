@@ -20,7 +20,8 @@ export enum AuthorizationStatus {
 
 export enum Reducer {
   User = 'USER',
-  Offers = 'OFFERS'
+  Offers = 'OFFERS',
+  OfferProperty = 'OFFER_PROPERTY'
 }
 
 export const LOCATIONS = [
