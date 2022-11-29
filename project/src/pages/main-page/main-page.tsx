@@ -1,7 +1,7 @@
 import {Helmet} from 'react-helmet-async';
 import {useAppSelector} from '../../hooks/useAppSelector';
 import {getAuthorizationStatus} from '../../store/user-data/selectors';
-import {getLocation, getSortType} from '../../store/app-process/selectors';
+import {getLocation, getSortType, getSelectedOfferId} from '../../store/app-process/selectors';
 import {getOffersData, getOffersLoadingStatus} from '../../store/offers-data/selectors';
 
 import Loader from '../../components/loader/loader';
@@ -26,6 +26,7 @@ function MainPage(): JSX.Element {
     .sort(compareOffers[sortType]);
 
   const isOffersLoading = useAppSelector(getOffersLoadingStatus);
+  const selectedOfferId = useAppSelector(getSelectedOfferId);
 
   if (isOffersLoading || authorizationStatus === AuthorizationStatus.Unknown) {
     return <Loader />;
@@ -60,7 +61,7 @@ function MainPage(): JSX.Element {
             </section>
 
             <div className="cities__right-section">
-              <Map offers={offers} isMainMap />
+              <Map offers={offers} selectedOfferId={selectedOfferId} isMainMap />
             </div>
           </div>
         </div>

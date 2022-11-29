@@ -5,9 +5,7 @@ import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 import useMap from '../../hooks/useMap';
-import {useAppSelector} from '../../hooks/useAppSelector';
-import {getSelectedOfferId} from '../../store/app-process/selectors';
-import {Offers} from '../../types/offer';
+import {OfferId, Offers} from '../../types/offer';
 
 
 const DEFAULT_COORDINATE = {
@@ -30,14 +28,14 @@ const activeMarkerIcon = leaflet.icon({
 
 type MapProps = {
   offers: Offers;
+  selectedOfferId?: OfferId | null;
   isMainMap?: boolean;
 }
 
-function Map({offers, isMainMap}: MapProps): JSX.Element {
+function Map({offers, selectedOfferId, isMainMap}: MapProps): JSX.Element {
   const mapRef = useRef(null);
   const mapLocation = offers.length ? offers[0].city.location : DEFAULT_COORDINATE;
   const map = useMap(mapRef, mapLocation);
-  const selectedOfferId = useAppSelector(getSelectedOfferId);
 
   useEffect(() => {
     if (map) {
@@ -56,7 +54,7 @@ function Map({offers, isMainMap}: MapProps): JSX.Element {
               lng: offer.location.longitude
             },
             {
-              icon: (isMainMap && selectedOfferId !== null && offer.id === selectedOfferId)
+              icon: (selectedOfferId !== null && offer.id === selectedOfferId)
                 ? activeMarkerIcon
                 : defaultMarkerIcon
             }
@@ -68,7 +66,7 @@ function Map({offers, isMainMap}: MapProps): JSX.Element {
         markerGroup.clearLayers();
       };
     }
-  }, [map, isMainMap, mapLocation, offers, selectedOfferId]);
+  }, [map, mapLocation, offers, selectedOfferId]);
 
   return (
     <section
