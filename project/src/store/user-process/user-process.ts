@@ -17,14 +17,16 @@ export const userProcess = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder
-      .addCase(checkAuthorizationAction.fulfilled, (state) => {
+      .addCase(checkAuthorizationAction.fulfilled, (state, action) => {
         state.authorizationStatus = AuthorizationStatus.Authorized;
+        state.userData = action.payload;
       })
       .addCase(checkAuthorizationAction.rejected, (state) => {
         state.authorizationStatus = AuthorizationStatus.NoAuthorized;
       })
-      .addCase(loginAction.fulfilled, (state) => {
+      .addCase(loginAction.fulfilled, (state, action) => {
         state.authorizationStatus = AuthorizationStatus.Authorized;
+        state.userData = action.payload;
       })
       .addCase(loginAction.rejected, (state) => {
         state.authorizationStatus = AuthorizationStatus.NoAuthorized;
