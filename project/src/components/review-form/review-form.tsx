@@ -2,20 +2,20 @@ import {Fragment, useState, FormEvent, ChangeEvent} from 'react';
 
 import {useAppDispatch} from '../../hooks/useAppDispatch';
 import {useAppSelector} from '../../hooks/useAppSelector';
-import {setReviewFormBlocked} from '../../store/actions';
-import {sendReviewAction} from '../../store/api-action';
+import {sendReviewAction} from '../../store/offer-property-data/api-action';
+import {getReviewFormBlockedStatus} from '../../store/offer-property-data/selectors';
 
 import {OfferId} from '../../types/offer';
 import {GRADES, REVIEW_MIN_LENGTH} from '../../const';
+
 
 type ReviewFormProps = {
   offerId: OfferId;
 };
 
-
-export default function ReviewForm({offerId}: ReviewFormProps): JSX.Element {
+function ReviewForm({offerId}: ReviewFormProps): JSX.Element {
   const dispatch = useAppDispatch();
-  const isReviewFormBlocked = useAppSelector((state) => state.isReviewFormBlocked);
+  const isReviewFormBlocked = useAppSelector(getReviewFormBlockedStatus);
 
   const [formData, setFormData] = useState({
     rating: '',
@@ -31,8 +31,6 @@ export default function ReviewForm({offerId}: ReviewFormProps): JSX.Element {
     event.preventDefault();
 
     if (offerId && formData.rating && formData.review) {
-      dispatch(setReviewFormBlocked(true));
-
       dispatch(sendReviewAction({
         id: offerId,
         rating: +formData.rating,
@@ -102,3 +100,5 @@ export default function ReviewForm({offerId}: ReviewFormProps): JSX.Element {
     </form>
   );
 }
+
+export default ReviewForm;

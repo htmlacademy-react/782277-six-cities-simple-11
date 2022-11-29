@@ -27,10 +27,8 @@ export type OffersDataState = {
 export type OfferPropertyDataState = {
   offerProperty: Offer | null;
   isOfferPropertyLoading: boolean;
+  hasOfferPropertyError: boolean;
   nearOffers: Offers | null;
-  isNearOffersLoading: boolean;
   reviews: Reviews | null;
-  isReviewsLoading: boolean;
   isReviewFormBlocked: boolean;
-  hasError: boolean;
 };
