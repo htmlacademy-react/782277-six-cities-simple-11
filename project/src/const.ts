@@ -18,6 +18,10 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN'
 }
 
+export enum Reducer {
+  User = 'USER'
+}
+
 export const LOCATIONS = [
   'Paris',
   'Cologne',

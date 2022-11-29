@@ -2,16 +2,11 @@ import {createAction} from '@reduxjs/toolkit';
 import {Offers, Offer, OfferId} from '../types/offer';
 import {UserData} from '../types/user';
 import {Reviews} from '../types/review';
-import {AppRoute, AuthorizationStatus} from '../const';
+import {AppRoute} from '../const';
 
 export const redirectToRoute = createAction(
   'app/redirectToRoute',
   (route: AppRoute) => ({payload: route})
-);
-
-export const requireAuthorization = createAction(
-  'user/requireAuthorization',
-  (status: AuthorizationStatus) => ({payload: status})
 );
 
 export const loadUserData = createAction(
