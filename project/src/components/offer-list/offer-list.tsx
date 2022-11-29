@@ -1,32 +1,27 @@
 import cn from 'classnames';
-
 import OfferCard from '../offer-card/offer-card';
-
-import {useAppSelector} from '../../hooks/useAppSelector';
-import {getOffersByLocation, compareOffers} from '../../utils';
+import {Offers} from '../../types/offer';
 
 type OfferListProps = {
-  isMainOfferList?: boolean;
+  offers: Offers;
+  isMainOffer?: boolean;
+  isNearOffer?: boolean;
 };
 
-export default function OfferList({isMainOfferList}: OfferListProps): JSX.Element {
-  const location = useAppSelector((state) => state.location);
-  const sortType = useAppSelector((state) => state.sortType);
-  const offers = useAppSelector((state) => getOffersByLocation(state.offers, location).sort(compareOffers[sortType]));
-
+export default function OfferList({offers, isMainOffer, isNearOffer}: OfferListProps): JSX.Element {
   return (
     <div
       className={cn('places__list', {
-        'cities__places-list': isMainOfferList,
-        'tabs__content': isMainOfferList,
-        'near-places__list': !isMainOfferList
+        'cities__places-list': isMainOffer,
+        'tabs__content': isMainOffer,
+        'near-places__list': isNearOffer
       })}
     >
       {offers && offers.map((offer) => (
         <OfferCard
           key={offer.id.toString()}
           offer={offer}
-          isMainOfferList={isMainOfferList}
+          isMainOffer
         />
       ))}
     </div>

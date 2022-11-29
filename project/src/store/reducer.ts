@@ -2,35 +2,49 @@ import {createReducer} from '@reduxjs/toolkit';
 import {
   requireAuthorization,
   loadUserData,
-  setOffersDataLoadingStatus,
+  setDataLoadingStatus,
   loadOffers,
+  loadOfferItem,
+  loadNearOffers,
+  loadReviews,
+  setReviewFormBlocked,
   changeLocation,
   changeSort,
   selectOffer
 } from './actions';
-import {Offers} from '../types/offer';
+import {Offers, OfferId, Offer} from '../types/offer';
 import {UserData} from '../types/user';
+import {Reviews} from '../types/review';
 import {AuthorizationStatus, DEFAULT_LOCATION, DEFAULT_SORT} from '../const';
 
 type InitialState = {
   authorizationStatus: AuthorizationStatus;
   userData: UserData;
-  isOffersDataLoading: boolean;
+  isDataLoading: boolean;
   offers: Offers;
+  offerItem: Offer | null;
+  nearOffers: Offers | null;
+  reviews: Reviews | null;
+  isReviewFormBlocked: boolean;
   location: string;
   sortType: string;
-  selectedOfferId: number | null;
+  selectedOfferId: OfferId | null;
 };
 
 const initialState: InitialState = {
   authorizationStatus: AuthorizationStatus.Unknown,
   userData: {} as UserData,
-  isOffersDataLoading: false,
+  isDataLoading: false,
   offers: [] as Offers,
+  offerItem: null,
+  nearOffers: null,
+  reviews: null,
+  isReviewFormBlocked: false,
   location: DEFAULT_LOCATION,
   sortType: DEFAULT_SORT,
   selectedOfferId: null,
 };
+
 
 export const reducer = createReducer(initialState, (builder) => {
   builder
@@ -40,11 +54,23 @@ export const reducer = createReducer(initialState, (builder) => {
     .addCase(loadUserData, (state, action) => {
       state.userData = action.payload;
     })
-    .addCase(setOffersDataLoadingStatus, (state, action) => {
-      state.isOffersDataLoading = action.payload;
+    .addCase(setDataLoadingStatus, (state, action) => {
+      state.isDataLoading = action.payload;
     })
     .addCase(loadOffers, (state, action) => {
       state.offers = action.payload;
+    })
+    .addCase(loadOfferItem, (state, action) => {
+      state.offerItem = action.payload;
+    })
+    .addCase(loadNearOffers, (state, action) => {
+      state.nearOffers = action.payload;
+    })
+    .addCase(loadReviews, (state, action) => {
+      state.reviews = action.payload;
+    })
+    .addCase(setReviewFormBlocked, (state, action) => {
+      state.isReviewFormBlocked = action.payload;
     })
     .addCase(changeLocation, (state, action) => {
       state.location = action.payload;

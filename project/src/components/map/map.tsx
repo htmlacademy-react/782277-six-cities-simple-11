@@ -5,7 +5,7 @@ import 'leaflet/dist/leaflet.css';
 
 import useMap from '../../hooks/useMap';
 import {useAppSelector} from '../../hooks/useAppSelector';
-import {getOffersByLocation} from '../../utils';
+import {Offers} from '../../types/offer';
 
 const DEFAULT_COORDINATE = {
   latitude: 48.85661,
@@ -26,36 +26,24 @@ const activeMarkerIcon = leaflet.icon({
 });
 
 type MapProps = {
+  offers: Offers;
   isMainMap?: boolean;
 }
 
-export default function Map({isMainMap}: MapProps): JSX.Element {
+export default function Map({offers, isMainMap}: MapProps): JSX.Element {
   const mapRef = useRef(null);
-  const map = useMap(mapRef, DEFAULT_COORDINATE);
-
-  const location = useAppSelector((state) => state.location);
-  const offers = useAppSelector((state) => getOffersByLocation(state.offers, location));
+  const mapLocation = offers.length ? offers[0].city.location : DEFAULT_COORDINATE;
+  const map = useMap(mapRef, mapLocation);
   const selectedOfferId = useAppSelector((state) => state.selectedOfferId);
 
   useEffect(() => {
     if (map) {
-      const mapCenter = offers.length
-        ? offers[0].city.location
-        : DEFAULT_COORDINATE;
-
-      map.setView(
-        {
-          lat: mapCenter.latitude,
-          lng: mapCenter.longitude
-        },
-        mapCenter.zoom
-      );
-    }
-  }, [map, offers]);
-
-  useEffect(() => {
-    if (map) {
       const markerGroup = leaflet.layerGroup().addTo(map);
+
+      map.setView({
+        lat: mapLocation.latitude,
+        lng: mapLocation.longitude
+      });
 
       offers.forEach((offer) => {
         leaflet
@@ -77,7 +65,7 @@ export default function Map({isMainMap}: MapProps): JSX.Element {
         markerGroup.clearLayers();
       };
     }
-  }, [map, isMainMap, offers, selectedOfferId]);
+  }, [map, isMainMap, mapLocation, offers, selectedOfferId]);
 
   return (
     <section

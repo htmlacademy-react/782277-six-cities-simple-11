@@ -7,6 +7,7 @@ export enum AppRoute {
 
 export enum APIRoute {
   Offers = '/hotels',
+  Reviews = '/comments',
   Login = '/login',
   Logout = '/logout'
 }
@@ -48,3 +49,4 @@ export const GRADES = [
 
 export const DEFAULT_LOCATION = 'Paris';
 export const DEFAULT_SORT = 'Popular';
+export const REVIEW_MIN_LENGTH = 50;

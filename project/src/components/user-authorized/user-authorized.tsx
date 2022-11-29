@@ -22,7 +22,7 @@ export default function UserAuthorized(): JSX.Element {
               alt={name ?? 'User avatar.'}
             />
           </div>
-          <span className="header__user-name user__name">{email ?? name}</span>
+          <span className="header__user-name user__name">{email}</span>
         </div>
       </li>
       <li className="header__nav-item">

@@ -10,17 +10,18 @@ import {AppRoute} from '../../const';
 
 type OfferCardProps = {
   offer: Offer;
-  isMainOfferList?: boolean;
+  isMainOffer?: boolean;
+  isNearOffer?: boolean;
 };
 
-export default function OfferCard({offer, isMainOfferList}: OfferCardProps): JSX.Element {
+export default function OfferCard({offer, isMainOffer, isNearOffer}: OfferCardProps): JSX.Element {
   const dispatch = useAppDispatch();
 
   return (
     <article
       className={cn('place-card', {
-        'cities__card': isMainOfferList,
-        'near-places__card': !isMainOfferList
+        'cities__card': isMainOffer,
+        'near-places__card': isNearOffer
       })}
       onMouseEnter={() => dispatch(selectOffer(offer.id))}
       onMouseLeave={() => dispatch(selectOffer(null))}
@@ -33,8 +34,8 @@ export default function OfferCard({offer, isMainOfferList}: OfferCardProps): JSX
 
       <div
         className={cn('place-card__image-wrapper', {
-          'cities__image-wrapper': isMainOfferList,
-          'near-places__image-wrapper': !isMainOfferList
+          'cities__image-wrapper': isMainOffer,
+          'near-places__image-wrapper': isNearOffer
         })}
       >
         <Link to={`${AppRoute.Offer}/${offer.id}`}>

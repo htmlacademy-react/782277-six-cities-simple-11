@@ -1,25 +1,34 @@
 import {Helmet} from 'react-helmet-async';
 import {useAppSelector} from '../../hooks/useAppSelector';
 
+import Loader from '../../components/loader/loader';
 import Header from '../../components/header/header';
 import UserNavigation from '../../components/user-navigation/user-navigation';
 import LocationList from '../../components/location-list/location-list';
-import Loader from '../../components/loader/loader';
-import OffersSection from '../../components/offers-section/offers-section';
+import Sort from '../../components/sort/sort';
+import OfferList from '../../components/offer-list/offer-list';
 import Map from '../../components/map/map';
 
-import {getOffersByLocation} from '../../utils';
+import {getOffersByLocation, compareOffers} from '../../utils';
+import {AuthorizationStatus} from '../../const';
+
 
 export default function MainPage(): JSX.Element {
-  const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
   const location = useAppSelector((state) => state.location);
-  const offers = useAppSelector((state) => getOffersByLocation(state.offers, location));
-  const countOfOffers = offers.length;
+  const sortType = useAppSelector((state) => state.sortType);
+  const offers = useAppSelector((state) => getOffersByLocation(state.offers, location).sort(compareOffers[sortType]));
+
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const isDataLoading = useAppSelector((state) => state.isDataLoading);
+
+  if (isDataLoading || authorizationStatus === AuthorizationStatus.Unknown) {
+    return <Loader />;
+  }
 
   return (
     <div className="page page--gray page--main">
       <Helmet>
-        <title>Six cities</title>
+        <title>{`Six cities /${location}/`}</title>
       </Helmet>
 
       <Header>
@@ -33,14 +42,19 @@ export default function MainPage(): JSX.Element {
 
         <div className="cities">
           <div className="cities__places-container container">
-            {
-              isOffersDataLoading
-                ? <Loader />
-                : <OffersSection location={location} countOfOffers={countOfOffers} />
-            }
+            <section className="cities__places places">
+              <h2 className="visually-hidden">Places</h2>
+
+              <b className="places__found">
+                {offers.length} places to stay in {location}
+              </b>
+
+              <Sort />
+              <OfferList offers={offers} isMainOffer />
+            </section>
 
             <div className="cities__right-section">
-              <Map isMainMap />
+              <Map offers={offers} isMainMap />
             </div>
           </div>
         </div>

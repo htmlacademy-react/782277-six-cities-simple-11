@@ -1,9 +1,8 @@
 import {Link} from 'react-router-dom';
 import {Helmet} from 'react-helmet-async';
-
 import Header from '../../components/header/header';
-
 import {AppRoute} from '../../const';
+
 
 export default function NotFoundPage(): JSX.Element {
   return (
@@ -18,6 +17,7 @@ export default function NotFoundPage(): JSX.Element {
         <div className="container">
           <section>
             <h1>404. Page not found</h1>
+
             <Link to={AppRoute.Main}>Вернуться на главную</Link>
           </section>
         </div>

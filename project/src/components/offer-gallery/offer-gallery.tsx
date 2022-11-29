@@ -10,7 +10,7 @@ export default function OfferGallery({offer}: OfferGalleryProps): JSX.Element {
   return (
     <div className="property__gallery-container container">
       <div className="property__gallery">
-        {images.length && images.map((source) => (
+        {images.map((source) => (
           <div className="property__image-wrapper" key={source}>
             <img
               className="property__image"
