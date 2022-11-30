@@ -1,17 +1,11 @@
-import {Offer} from './types/offer';
-import {SortType} from './enum';
-import {Review} from './types/review';
+export const formatFirstLetter = (text: string): string =>
+  text.charAt(0).toUpperCase() + text.slice(1);
 
-export const compareOffers: Record<SortType, (offer: Offer, nextOffer: Offer) => number> = {
-  [SortType.Popular]: () => 0,
-  [SortType.PriceToHigh]: (offer, nextOffer) => offer.price - nextOffer.price,
-  [SortType.PriceToLow]: (offer, nextOffer) => nextOffer.price - offer.price,
-  [SortType.RatingToLow]: (offer, nextOffer) => nextOffer.rating - offer.rating
-};
+export const formatDate = (date: string, locales = 'en-US'): string =>
+  new Date(date).toLocaleString(locales, {month: 'long', year: 'numeric'});
 
-export const compareReviews: Record<string, (review: Review, nextReview: Review) => number> = {
-  sortByData: (review: Review, nextReview: Review) => Date.parse(nextReview.date) - Date.parse(review.date)
-};
+export const calculateRatingWidth = (currentRating: number, maxRating = 5): string =>
+  `${currentRating / maxRating * 100}%`;
 
 export const getRandomPositiveInteger = (a: number, b: number) => {
   const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
@@ -40,12 +34,3 @@ export const getRandomNumberOfElements = (elements: string[], number = 6) => {
 
   return randomElements;
 };
-
-export const formatFirstLetter = (text: string): string =>
-  text.charAt(0).toUpperCase() + text.slice(1);
-
-export const formatDate = (date: string, locales = 'en-US'): string =>
-  new Date(date).toLocaleString(locales, {month: 'long', year: 'numeric'});
-
-export const calculateRatingWidth = (currentRating: number, maxRating = 5): string =>
-  `${currentRating / maxRating * 100}%`;

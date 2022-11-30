@@ -1,8 +1,14 @@
 import {createSelector} from '@reduxjs/toolkit';
 import {State} from '../../types/state';
 import {Offers, Offer} from '../../types/offer';
-import {compareOffers} from '../../utils';
 import {Reducer, Location, SortType} from '../../enum';
+
+const compareOffers: Record<SortType, (offer: Offer, nextOffer: Offer) => number> = {
+  [SortType.Popular]: () => 0,
+  [SortType.PriceToHigh]: (offer, nextOffer) => offer.price - nextOffer.price,
+  [SortType.PriceToLow]: (offer, nextOffer) => nextOffer.price - offer.price,
+  [SortType.RatingToLow]: (offer, nextOffer) => nextOffer.rating - offer.rating
+};
 
 export const getLocation = (state: State): Location => state[Reducer.Offers].location;
 export const getSortType = (state: State): SortType => state[Reducer.Offers].sortType;
