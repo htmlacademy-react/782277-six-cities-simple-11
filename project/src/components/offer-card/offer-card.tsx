@@ -24,7 +24,7 @@ function OfferCard({offer, isMainOffer, isNearOffer}: OfferCardProps): JSX.Eleme
         'cities__card': isMainOffer,
         'near-places__card': isNearOffer
       })}
-      onMouseEnter={() => dispatch(selectOffer(offer.id))}
+      onMouseEnter={() => dispatch(selectOffer(offer))}
       onMouseLeave={() => dispatch(selectOffer(null))}
     >
 

@@ -4,7 +4,7 @@ import {getAuthorizationStatus} from '../../store/user-data/selectors';
 import {
   getLocation,
   getSortType,
-  getSelectedOfferId,
+  getSelectedOffer,
   getSelectedOffers,
   getOffersLoadingStatus
 } from '../../store/offers-data/selectors';
@@ -28,7 +28,7 @@ function MainPage(): JSX.Element {
   const offers = useAppSelector(getSelectedOffers);
 
   const isOffersLoading = useAppSelector(getOffersLoadingStatus);
-  const selectedOfferId = useAppSelector(getSelectedOfferId);
+  const selectedOffer = useAppSelector(getSelectedOffer);
 
   if (isOffersLoading || authorizationStatus === AuthorizationStatus.Unknown) {
     return <Loader />;
@@ -63,7 +63,7 @@ function MainPage(): JSX.Element {
             </section>
 
             <div className="cities__right-section">
-              <Map offers={offers} selectedOfferId={selectedOfferId} isMainMap />
+              <Map offers={offers} selectedOffer={selectedOffer} isMainMap />
             </div>
           </div>
         </div>

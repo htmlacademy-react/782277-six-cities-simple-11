@@ -67,7 +67,7 @@ function OfferPage(): JSX.Element {
             </div>
           </div>
 
-          {nearOffers && <Map offers={nearOffers} />}
+          {nearOffers && <Map offers={nearOffers} selectedOffer={offerProperty} />}
         </section>
 
         {nearOffers && <NearOfferSection offers={nearOffers} />}

@@ -1,14 +1,14 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {fetchOffersAction} from './api-actions';
 import {OffersDataState} from '../../types/state';
-import {Offers, OfferId} from '../../types/offer';
+import {Offers, Offer} from '../../types/offer';
 import {Reducer, Location, SortType} from '../../const';
 
 const initialState: OffersDataState = {
   location: Location.Paris,
   sortType: SortType.Popular,
-  selectedOfferId: null,
   offers: [] as Offers,
+  selectedOffer: null,
   isOffersLoading: false
 };
 
@@ -22,8 +22,8 @@ export const offersData = createSlice({
     changeSort: (state, action: PayloadAction<SortType>) => {
       state.sortType = action.payload;
     },
-    selectOffer: (state, action: PayloadAction<OfferId | null>) => {
-      state.selectedOfferId = action.payload;
+    selectOffer: (state, action: PayloadAction<Offer | null>) => {
+      state.selectedOffer = action.payload;
     }
   },
   extraReducers(builder) {

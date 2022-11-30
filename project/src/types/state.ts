@@ -1,6 +1,6 @@
 import {store} from '../store/store';
 import {UserData} from './user';
-import {Offers, Offer, OfferId} from './offer';
+import {Offers, Offer} from './offer';
 import {Reviews} from './review';
 import {AuthorizationStatus, Location, SortType} from '../const';
 
@@ -15,8 +15,8 @@ export type UserDataState = {
 export type OffersDataState = {
   location: Location;
   sortType: SortType;
-  selectedOfferId: OfferId | null;
   offers: Offers;
+  selectedOffer: Offer | null;
   isOffersLoading: boolean;
 };
 
