@@ -4,7 +4,7 @@ import {removeToken, saveToken} from '../../services/token';
 import {AppDispatch, State} from '../../types/state';
 import {AuthorizationData} from '../../types/authorization';
 import {UserData} from '../../types/user';
-import {APIRoute} from '../../const';
+import {APIRoute} from '../../enum';
 
 export const checkAuthorizationAction = createAsyncThunk<UserData, undefined, {
   dispatch: AppDispatch;

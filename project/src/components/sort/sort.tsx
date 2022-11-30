@@ -4,7 +4,7 @@ import cn from 'classnames';
 import {useAppDispatch} from '../../hooks/useAppDispatch';
 import {changeSort} from '../../store/offers-data/offers-data';
 
-import {SortType} from '../../const';
+import {SortType} from '../../enum';
 
 
 const SORTS: SortType[] = Object.values(SortType);

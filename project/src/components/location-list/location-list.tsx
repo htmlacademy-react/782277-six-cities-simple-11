@@ -1,6 +1,6 @@
 import {memo} from 'react';
 import LocationItem from '../location-item/location-item';
-import {Location} from '../../const';
+import {Location} from '../../enum';
 
 
 const LOCATIONS: Location[] = Object.values(Location);

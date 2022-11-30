@@ -7,7 +7,7 @@ import {getAuthorizationStatus} from '../../store/user-data/selectors';
 import Header from '../../components/header/header';
 import LoginForm from '../../components/login-form/login-form';
 
-import {AppRoute, AuthorizationStatus} from '../../const';
+import {AppRoute, AuthorizationStatus} from '../../enum';
 
 
 function LoginPage(): JSX.Element {

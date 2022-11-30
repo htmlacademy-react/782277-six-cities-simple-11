@@ -6,7 +6,7 @@ import {useAppDispatch} from '../../hooks/useAppDispatch';
 import {loginAction} from '../../store/user-data/api-actions';
 
 import {formatFirstLetter} from '../../utils';
-import {AppRoute} from '../../const';
+import {AppRoute} from '../../enum';
 
 
 const LOGIN_FIELDS = [

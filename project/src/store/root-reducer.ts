@@ -2,7 +2,7 @@ import {combineReducers} from '@reduxjs/toolkit';
 import {userData} from './user-data/user-data';
 import {offersData} from './offers-data/offers-data';
 import {offerPropertyData} from './offer-property-data/offer-property-data';
-import {Reducer} from '../const';
+import {Reducer} from '../enum';
 
 export const rootReducer = combineReducers({
   [Reducer.User]: userData.reducer,

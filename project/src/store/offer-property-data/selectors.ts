@@ -3,7 +3,7 @@ import {State} from '../../types/state';
 import {Offers, Offer} from '../../types/offer';
 import {Reviews} from '../../types/review';
 import {compareReviews} from '../../utils';
-import {Reducer} from '../../const';
+import {Reducer} from '../../enum';
 
 
 const MAX_REVIEWS = 10;

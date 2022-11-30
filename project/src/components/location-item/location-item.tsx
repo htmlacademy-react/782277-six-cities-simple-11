@@ -3,7 +3,7 @@ import {useAppDispatch} from '../../hooks/useAppDispatch';
 import {useAppSelector} from '../../hooks/useAppSelector';
 import {getLocation} from '../../store/offers-data/selectors';
 import {changeLocation} from '../../store/offers-data/offers-data';
-import {Location} from '../../const';
+import {Location} from '../../enum';
 
 
 type LocationItemProps = {

@@ -20,7 +20,7 @@ import EmptyOfferSection from '../../components/empty-offer-section/empty-offer-
 
 import Map from '../../components/map/map';
 
-import {AuthorizationStatus} from '../../const';
+import {AuthorizationStatus} from '../../enum';
 
 
 function MainPage(): JSX.Element {

@@ -1,5 +1,5 @@
 import {Offer} from './types/offer';
-import {SortType} from './const';
+import {SortType} from './enum';
 import {Review} from './types/review';
 
 export const compareOffers: Record<SortType, (offer: Offer, nextOffer: Offer) => number> = {
