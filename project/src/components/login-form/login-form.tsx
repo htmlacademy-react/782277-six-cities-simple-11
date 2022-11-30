@@ -1,5 +1,6 @@
 import {useState, FormEvent, ChangeEvent} from 'react';
 import {useNavigate} from 'react-router-dom';
+import {toast} from 'react-toastify';
 
 import {useAppDispatch} from '../../hooks/useAppDispatch';
 import {loginAction} from '../../store/user-data/api-actions';
@@ -13,6 +14,11 @@ const LOGIN_FIELDS = [
   'password'
 ];
 
+type FormData = {
+  email: string;
+  password: string;
+};
+
 function LoginForm(): JSX.Element {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -22,6 +28,22 @@ function LoginForm(): JSX.Element {
     password: ''
   });
 
+  const validateForm = (formField: FormData): boolean => {
+    const emailPattern: boolean = (/^([a-z0-9_.-]+)@([\da-z.-]+).([a-z.]{2,6})$/).test(formField.email);
+    const passwordPattern: boolean = (/([0-9].*[a-z])|([a-z].*[0-9])/).test(formField.password);
+
+    if (!emailPattern) {
+      toast.info('Введите корректный Email, например six-cities@gmail.com');
+      return false;
+    }
+    if (!passwordPattern) {
+      toast.info('Пароль должен состоять минимум из одной буквы и цифры');
+      return false;
+    }
+
+    return true;
+  };
+
   const handleFieldChange = (event: ChangeEvent<HTMLInputElement>) => {
     const {name, value} = event.target;
     setFormData({...formData, [name]: value});
@@ -30,11 +52,16 @@ function LoginForm(): JSX.Element {
   const handleFormSubmit = (event: FormEvent) => {
     event.preventDefault();
 
-    if (formData.email && formData.password) {
+    if (validateForm(formData)) {
       dispatch(loginAction({
         login: formData.email,
         password: formData.password
       }));
+
+      setFormData({
+        email: '',
+        password: ''
+      });
 
       navigate(AppRoute.Main);
     }
