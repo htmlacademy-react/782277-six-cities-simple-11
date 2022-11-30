@@ -39,21 +39,3 @@ export enum SortType {
   PriceToLow = 'Price: high to low',
   RatingToLow = 'Top rated first'
 }
-
-export const LOCATIONS: Location[] = Object.values(Location);
-export const SORTS: SortType[] = Object.values(SortType);
-
-export const LOGIN_FIELDS = [
-  'email',
-  'password'
-];
-
-export const GRADES = [
-  'perfect',
-  'good',
-  'not bad',
-  'badly',
-  'terribly'
-];
-
-export const REVIEW_MIN_LENGTH = 50;

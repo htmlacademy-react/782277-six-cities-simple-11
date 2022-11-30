@@ -6,8 +6,17 @@ import {sendReviewAction} from '../../store/offer-property-data/api-action';
 import {getReviewFormBlockedStatus} from '../../store/offer-property-data/selectors';
 
 import {OfferId} from '../../types/offer';
-import {GRADES, REVIEW_MIN_LENGTH} from '../../const';
 
+
+const GRADES = [
+  'perfect',
+  'good',
+  'not bad',
+  'badly',
+  'terribly'
+];
+
+const REVIEW_MIN_LENGTH = 50;
 
 type ReviewFormProps = {
   offerId: OfferId;

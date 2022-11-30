@@ -4,8 +4,10 @@ import cn from 'classnames';
 import {useAppDispatch} from '../../hooks/useAppDispatch';
 import {changeSort} from '../../store/offers-data/offers-data';
 
-import {SORTS, SortType} from '../../const';
+import {SortType} from '../../const';
 
+
+const SORTS: SortType[] = Object.values(SortType);
 
 type SortProps = {
   sortType: SortType;
