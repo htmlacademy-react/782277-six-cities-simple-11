@@ -2,7 +2,7 @@ import {memo, useState} from 'react';
 import cn from 'classnames';
 
 import {useAppDispatch} from '../../hooks/useAppDispatch';
-import {changeSort} from '../../store/app-process/app-process';
+import {changeSort} from '../../store/offers-data/offers-data';
 
 import {SORTS, SortType} from '../../const';
 

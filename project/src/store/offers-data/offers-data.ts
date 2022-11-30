@@ -1,10 +1,13 @@
-import {createSlice} from '@reduxjs/toolkit';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {fetchOffersAction} from './api-actions';
 import {OffersDataState} from '../../types/state';
-import {Offers} from '../../types/offer';
-import {Reducer} from '../../const';
+import {Offers, OfferId} from '../../types/offer';
+import {Reducer, Location, SortType} from '../../const';
 
 const initialState: OffersDataState = {
+  location: Location.Paris,
+  sortType: SortType.Popular,
+  selectedOfferId: null,
   offers: [] as Offers,
   isOffersLoading: false
 };
@@ -12,7 +15,17 @@ const initialState: OffersDataState = {
 export const offersData = createSlice({
   name: Reducer.Offers,
   initialState,
-  reducers: {},
+  reducers: {
+    changeLocation: (state, action: PayloadAction<Location>) => {
+      state.location = action.payload;
+    },
+    changeSort: (state, action: PayloadAction<SortType>) => {
+      state.sortType = action.payload;
+    },
+    selectOffer: (state, action: PayloadAction<OfferId | null>) => {
+      state.selectedOfferId = action.payload;
+    }
+  },
   extraReducers(builder) {
     builder
       .addCase(fetchOffersAction.pending, (state) => {
@@ -24,3 +37,5 @@ export const offersData = createSlice({
       });
   }
 });
+
+export const {changeLocation, changeSort, selectOffer} = offersData.actions;

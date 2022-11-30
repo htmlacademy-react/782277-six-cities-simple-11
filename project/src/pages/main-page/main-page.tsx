@@ -1,8 +1,13 @@
 import {Helmet} from 'react-helmet-async';
 import {useAppSelector} from '../../hooks/useAppSelector';
 import {getAuthorizationStatus} from '../../store/user-data/selectors';
-import {getLocation, getSortType, getSelectedOfferId} from '../../store/app-process/selectors';
-import {getOffersData, getOffersLoadingStatus} from '../../store/offers-data/selectors';
+import {
+  getLocation,
+  getSortType,
+  getSelectedOfferId,
+  getOffersData,
+  getOffersLoadingStatus
+} from '../../store/offers-data/selectors';
 
 import Loader from '../../components/loader/loader';
 import Header from '../../components/header/header';
