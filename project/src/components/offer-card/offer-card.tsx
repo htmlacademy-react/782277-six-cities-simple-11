@@ -52,7 +52,7 @@ function OfferCard({offer, isMainOffer, isNearOffer}: OfferCardProps): JSX.Eleme
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: calculateRatingWidth(offer.rating)}}></span>
+            <span style={{width: calculateRatingWidth(Math.round(offer.rating))}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
