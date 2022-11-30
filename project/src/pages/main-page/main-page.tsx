@@ -5,7 +5,7 @@ import {
   getLocation,
   getSortType,
   getSelectedOfferId,
-  getOffersData,
+  getSelectedOffers,
   getOffersLoadingStatus
 } from '../../store/offers-data/selectors';
 
@@ -17,7 +17,6 @@ import Sort from '../../components/sort/sort';
 import OfferList from '../../components/offer-list/offer-list';
 import Map from '../../components/map/map';
 
-import {compareOffers} from '../../utils';
 import {AuthorizationStatus} from '../../const';
 
 
@@ -26,9 +25,7 @@ function MainPage(): JSX.Element {
 
   const location = useAppSelector(getLocation);
   const sortType = useAppSelector(getSortType);
-  const offers = useAppSelector(getOffersData)
-    .filter((offer) => offer.city.name === location)
-    .sort(compareOffers[sortType]);
+  const offers = useAppSelector(getSelectedOffers);
 
   const isOffersLoading = useAppSelector(getOffersLoadingStatus);
   const selectedOfferId = useAppSelector(getSelectedOfferId);
