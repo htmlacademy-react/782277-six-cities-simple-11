@@ -17,4 +17,4 @@ export const formatDate = (date: string, locales = 'en-US'): string =>
   new Date(date).toLocaleString(locales, {month: 'long', year: 'numeric'});
 
 export const calculateRatingWidth = (currentRating: number, maxRating = 5): string =>
-  `${currentRating / maxRating * 100}%`;
+  `${Math.round(currentRating) / maxRating * 100}%`;
