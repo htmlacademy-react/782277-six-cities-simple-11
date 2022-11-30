@@ -1,4 +1,5 @@
 import {Fragment, useState, FormEvent, ChangeEvent} from 'react';
+import {toast} from 'react-toastify';
 
 import {useAppDispatch} from '../../hooks/useAppDispatch';
 import {useAppSelector} from '../../hooks/useAppSelector';
@@ -16,20 +17,46 @@ const GRADES = [
   'terribly'
 ];
 
-const REVIEW_MIN_LENGTH = 50;
+const REVIEW_LENGTH = {
+  min: 50,
+  max: 300
+};
 
 type ReviewFormProps = {
   offerId: OfferId;
+};
+
+type FormData = {
+  rating: string;
+  review: string;
 };
 
 function ReviewForm({offerId}: ReviewFormProps): JSX.Element {
   const dispatch = useAppDispatch();
   const isReviewFormBlocked = useAppSelector(getReviewFormBlockedStatus);
 
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     rating: '',
     review: ''
   });
+
+  const validateForm = (formField: FormData): boolean => {
+    if (!formField.rating) {
+      toast.info('Поставьте, пожалуйста, рейтинг');
+      return false;
+    }
+    if (formField.review.length < REVIEW_LENGTH.min) {
+      toast.info(`Отзыв содержит ${formField.review.length} из ${REVIEW_LENGTH.min} символов`);
+      return false;
+    }
+    if (formField.review.length > REVIEW_LENGTH.max) {
+      toast.info(`Отзыв содержит ${formField.review.length} из ${REVIEW_LENGTH.max} символов`);
+      return false;
+    }
+
+    toast.success('Ваш отзыв успешно отправлен');
+    return true;
+  };
 
   const handleFieldChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const {name, value} = event.target;
@@ -39,7 +66,7 @@ function ReviewForm({offerId}: ReviewFormProps): JSX.Element {
   const handleFormSubmit = (event: FormEvent) => {
     event.preventDefault();
 
-    if (offerId && formData.rating && formData.review) {
+    if (offerId && validateForm(formData)) {
       dispatch(sendReviewAction({
         id: offerId,
         rating: +formData.rating,
@@ -96,12 +123,12 @@ function ReviewForm({offerId}: ReviewFormProps): JSX.Element {
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your
-          stay with at least <b className="reviews__text-amount">{REVIEW_MIN_LENGTH} characters</b>.
+          stay with at least <b className="reviews__text-amount">{REVIEW_LENGTH.min} characters</b>.
         </p>
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled={formData.review.length < REVIEW_MIN_LENGTH || formData.rating === '' || isReviewFormBlocked}
+          disabled={isReviewFormBlocked}
         >
           {!isReviewFormBlocked ? 'Submit' : 'Sending...'}
         </button>
