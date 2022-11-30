@@ -4,7 +4,6 @@ import {Helmet} from 'react-helmet-async';
 
 import {store} from '../../store/store';
 import {useAppSelector} from '../../hooks/useAppSelector';
-import {getAuthorizationStatus} from '../../store/user-data/selectors';
 import {fetchNearOffersAction, fetchOfferPropertyAction, fetchReviewAction} from '../../store/offer-property-data/api-action';
 import {getOfferProperty, getOfferPropertyLoadingStatus, getOfferPropertyErrorStatus, getReviews, getNearOffers} from '../../store/offer-property-data/selectors';
 
@@ -19,24 +18,16 @@ import ReviewList from '../../components/review-list/review-list';
 import Map from '../../components/map/map';
 import NearOfferSection from '../../components/near-offer-section/near-offer-section';
 
-import {AuthorizationStatus} from '../../const';
-
 
 function OfferPage(): JSX.Element {
   const {id} = useParams();
   const offerId = Number(id);
 
-  const authorizationStatus = useAppSelector(getAuthorizationStatus);
-  const shouldDisplayReviews = authorizationStatus === AuthorizationStatus.Authorized;
-
   useEffect(() => {
     store.dispatch(fetchOfferPropertyAction(offerId));
+    store.dispatch(fetchReviewAction(offerId));
     store.dispatch(fetchNearOffersAction(offerId));
-
-    if (shouldDisplayReviews) {
-      store.dispatch(fetchReviewAction(offerId));
-    }
-  }, [offerId, shouldDisplayReviews]);
+  }, [offerId]);
 
   const offerProperty = useAppSelector(getOfferProperty);
   const isOfferPropertyLoading = useAppSelector(getOfferPropertyLoadingStatus);
@@ -72,7 +63,7 @@ function OfferPage(): JSX.Element {
               <OfferProperty offer={offerProperty} />
               <OfferHost offer={offerProperty} />
 
-              {shouldDisplayReviews && <ReviewList offerId={offerId} reviews={reviews} />}
+              {reviews && <ReviewList offerId={offerId} reviews={reviews} />}
             </div>
           </div>
 
