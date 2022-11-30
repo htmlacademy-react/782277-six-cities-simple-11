@@ -1,13 +1,39 @@
 import {Offer} from './types/offer';
-import {SORTS} from './const';
+import {SortType} from './const';
 
-const [popular, lowPrice, hightPrice, rating] = SORTS;
+export const compareOffers: Record<SortType, (offer: Offer, nextOffer: Offer) => number> = {
+  [SortType.Popular]: () => 0,
+  [SortType.PriceToHigh]: (offer, nextOffer) => offer.price - nextOffer.price,
+  [SortType.PriceToLow]: (offer, nextOffer) => nextOffer.price - offer.price,
+  [SortType.RatingToLow]: (offer, nextOffer) => nextOffer.rating - offer.rating
+};
 
-export const compareOffers: Record<string, (offer: Offer, nextOffer: Offer) => number> = {
-  [popular]: () => 0,
-  [lowPrice]: (offer, nextOffer) => offer.price - nextOffer.price,
-  [hightPrice]: (offer, nextOffer) => nextOffer.price - offer.price,
-  [rating]: (offer, nextOffer) => nextOffer.rating - offer.rating
+export const getRandomPositiveInteger = (a: number, b: number) => {
+  const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
+  const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
+  const result = Math.random() * (upper - lower + 1) + lower;
+  return Math.floor(result);
+};
+
+export const getRandomElement = (elements: string[]) =>
+  elements[getRandomPositiveInteger(0, elements.length - 1)];
+
+export const getRandomNumberOfElements = (elements: string[], number = 6) => {
+  if (elements.length <= number) {
+    return;
+  }
+
+  const randomElements: string[] = [];
+
+  while (randomElements.length < number) {
+    const randomElement = getRandomElement(elements);
+
+    if (!randomElements.includes(randomElement)) {
+      randomElements.push(randomElement);
+    }
+  }
+
+  return randomElements;
 };
 
 export const formatFirstLetter = (text: string): string =>
