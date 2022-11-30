@@ -1,13 +1,13 @@
 import cn from 'classnames';
-
 import {useAppDispatch} from '../../hooks/useAppDispatch';
 import {useAppSelector} from '../../hooks/useAppSelector';
 import {getLocation} from '../../store/app-process/selectors';
 import {changeLocation} from '../../store/app-process/app-process';
+import {Location} from '../../const';
 
 
 type LocationItemProps = {
-  location: string;
+  location: Location;
 };
 
 function LocationItem({location}: LocationItemProps): JSX.Element {

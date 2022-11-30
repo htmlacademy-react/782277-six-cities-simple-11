@@ -4,11 +4,11 @@ import cn from 'classnames';
 import {useAppDispatch} from '../../hooks/useAppDispatch';
 import {changeSort} from '../../store/app-process/app-process';
 
-import {SORTS} from '../../const';
+import {SORTS, SortType} from '../../const';
 
 
 type SortProps = {
-  sortType: string;
+  sortType: SortType;
 }
 
 function Sort({sortType}: SortProps): JSX.Element {

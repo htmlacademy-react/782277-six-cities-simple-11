@@ -25,21 +25,24 @@ export enum Reducer {
   OfferProperty = 'OFFER_PROPERTY'
 }
 
-export const LOCATIONS = [
-  'Paris',
-  'Cologne',
-  'Brussels',
-  'Amsterdam',
-  'Hamburg',
-  'Dusseldorf'
-];
+export enum Location {
+  Paris = 'Paris',
+  Cologne = 'Cologne',
+  Brussels = 'Brussels',
+  Amsterdam = 'Amsterdam',
+  Hamburg = 'Hamburg',
+  Dusseldorf = 'Dusseldorf'
+}
 
-export const SORTS = [
-  'Popular',
-  'Price: low to high',
-  'Price: high to low',
-  'Top rated first'
-];
+export enum SortType {
+  Popular = 'Popular',
+  PriceToHigh = 'Price: low to high',
+  PriceToLow = 'Price: high to low',
+  RatingToLow = 'Top rated first'
+}
+
+export const LOCATIONS: Location[] = Object.values(Location);
+export const SORTS: SortType[] = Object.values(SortType);
 
 export const LOGIN_FIELDS = [
   'email',
@@ -54,6 +57,4 @@ export const GRADES = [
   'terribly'
 ];
 
-export const DEFAULT_LOCATION = 'Paris';
-export const DEFAULT_SORT = 'Popular';
 export const REVIEW_MIN_LENGTH = 50;
