@@ -1,11 +1,16 @@
 import {Offer} from './types/offer';
 import {SortType} from './const';
+import {Review} from './types/review';
 
 export const compareOffers: Record<SortType, (offer: Offer, nextOffer: Offer) => number> = {
   [SortType.Popular]: () => 0,
   [SortType.PriceToHigh]: (offer, nextOffer) => offer.price - nextOffer.price,
   [SortType.PriceToLow]: (offer, nextOffer) => nextOffer.price - offer.price,
   [SortType.RatingToLow]: (offer, nextOffer) => nextOffer.rating - offer.rating
+};
+
+export const compareReviews: Record<string, (review: Review, nextReview: Review) => number> = {
+  sortByData: (review: Review, nextReview: Review) => Date.parse(nextReview.date) - Date.parse(review.date)
 };
 
 export const getRandomPositiveInteger = (a: number, b: number) => {

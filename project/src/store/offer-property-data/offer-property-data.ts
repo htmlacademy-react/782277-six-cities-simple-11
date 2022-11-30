@@ -7,7 +7,7 @@ const initialState: OfferPropertyDataState = {
   offerProperty: null,
   isOfferPropertyLoading: false,
   nearOffers: null,
-  reviews: null,
+  reviews: [],
   isReviewFormBlocked: false,
   hasOfferPropertyError: false
 };

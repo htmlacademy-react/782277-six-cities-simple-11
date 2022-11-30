@@ -25,6 +25,6 @@ export type OfferPropertyDataState = {
   isOfferPropertyLoading: boolean;
   hasOfferPropertyError: boolean;
   nearOffers: Offers | null;
-  reviews: Reviews | null;
+  reviews: Reviews;
   isReviewFormBlocked: boolean;
 };

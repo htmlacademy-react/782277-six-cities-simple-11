@@ -5,7 +5,7 @@ import {Helmet} from 'react-helmet-async';
 import {store} from '../../store/store';
 import {useAppSelector} from '../../hooks/useAppSelector';
 import {fetchNearOffersAction, fetchOfferPropertyAction, fetchReviewAction} from '../../store/offer-property-data/api-action';
-import {getOfferProperty, getOfferPropertyLoadingStatus, getOfferPropertyErrorStatus, getReviews, getNearOffers} from '../../store/offer-property-data/selectors';
+import {getOfferProperty, getOfferPropertyLoadingStatus, getOfferPropertyErrorStatus, getSelectedReviews, getNearOffers} from '../../store/offer-property-data/selectors';
 
 import NotFoundPage from '../not-found-page/not-found-page';
 import Loader from '../../components/loader/loader';
@@ -33,7 +33,7 @@ function OfferPage(): JSX.Element {
   const isOfferPropertyLoading = useAppSelector(getOfferPropertyLoadingStatus);
   const hasOfferPropertyError = useAppSelector(getOfferPropertyErrorStatus);
 
-  const reviews = useAppSelector(getReviews);
+  const reviews = useAppSelector(getSelectedReviews);
   const nearOffers = useAppSelector(getNearOffers);
 
   if (hasOfferPropertyError) {
