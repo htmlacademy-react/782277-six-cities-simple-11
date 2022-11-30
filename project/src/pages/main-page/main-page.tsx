@@ -1,4 +1,6 @@
 import {Helmet} from 'react-helmet-async';
+import cn from 'classnames';
+
 import {useAppSelector} from '../../hooks/useAppSelector';
 import {getAuthorizationStatus} from '../../store/user-data/selectors';
 import {
@@ -13,8 +15,9 @@ import Loader from '../../components/loader/loader';
 import Header from '../../components/header/header';
 import UserNavigation from '../../components/user-navigation/user-navigation';
 import LocationList from '../../components/location-list/location-list';
-import Sort from '../../components/sort/sort';
-import OfferList from '../../components/offer-list/offer-list';
+import OfferSection from '../../components/offer-section/offer-section';
+import EmptyOfferSection from '../../components/empty-offer-section/empty-offer-section';
+
 import Map from '../../components/map/map';
 
 import {AuthorizationStatus} from '../../const';
@@ -44,26 +47,20 @@ function MainPage(): JSX.Element {
         <UserNavigation />
       </Header>
 
-      <main className="page__main page__main--index">
+      <main className={cn('page__main page__main--index', {'page__main--index-empty': !offers})}>
         <h1 className="visually-hidden">Cities</h1>
 
         <LocationList />
 
         <div className="cities">
-          <div className="cities__places-container container">
-            <section className="cities__places places">
-              <h2 className="visually-hidden">Places</h2>
+          <div className={cn('cities__places-container container', {'cities__places-container--empty': !offers})}>
 
-              <b className="places__found">
-                {offers.length} places to stay in {location}
-              </b>
-
-              <Sort sortType={sortType} />
-              <OfferList offers={offers} isMainOffer />
-            </section>
+            {offers
+              ? <OfferSection location={location} sortType={sortType} offers={offers} />
+              : <EmptyOfferSection />}
 
             <div className="cities__right-section">
-              <Map offers={offers} selectedOffer={selectedOffer} isMainMap />
+              {offers && <Map offers={offers} selectedOffer={selectedOffer} isMainMap />}
             </div>
           </div>
         </div>
