@@ -1,11 +1,11 @@
 import {memo} from 'react';
 import LocationItem from '../location-item/location-item';
-import {Location} from '../../enum';
+import {Location} from '../../const';
 
-
-const LOCATIONS: Location[] = Object.values(Location);
 
 function LocationList(): JSX.Element {
+  const LOCATIONS: Location[] = Object.values(Location);
+
   return (
     <div className="tabs">
       <section className="locations container">

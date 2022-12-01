@@ -9,19 +9,6 @@ import {getReviewFormBlockedStatus} from '../../store/offer-property-data/select
 import {OfferId} from '../../types/offer';
 
 
-const GRADES = [
-  'perfect',
-  'good',
-  'not bad',
-  'badly',
-  'terribly'
-];
-
-const REVIEW_LENGTH = {
-  min: 50,
-  max: 300
-};
-
 type ReviewFormProps = {
   offerId: OfferId;
 };
@@ -29,6 +16,13 @@ type ReviewFormProps = {
 type FormData = {
   rating: string;
   review: string;
+};
+
+const GRADES = ['perfect', 'good', 'not bad', 'badly', 'terribly'];
+
+const REVIEW_LENGTH = {
+  min: 50,
+  max: 300
 };
 
 function ReviewForm({offerId}: ReviewFormProps): JSX.Element {

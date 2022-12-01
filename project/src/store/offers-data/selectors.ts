@@ -1,7 +1,7 @@
 import {createSelector} from '@reduxjs/toolkit';
 import {State} from '../../types/state';
 import {Offers, Offer} from '../../types/offer';
-import {Reducer, Location, SortType} from '../../enum';
+import {Reducer, Location, SortType} from '../../const';
 
 const compareOffers: Record<SortType, (offer: Offer, nextOffer: Offer) => number> = {
   [SortType.Popular]: () => 0,

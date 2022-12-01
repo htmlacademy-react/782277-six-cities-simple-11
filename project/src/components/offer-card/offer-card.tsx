@@ -6,7 +6,7 @@ import {selectOffer} from '../../store/offers-data/offers-data';
 
 import {Offer} from '../../types/offer';
 import {formatFirstLetter, calculateRatingWidth} from '../../utils';
-import {AppRoute} from '../../enum';
+import {AppRoute} from '../../const';
 
 
 type OfferCardProps = {

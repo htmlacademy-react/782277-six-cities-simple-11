@@ -6,7 +6,7 @@ import {getAuthorizationStatus} from '../../store/user-data/selectors';
 import UserAuthorized from '../user-authorized/user-authorized';
 import UserUnauthorized from '../user-unauthorized/user-unauthorized';
 
-import {AuthorizationStatus} from '../../enum';
+import {AuthorizationStatus} from '../../const';
 
 
 function UserNavigation(): JSX.Element {

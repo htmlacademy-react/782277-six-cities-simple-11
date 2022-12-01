@@ -2,7 +2,7 @@ import Sort from '../../components/sort/sort';
 import OfferList from '../../components/offer-list/offer-list';
 
 import {Offers} from '../../types/offer';
-import {Location, SortType} from '../../enum';
+import {Location, SortType} from '../../const';
 
 
 type OfferSectionProps = {

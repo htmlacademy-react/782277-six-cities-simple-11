@@ -8,6 +8,12 @@ import useMap from '../../hooks/useMap';
 import {Offers, Offer} from '../../types/offer';
 
 
+type MapProps = {
+  offers: Offers;
+  selectedOffer: Offer | null;
+  isMainMap?: boolean;
+}
+
 const DEFAULT_COORDINATE = {
   latitude: 48.85661,
   longitude: 2.351499,
@@ -25,12 +31,6 @@ const activeMarkerIcon = leaflet.icon({
   iconSize: [28, 40],
   iconAnchor: [14, 40]
 });
-
-type MapProps = {
-  offers: Offers;
-  selectedOffer: Offer | null;
-  isMainMap?: boolean;
-}
 
 function Map({offers, selectedOffer, isMainMap}: MapProps): JSX.Element {
   const mapRef = useRef(null);

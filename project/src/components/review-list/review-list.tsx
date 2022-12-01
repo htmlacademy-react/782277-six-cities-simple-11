@@ -7,7 +7,7 @@ import ReviewForm from '../review-form/review-form';
 import {Reviews} from '../../types/review';
 import {OfferId} from '../../types/offer';
 
-import {AuthorizationStatus} from '../../enum';
+import {AuthorizationStatus} from '../../const';
 
 
 type ReviewListProps = {

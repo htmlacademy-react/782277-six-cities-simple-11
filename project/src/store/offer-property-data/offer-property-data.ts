@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {fetchOfferPropertyAction, fetchNearOffersAction, fetchReviewAction, sendReviewAction} from './api-action';
 import {OfferPropertyDataState} from '../../types/state';
-import {Reducer} from '../../enum';
+import {Reducer} from '../../const';
 
 const initialState: OfferPropertyDataState = {
   offerProperty: null,

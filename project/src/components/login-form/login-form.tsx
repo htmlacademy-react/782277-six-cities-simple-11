@@ -6,18 +6,15 @@ import {useAppDispatch} from '../../hooks/useAppDispatch';
 import {loginAction} from '../../store/user-data/api-actions';
 
 import {formatFirstLetter} from '../../utils';
-import {AppRoute} from '../../enum';
+import {AppRoute} from '../../const';
 
-
-const LOGIN_FIELDS = [
-  'email',
-  'password'
-];
 
 type FormData = {
   email: string;
   password: string;
 };
+
+const LOGIN_FIELDS = ['email', 'password'];
 
 function LoginForm(): JSX.Element {
   const navigate = useNavigate();

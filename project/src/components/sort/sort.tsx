@@ -4,10 +4,8 @@ import cn from 'classnames';
 import {useAppDispatch} from '../../hooks/useAppDispatch';
 import {changeSort} from '../../store/offers-data/offers-data';
 
-import {SortType} from '../../enum';
+import {SortType} from '../../const';
 
-
-const SORTS: SortType[] = Object.values(SortType);
 
 type SortProps = {
   sortType: SortType;
@@ -16,6 +14,8 @@ type SortProps = {
 function Sort({sortType}: SortProps): JSX.Element {
   const dispatch = useAppDispatch();
   const [toggleList, setToggleList] = useState<boolean>(false);
+
+  const SORTS: SortType[] = Object.values(SortType);
 
   return (
     <form className="places__sorting" action="#" method="get">

@@ -1,5 +1,7 @@
 import {User} from './user';
 
+export type OfferId = number;
+
 export type Location = {
   zoom: number;
   latitude: number;
@@ -10,8 +12,6 @@ export type City = {
   name: string;
   location: Location;
 };
-
-export type OfferId = number;
 
 export type Offer = {
   id: OfferId;
