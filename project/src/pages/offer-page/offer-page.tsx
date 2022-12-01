@@ -14,7 +14,6 @@ import {
 import NotFoundPage from '../not-found-page/not-found-page';
 import Loader from '../../components/loader/loader';
 import Header from '../../components/header/header';
-import UserNavigation from '../../components/user-navigation/user-navigation';
 import OfferGallery from '../../components/offer-gallery/offer-gallery';
 import OfferProperty from '../../components/offer-property/offer-property';
 import OfferHost from '../../components/offer-host/offer-host';
@@ -53,9 +52,7 @@ function OfferPage(): JSX.Element {
         <title>{`Six cities: ${offerProperty.title}`}</title>
       </Helmet>
 
-      <Header>
-        <UserNavigation />
-      </Header>
+      <Header withNavigation />
 
       <main className="page__main page__main--property">
         <section className="property">
