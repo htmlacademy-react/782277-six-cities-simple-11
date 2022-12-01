@@ -1,7 +1,6 @@
 import {Review} from '../../types/review';
 import {calculateRatingWidth, formatDate} from '../../utils';
 
-
 type ReviewItemProps = {
   review: Review;
 };

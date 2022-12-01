@@ -2,7 +2,6 @@ import cn from 'classnames';
 import OfferCard from '../offer-card/offer-card';
 import {Offers} from '../../types/offer';
 
-
 type OfferListProps = {
   offers: Offers;
   isMainOffer?: boolean;

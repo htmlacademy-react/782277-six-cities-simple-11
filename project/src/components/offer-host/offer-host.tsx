@@ -1,6 +1,5 @@
 import {Offer} from '../../types/offer';
 
-
 type OfferHostProps = {
   offer: Offer;
 };

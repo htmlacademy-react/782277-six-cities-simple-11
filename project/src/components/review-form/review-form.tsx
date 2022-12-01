@@ -1,13 +1,10 @@
 import {Fragment, useState, FormEvent, ChangeEvent} from 'react';
 import {toast} from 'react-toastify';
-
 import {useAppDispatch} from '../../hooks/useAppDispatch';
 import {useAppSelector} from '../../hooks/useAppSelector';
 import {sendReviewAction} from '../../store/offer-property-data/api-action';
 import {getReviewFormBlockedStatus} from '../../store/offer-property-data/selectors';
-
 import {OfferId} from '../../types/offer';
-
 
 type ReviewFormProps = {
   offerId: OfferId;

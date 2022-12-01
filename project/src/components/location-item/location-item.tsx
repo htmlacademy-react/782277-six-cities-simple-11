@@ -5,7 +5,6 @@ import {getLocation} from '../../store/offers-data/selectors';
 import {changeLocation} from '../../store/offers-data/offers-data';
 import {Location} from '../../const';
 
-
 type LocationItemProps = {
   location: Location;
 };

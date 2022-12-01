@@ -1,7 +1,6 @@
 import {Offer} from '../../types/offer';
 import {getRandomNumberOfElements} from '../../utils';
 
-
 type OfferGalleryProps = {
   offer: Offer;
 };

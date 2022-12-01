@@ -1,6 +1,5 @@
 import {Helmet} from 'react-helmet-async';
 import cn from 'classnames';
-
 import {useAppSelector} from '../../hooks/useAppSelector';
 import {getAuthorizationStatus} from '../../store/user-data/selectors';
 import {
@@ -10,18 +9,14 @@ import {
   getSelectedOffers,
   getOffersLoadingStatus
 } from '../../store/offers-data/selectors';
-
 import Loader from '../../components/loader/loader';
 import Header from '../../components/header/header';
 import UserNavigation from '../../components/user-navigation/user-navigation';
 import LocationList from '../../components/location-list/location-list';
 import OfferSection from '../../components/offer-section/offer-section';
 import EmptyOfferSection from '../../components/empty-offer-section/empty-offer-section';
-
 import Map from '../../components/map/map';
-
 import {AuthorizationStatus} from '../../const';
-
 
 function MainPage(): JSX.Element {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);

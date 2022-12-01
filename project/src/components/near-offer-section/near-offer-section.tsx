@@ -1,7 +1,6 @@
 import OfferList from '../offer-list/offer-list';
 import {Offers} from '../../types/offer';
 
-
 type NearOfferSectionProps = {
   offers: Offers;
 };

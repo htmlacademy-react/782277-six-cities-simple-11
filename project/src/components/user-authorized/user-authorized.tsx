@@ -1,11 +1,9 @@
 import './user-authorized.css';
 import {Fragment, MouseEvent} from 'react';
-
 import {useAppDispatch} from '../../hooks/useAppDispatch';
 import {useAppSelector} from '../../hooks/useAppSelector';
 import {getUserData} from '../../store/user-data/selectors';
 import {logoutAction} from '../../store/user-data/api-actions';
-
 
 function UserAuthorized(): JSX.Element {
   const dispatch = useAppDispatch();
