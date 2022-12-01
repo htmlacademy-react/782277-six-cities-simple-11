@@ -6,7 +6,7 @@ import {
   getLocation,
   getSortType,
   getSelectedOffer,
-  getSelectedOffers,
+  getOffersData,
   getOffersLoadingStatus
 } from '../../store/offers-data/selectors';
 import Loader from '../../components/loader/loader';
@@ -23,7 +23,7 @@ function MainPage(): JSX.Element {
 
   const location = useAppSelector(getLocation);
   const sortType = useAppSelector(getSortType);
-  const offers = useAppSelector(getSelectedOffers);
+  const offers = useAppSelector(getOffersData);
 
   const isOffersLoading = useAppSelector(getOffersLoadingStatus);
   const selectedOffer = useAppSelector(getSelectedOffer);
