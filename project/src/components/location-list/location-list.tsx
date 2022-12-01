@@ -2,9 +2,9 @@ import {memo} from 'react';
 import LocationItem from '../location-item/location-item';
 import {Location} from '../../const';
 
-function LocationList(): JSX.Element {
-  const LOCATIONS: Location[] = Object.values(Location);
+export const LOCATIONS: Location[] = Object.values(Location);
 
+function LocationList(): JSX.Element {
   return (
     <div className="tabs">
       <section className="locations container">
