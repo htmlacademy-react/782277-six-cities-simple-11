@@ -6,10 +6,10 @@ import {Reducer} from '../../const';
 const initialState: OfferPropertyDataState = {
   offerProperty: null,
   isOfferPropertyLoading: false,
+  hasOfferPropertyError: false,
   nearOffers: null,
   reviews: [],
-  isReviewFormBlocked: false,
-  hasOfferPropertyError: false
+  isReviewFormBlocked: false
 };
 
 export const offerPropertyData = createSlice({

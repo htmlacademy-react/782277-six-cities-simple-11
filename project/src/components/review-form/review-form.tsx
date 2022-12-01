@@ -1,18 +1,17 @@
 import {Fragment, useState, FormEvent, ChangeEvent} from 'react';
-import {toast} from 'react-toastify';
 import {useAppDispatch} from '../../hooks/useAppDispatch';
 import {useAppSelector} from '../../hooks/useAppSelector';
 import {sendReviewAction} from '../../store/offer-property-data/api-action';
 import {getReviewFormBlockedStatus} from '../../store/offer-property-data/selectors';
 import {OfferId} from '../../types/offer';
 
-type ReviewFormProps = {
-  offerId: OfferId;
-};
-
 type FormData = {
   rating: string;
   review: string;
+};
+
+type ReviewFormProps = {
+  offerId: OfferId;
 };
 
 const GRADES = ['perfect', 'good', 'not bad', 'badly', 'terribly'];
@@ -31,24 +30,6 @@ function ReviewForm({offerId}: ReviewFormProps): JSX.Element {
     review: ''
   });
 
-  const validateForm = (formField: FormData): boolean => {
-    if (!formField.rating) {
-      toast.info('Поставьте, пожалуйста, рейтинг');
-      return false;
-    }
-    if (formField.review.length < REVIEW_LENGTH.min) {
-      toast.info(`Отзыв содержит ${formField.review.length} из ${REVIEW_LENGTH.min} символов`);
-      return false;
-    }
-    if (formField.review.length > REVIEW_LENGTH.max) {
-      toast.info(`Отзыв содержит ${formField.review.length} из ${REVIEW_LENGTH.max} символов`);
-      return false;
-    }
-
-    toast.success('Ваш отзыв успешно отправлен');
-    return true;
-  };
-
   const handleFieldChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const {name, value} = event.target;
     setFormData({...formData, [name]: value});
@@ -57,19 +38,22 @@ function ReviewForm({offerId}: ReviewFormProps): JSX.Element {
   const handleFormSubmit = (event: FormEvent) => {
     event.preventDefault();
 
-    if (offerId && validateForm(formData)) {
-      dispatch(sendReviewAction({
-        id: offerId,
-        rating: +formData.rating,
-        comment: formData.review,
-      }));
+    dispatch(sendReviewAction({
+      id: offerId,
+      rating: +formData.rating,
+      comment: formData.review,
+    }));
 
-      setFormData({
-        rating: '',
-        review: ''
-      });
-    }
+    setFormData({
+      rating: '',
+      review: ''
+    });
   };
+
+  const isButtonBlocked = !formData.rating
+  || formData.review.length < REVIEW_LENGTH.min
+  || formData.review.length > REVIEW_LENGTH.max
+  || isReviewFormBlocked;
 
   return (
     <form className="reviews__form form" action="#" method="post" onSubmit={handleFormSubmit}>
@@ -88,6 +72,7 @@ function ReviewForm({offerId}: ReviewFormProps): JSX.Element {
                 type="radio"
                 checked={Number(formData.rating) === gradeValue}
                 onChange={handleFieldChange}
+                disabled={isReviewFormBlocked}
               />
               <label
                 className="reviews__rating-label form__rating-label"
@@ -109,6 +94,7 @@ function ReviewForm({offerId}: ReviewFormProps): JSX.Element {
         placeholder="Tell how was your stay, what you like and what can be improved"
         value={formData.review}
         onChange={handleFieldChange}
+        disabled={isReviewFormBlocked}
       >
       </textarea>
       <div className="reviews__button-wrapper">
@@ -119,7 +105,7 @@ function ReviewForm({offerId}: ReviewFormProps): JSX.Element {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled={isReviewFormBlocked}
+          disabled={isButtonBlocked}
         >
           {!isReviewFormBlocked ? 'Submit' : 'Sending...'}
         </button>
