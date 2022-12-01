@@ -1,11 +1,12 @@
 import {Review} from '../../types/review';
 import {calculateRatingWidth, formatDate} from '../../utils';
 
+
 type ReviewItemProps = {
   review: Review;
 };
 
-export default function ReviewItem({review}: ReviewItemProps): JSX.Element {
+function ReviewItem({review}: ReviewItemProps): JSX.Element {
   return (
     <li className="reviews__item">
       <div className="reviews__user user">
@@ -37,3 +38,5 @@ export default function ReviewItem({review}: ReviewItemProps): JSX.Element {
     </li>
   );
 }
+
+export default ReviewItem;

@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom/client';
 import {Provider} from 'react-redux';
 
 import {store} from './store/store';
-import {checkAuthorizationAction, fetchOffersAction} from './store/api-action';
+import {checkAuthorizationAction} from './store/user-data/api-actions';
+import {fetchOffersAction} from './store/offers-data/api-actions';
 
 import App from './components/app/app';
 import {ToastContainer} from 'react-toastify';

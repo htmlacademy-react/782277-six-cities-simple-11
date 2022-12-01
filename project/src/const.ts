@@ -18,35 +18,24 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN'
 }
 
-export const LOCATIONS = [
-  'Paris',
-  'Cologne',
-  'Brussels',
-  'Amsterdam',
-  'Hamburg',
-  'Dusseldorf'
-];
+export enum Reducer {
+  User = 'USER',
+  Offers = 'OFFERS',
+  OfferProperty = 'OFFER_PROPERTY'
+}
 
-export const SORTS = [
-  'Popular',
-  'Price: low to high',
-  'Price: high to low',
-  'Top rated first'
-];
+export enum Location {
+  Paris = 'Paris',
+  Cologne = 'Cologne',
+  Brussels = 'Brussels',
+  Amsterdam = 'Amsterdam',
+  Hamburg = 'Hamburg',
+  Dusseldorf = 'Dusseldorf'
+}
 
-export const LOGIN_FIELDS = [
-  'email',
-  'password'
-];
-
-export const GRADES = [
-  'perfect',
-  'good',
-  'not bad',
-  'badly',
-  'terribly'
-];
-
-export const DEFAULT_LOCATION = 'Paris';
-export const DEFAULT_SORT = 'Popular';
-export const REVIEW_MIN_LENGTH = 50;
+export enum SortType {
+  Popular = 'Popular',
+  PriceToHigh = 'Price: low to high',
+  PriceToLow = 'Price: high to low',
+  RatingToLow = 'Top rated first'
+}

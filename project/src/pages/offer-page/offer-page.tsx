@@ -3,9 +3,11 @@ import {useParams} from 'react-router-dom';
 import {Helmet} from 'react-helmet-async';
 
 import {store} from '../../store/store';
-import {fetchOfferItemAction, fetchReviewAction, fetchNearOffersAction} from '../../store/api-action';
 import {useAppSelector} from '../../hooks/useAppSelector';
+import {fetchNearOffersAction, fetchOfferPropertyAction, fetchReviewAction} from '../../store/offer-property-data/api-action';
+import {getOfferProperty, getOfferPropertyLoadingStatus, getOfferPropertyErrorStatus, getSelectedReviews, getNearOffers} from '../../store/offer-property-data/selectors';
 
+import NotFoundPage from '../not-found-page/not-found-page';
 import Loader from '../../components/loader/loader';
 import Header from '../../components/header/header';
 import UserNavigation from '../../components/user-navigation/user-navigation';
@@ -16,38 +18,36 @@ import ReviewList from '../../components/review-list/review-list';
 import Map from '../../components/map/map';
 import NearOfferSection from '../../components/near-offer-section/near-offer-section';
 
-import {AuthorizationStatus} from '../../const';
 
-
-export default function OfferPage(): JSX.Element {
+function OfferPage(): JSX.Element {
   const {id} = useParams();
   const offerId = Number(id);
 
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-  const shouldDisplayReviews = authorizationStatus === AuthorizationStatus.Authorized;
-
   useEffect(() => {
-    store.dispatch(fetchOfferItemAction(offerId));
+    store.dispatch(fetchOfferPropertyAction(offerId));
+    store.dispatch(fetchReviewAction(offerId));
     store.dispatch(fetchNearOffersAction(offerId));
+  }, [offerId]);
 
-    if (shouldDisplayReviews) {
-      store.dispatch(fetchReviewAction(offerId));
-    }
-  }, [offerId, shouldDisplayReviews]);
+  const offerProperty = useAppSelector(getOfferProperty);
+  const isOfferPropertyLoading = useAppSelector(getOfferPropertyLoadingStatus);
+  const hasOfferPropertyError = useAppSelector(getOfferPropertyErrorStatus);
 
-  const offerItem = useAppSelector((state) => state.offerItem);
-  const reviews = useAppSelector((state) => state.reviews);
-  const nearOffers = useAppSelector((state) => state.nearOffers);
-  const isDataLoading = useAppSelector((state) => state.isDataLoading);
+  const reviews = useAppSelector(getSelectedReviews);
+  const nearOffers = useAppSelector(getNearOffers);
 
-  if (!offerItem || isDataLoading) {
+  if (hasOfferPropertyError) {
+    return <NotFoundPage />;
+  }
+
+  if (!offerProperty || isOfferPropertyLoading) {
     return <Loader />;
   }
 
   return (
     <div className="page">
       <Helmet>
-        <title>{`Six cities: ${offerItem.title}`}</title>
+        <title>{`Six cities: ${offerProperty.title}`}</title>
       </Helmet>
 
       <Header>
@@ -56,18 +56,18 @@ export default function OfferPage(): JSX.Element {
 
       <main className="page__main page__main--property">
         <section className="property">
-          <OfferGallery offer={offerItem} />
+          <OfferGallery offer={offerProperty} />
 
           <div className="property__container container">
             <div className="property__wrapper">
-              <OfferProperty offer={offerItem} />
-              <OfferHost offer={offerItem} />
+              <OfferProperty offer={offerProperty} />
+              <OfferHost offer={offerProperty} />
 
-              {shouldDisplayReviews && <ReviewList offerId={offerId} reviews={reviews} />}
+              {reviews && <ReviewList offerId={offerId} reviews={reviews} />}
             </div>
           </div>
 
-          {nearOffers && <Map offers={nearOffers} />}
+          {nearOffers && <Map offers={nearOffers} selectedOffer={offerProperty} />}
         </section>
 
         {nearOffers && <NearOfferSection offers={nearOffers} />}
@@ -75,3 +75,5 @@ export default function OfferPage(): JSX.Element {
     </div>
   );
 }
+
+export default OfferPage;

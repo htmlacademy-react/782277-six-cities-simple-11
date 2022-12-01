@@ -10,7 +10,8 @@ import NotFoundPage from '../../pages/not-found-page/not-found-page';
 
 import {AppRoute} from '../../const';
 
-export default function App(): JSX.Element {
+
+function App(): JSX.Element {
   return (
     <HelmetProvider>
       <HistoryRouter history={browserHistory}>
@@ -36,3 +37,5 @@ export default function App(): JSX.Element {
     </HelmetProvider>
   );
 }
+
+export default App;

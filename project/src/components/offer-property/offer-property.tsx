@@ -2,11 +2,12 @@ import {Fragment} from 'react';
 import {Offer} from '../../types/offer';
 import {formatFirstLetter, calculateRatingWidth} from '../../utils';
 
+
 type OfferPropertyProps = {
   offer: Offer;
 };
 
-export default function OfferProperty({offer}: OfferPropertyProps): JSX.Element {
+function OfferProperty({offer}: OfferPropertyProps): JSX.Element {
   return (
     <Fragment>
       {offer.isPremium &&
@@ -57,3 +58,5 @@ export default function OfferProperty({offer}: OfferPropertyProps): JSX.Element 
     </Fragment>
   );
 }
+
+export default OfferProperty;

@@ -8,6 +8,6 @@ export type Review = {
   date: string;
 };
 
-export type ReviewData = Omit<Review, 'user' | 'date'>;
-
 export type Reviews = Review[];
+
+export type ReviewData = Omit<Review, 'user' | 'date'>;

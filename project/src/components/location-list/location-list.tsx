@@ -1,7 +1,11 @@
+import {memo} from 'react';
 import LocationItem from '../location-item/location-item';
-import {LOCATIONS} from '../../const';
+import {Location} from '../../const';
 
-export default function LocationList(): JSX.Element {
+
+function LocationList(): JSX.Element {
+  const LOCATIONS: Location[] = Object.values(Location);
+
   return (
     <div className="tabs">
       <section className="locations container">
@@ -17,3 +21,5 @@ export default function LocationList(): JSX.Element {
     </div>
   );
 }
+
+export default memo(LocationList);

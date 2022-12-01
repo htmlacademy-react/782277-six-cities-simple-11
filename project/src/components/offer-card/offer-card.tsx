@@ -2,11 +2,12 @@ import {Link} from 'react-router-dom';
 import cn from 'classnames';
 
 import {useAppDispatch} from '../../hooks/useAppDispatch';
-import {selectOffer} from '../../store/actions';
+import {selectOffer} from '../../store/offers-data/offers-data';
 
 import {Offer} from '../../types/offer';
 import {formatFirstLetter, calculateRatingWidth} from '../../utils';
 import {AppRoute} from '../../const';
+
 
 type OfferCardProps = {
   offer: Offer;
@@ -14,7 +15,7 @@ type OfferCardProps = {
   isNearOffer?: boolean;
 };
 
-export default function OfferCard({offer, isMainOffer, isNearOffer}: OfferCardProps): JSX.Element {
+function OfferCard({offer, isMainOffer, isNearOffer}: OfferCardProps): JSX.Element {
   const dispatch = useAppDispatch();
 
   return (
@@ -23,7 +24,7 @@ export default function OfferCard({offer, isMainOffer, isNearOffer}: OfferCardPr
         'cities__card': isMainOffer,
         'near-places__card': isNearOffer
       })}
-      onMouseEnter={() => dispatch(selectOffer(offer.id))}
+      onMouseEnter={() => dispatch(selectOffer(offer))}
       onMouseLeave={() => dispatch(selectOffer(null))}
     >
 
@@ -51,7 +52,7 @@ export default function OfferCard({offer, isMainOffer, isNearOffer}: OfferCardPr
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: calculateRatingWidth(offer.rating)}}></span>
+            <span style={{width: calculateRatingWidth(Math.round(offer.rating))}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
@@ -63,3 +64,5 @@ export default function OfferCard({offer, isMainOffer, isNearOffer}: OfferCardPr
     </article>
   );
 }
+
+export default OfferCard;

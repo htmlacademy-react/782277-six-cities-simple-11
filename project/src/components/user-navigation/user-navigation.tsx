@@ -1,12 +1,16 @@
+import {memo} from 'react';
+
 import {useAppSelector} from '../../hooks/useAppSelector';
+import {getAuthorizationStatus} from '../../store/user-data/selectors';
 
 import UserAuthorized from '../user-authorized/user-authorized';
 import UserUnauthorized from '../user-unauthorized/user-unauthorized';
 
 import {AuthorizationStatus} from '../../const';
 
-export default function UserNavigation(): JSX.Element {
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+
+function UserNavigation(): JSX.Element {
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   return (
     <nav className="header__nav">
@@ -18,3 +22,5 @@ export default function UserNavigation(): JSX.Element {
     </nav>
   );
 }
+
+export default memo(UserNavigation);

@@ -1,21 +1,23 @@
 import {Offer} from '../../types/offer';
+import {getRandomNumberOfElements} from '../../utils';
+
 
 type OfferGalleryProps = {
   offer: Offer;
 };
 
-export default function OfferGallery({offer}: OfferGalleryProps): JSX.Element {
-  const {title, images} = offer;
+function OfferGallery({offer}: OfferGalleryProps): JSX.Element {
+  const images = getRandomNumberOfElements(offer.images);
 
   return (
     <div className="property__gallery-container container">
       <div className="property__gallery">
-        {images.map((source) => (
+        {images && images.map((source) => (
           <div className="property__image-wrapper" key={source}>
             <img
               className="property__image"
               src={source}
-              alt={title}
+              alt={offer.title}
             />
           </div>
         ))}
@@ -23,3 +25,5 @@ export default function OfferGallery({offer}: OfferGalleryProps): JSX.Element {
     </div>
   );
 }
+
+export default OfferGallery;

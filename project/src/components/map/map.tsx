@@ -1,11 +1,18 @@
 import {useRef, useEffect} from 'react';
 import cn from 'classnames';
+
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 import useMap from '../../hooks/useMap';
-import {useAppSelector} from '../../hooks/useAppSelector';
-import {Offers} from '../../types/offer';
+import {Offers, Offer} from '../../types/offer';
+
+
+type MapProps = {
+  offers: Offers;
+  selectedOffer: Offer | null;
+  isMainMap?: boolean;
+}
 
 const DEFAULT_COORDINATE = {
   latitude: 48.85661,
@@ -25,25 +32,21 @@ const activeMarkerIcon = leaflet.icon({
   iconAnchor: [14, 40]
 });
 
-type MapProps = {
-  offers: Offers;
-  isMainMap?: boolean;
-}
-
-export default function Map({offers, isMainMap}: MapProps): JSX.Element {
+function Map({offers, selectedOffer, isMainMap}: MapProps): JSX.Element {
   const mapRef = useRef(null);
   const mapLocation = offers.length ? offers[0].city.location : DEFAULT_COORDINATE;
   const map = useMap(mapRef, mapLocation);
-  const selectedOfferId = useAppSelector((state) => state.selectedOfferId);
 
   useEffect(() => {
     if (map) {
       const markerGroup = leaflet.layerGroup().addTo(map);
 
-      map.setView({
+      map.flyTo({
         lat: mapLocation.latitude,
         lng: mapLocation.longitude
-      });
+      },
+      mapLocation.zoom
+      );
 
       offers.forEach((offer) => {
         leaflet
@@ -53,7 +56,7 @@ export default function Map({offers, isMainMap}: MapProps): JSX.Element {
               lng: offer.location.longitude
             },
             {
-              icon: (isMainMap && selectedOfferId !== null && offer.id === selectedOfferId)
+              icon: (selectedOffer !== null && offer.id === selectedOffer.id)
                 ? activeMarkerIcon
                 : defaultMarkerIcon
             }
@@ -61,11 +64,21 @@ export default function Map({offers, isMainMap}: MapProps): JSX.Element {
           .addTo(markerGroup);
       });
 
+      if (!isMainMap && selectedOffer) {
+        leaflet.marker(
+          {
+            lat: selectedOffer.location.latitude,
+            lng: selectedOffer.location.longitude
+          },
+          {icon: activeMarkerIcon}
+        ).addTo(markerGroup);
+      }
+
       return () => {
         markerGroup.clearLayers();
       };
     }
-  }, [map, isMainMap, mapLocation, offers, selectedOfferId]);
+  }, [map, mapLocation, isMainMap, offers, selectedOffer]);
 
   return (
     <section
@@ -79,3 +92,5 @@ export default function Map({offers, isMainMap}: MapProps): JSX.Element {
     </section>
   );
 }
+
+export default Map;

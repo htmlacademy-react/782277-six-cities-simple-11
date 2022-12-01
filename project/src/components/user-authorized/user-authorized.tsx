@@ -1,13 +1,15 @@
 import './user-authorized.css';
 import {Fragment, MouseEvent} from 'react';
 
-import {logoutAction} from '../../store/api-action';
 import {useAppDispatch} from '../../hooks/useAppDispatch';
 import {useAppSelector} from '../../hooks/useAppSelector';
+import {getUserData} from '../../store/user-data/selectors';
+import {logoutAction} from '../../store/user-data/api-actions';
 
-export default function UserAuthorized(): JSX.Element {
-  const {name, email, avatarUrl} = useAppSelector((state) => state.userData);
+
+function UserAuthorized(): JSX.Element {
   const dispatch = useAppDispatch();
+  const userData = useAppSelector(getUserData);
 
   return (
     <Fragment>
@@ -16,13 +18,13 @@ export default function UserAuthorized(): JSX.Element {
           <div className="header__avatar-wrapper user__avatar-wrapper">
             <img
               className="header__avatar-image"
-              src={avatarUrl ?? './img/avatar.svg'}
+              src={userData.avatarUrl ?? './img/avatar.svg'}
               width="20"
               height="20"
-              alt={name ?? 'User avatar.'}
+              alt={userData.name ?? 'User avatar.'}
             />
           </div>
-          <span className="header__user-name user__name">{email}</span>
+          <span className="header__user-name user__name">{userData.email}</span>
         </div>
       </li>
       <li className="header__nav-item">
@@ -41,3 +43,5 @@ export default function UserAuthorized(): JSX.Element {
     </Fragment>
   );
 }
+
+export default UserAuthorized;
