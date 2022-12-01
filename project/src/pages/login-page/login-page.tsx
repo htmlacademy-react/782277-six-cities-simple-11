@@ -18,7 +18,7 @@ function LoginPage(): JSX.Element {
     return <Navigate to={AppRoute.Main} />;
   }
 
-  const getRandomLocation = LOCATIONS[getRandomPositiveInteger(0, LOCATIONS.length)];
+  const getRandomLocation = LOCATIONS[getRandomPositiveInteger(0, LOCATIONS.length - 1)];
 
   return (
     <div className="page page--gray page--login">
