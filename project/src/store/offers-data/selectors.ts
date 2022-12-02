@@ -12,14 +12,12 @@ const compareOffers: Record<SortType, (offer: Offer, nextOffer: Offer) => number
 
 export const getLocation = (state: State): Location => state[Reducer.Offers].location;
 export const getSortType = (state: State): SortType => state[Reducer.Offers].sortType;
-export const getSelectedOffer = (state: State): Offer | null => state[Reducer.Offers].selectedOffer;
 
-export const getOffersData = (state: State): Offers => state[Reducer.Offers].offers;
+export const getOffers = (state: State): Offers => state[Reducer.Offers].offers;
+export const getSelectedOffer = (state: State): Offer | null => state[Reducer.Offers].selectedOffer;
 export const getOffersLoadingStatus = (state: State): boolean => state[Reducer.Offers].isOffersLoading;
 
-export const getSelectedOffers = createSelector(
-  [getLocation, getSortType, getOffersData],
-  (location, sort, offers) => offers
-    .filter((offer) => offer.city.name === location)
-    .sort(compareOffers[sort])
+export const getOffersData = createSelector(
+  [getLocation, getSortType, getOffers],
+  (location, sort, offers) => offers.filter((offer) => offer.city.name === location).sort(compareOffers[sort])
 );

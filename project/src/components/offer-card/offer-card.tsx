@@ -1,13 +1,10 @@
 import {Link} from 'react-router-dom';
 import cn from 'classnames';
-
 import {useAppDispatch} from '../../hooks/useAppDispatch';
 import {selectOffer} from '../../store/offers-data/offers-data';
-
 import {Offer} from '../../types/offer';
 import {formatFirstLetter, calculateRatingWidth} from '../../utils';
 import {AppRoute} from '../../const';
-
 
 type OfferCardProps = {
   offer: Offer;
@@ -52,7 +49,7 @@ function OfferCard({offer, isMainOffer, isNearOffer}: OfferCardProps): JSX.Eleme
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: calculateRatingWidth(Math.round(offer.rating))}}></span>
+            <span style={{width: calculateRatingWidth(offer.rating)}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

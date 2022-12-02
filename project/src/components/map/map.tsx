@@ -1,12 +1,9 @@
 import {useRef, useEffect} from 'react';
 import cn from 'classnames';
-
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-
 import useMap from '../../hooks/useMap';
 import {Offers, Offer} from '../../types/offer';
-
 
 type MapProps = {
   offers: Offers;

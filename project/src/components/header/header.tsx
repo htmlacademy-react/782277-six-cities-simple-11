@@ -1,13 +1,13 @@
 import {memo} from 'react';
 import {Link} from 'react-router-dom';
+import UserNavigation from '../user-navigation/user-navigation';
 import {AppRoute} from '../../const';
 
-
 type HeaderProps = {
-  children?: JSX.Element;
+  withNavigation?: boolean;
 }
 
-function Header({children}: HeaderProps): JSX.Element {
+function Header({withNavigation}: HeaderProps): JSX.Element {
   return (
     <header className="header">
       <div className="container">
@@ -18,7 +18,7 @@ function Header({children}: HeaderProps): JSX.Element {
             </Link>
           </div>
 
-          {children}
+          {withNavigation && <UserNavigation />}
         </div>
       </div>
     </header>

@@ -1,34 +1,28 @@
 import {Helmet} from 'react-helmet-async';
 import cn from 'classnames';
-
 import {useAppSelector} from '../../hooks/useAppSelector';
 import {getAuthorizationStatus} from '../../store/user-data/selectors';
 import {
   getLocation,
   getSortType,
   getSelectedOffer,
-  getSelectedOffers,
+  getOffersData,
   getOffersLoadingStatus
 } from '../../store/offers-data/selectors';
-
 import Loader from '../../components/loader/loader';
 import Header from '../../components/header/header';
-import UserNavigation from '../../components/user-navigation/user-navigation';
 import LocationList from '../../components/location-list/location-list';
 import OfferSection from '../../components/offer-section/offer-section';
 import EmptyOfferSection from '../../components/empty-offer-section/empty-offer-section';
-
 import Map from '../../components/map/map';
-
 import {AuthorizationStatus} from '../../const';
-
 
 function MainPage(): JSX.Element {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   const location = useAppSelector(getLocation);
   const sortType = useAppSelector(getSortType);
-  const offers = useAppSelector(getSelectedOffers);
+  const offers = useAppSelector(getOffersData);
 
   const isOffersLoading = useAppSelector(getOffersLoadingStatus);
   const selectedOffer = useAppSelector(getSelectedOffer);
@@ -43,9 +37,7 @@ function MainPage(): JSX.Element {
         <title>{`Six cities /${location}/`}</title>
       </Helmet>
 
-      <Header>
-        <UserNavigation />
-      </Header>
+      <Header withNavigation />
 
       <main className={cn('page__main page__main--index', {'page__main--index-empty': !offers})}>
         <h1 className="visually-hidden">Cities</h1>
