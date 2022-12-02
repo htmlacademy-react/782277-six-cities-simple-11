@@ -3,7 +3,7 @@ import {useParams} from 'react-router-dom';
 import {Helmet} from 'react-helmet-async';
 import {store} from '../../store/store';
 import {useAppSelector} from '../../hooks/useAppSelector';
-import {fetchNearOffersAction, fetchOfferPropertyAction, fetchReviewAction} from '../../store/offer-property-data/api-action';
+import {fetchNearOffersAction, fetchOfferPropertyAction, fetchReviewAction} from '../../store/offer-property-data/api-actions';
 import {
   getOfferProperty,
   getOfferPropertyLoadingStatus,
