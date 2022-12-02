@@ -7,25 +7,22 @@ export const formatDate = (date: string, locales = 'en-US'): string =>
 export const calculateRatingWidth = (currentRating: number, maxRating = 5): string =>
   `${Math.round(currentRating) / maxRating * 100}%`;
 
-export const getRandomPositiveInteger = (a: number, b: number) => {
+export const getRandomPositiveInteger = (a: number, b: number): number => {
   const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
   const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
   const result = Math.random() * (upper - lower + 1) + lower;
   return Math.floor(result);
 };
 
-export const getRandomElement = (elements: string[]) =>
-  elements[getRandomPositiveInteger(0, elements.length - 1)];
-
-export const getRandomNumberOfElements = (elements: string[], number = 6) => {
+export const getRandomNumberOfElements = (elements: string[], number = 6): string[] => {
   if (elements.length <= number) {
-    return;
+    return elements;
   }
 
   const randomElements: string[] = [];
 
   while (randomElements.length < number) {
-    const randomElement = getRandomElement(elements);
+    const randomElement = elements[getRandomPositiveInteger(0, elements.length - 1)];
 
     if (!randomElements.includes(randomElement)) {
       randomElements.push(randomElement);

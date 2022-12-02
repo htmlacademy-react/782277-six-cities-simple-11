@@ -3,7 +3,7 @@ import {useNavigate} from 'react-router-dom';
 import {toast} from 'react-toastify';
 import {useAppDispatch} from '../../hooks/useAppDispatch';
 import {loginAction} from '../../store/user-data/api-actions';
-import {formatFirstLetter} from '../../utils';
+import {formatFirstLetter} from '../../utils/utils';
 import {AppRoute} from '../../const';
 
 type FormData = {

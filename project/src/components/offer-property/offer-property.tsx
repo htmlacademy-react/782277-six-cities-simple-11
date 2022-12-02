@@ -1,6 +1,6 @@
 import {Fragment} from 'react';
 import {Offer} from '../../types/offer';
-import {formatFirstLetter, calculateRatingWidth} from '../../utils';
+import {formatFirstLetter, calculateRatingWidth} from '../../utils/utils';
 
 type OfferPropertyProps = {
   offer: Offer;

@@ -6,7 +6,7 @@ import {getAuthorizationStatus} from '../../store/user-data/selectors';
 import {changeLocation} from '../../store/offers-data/offers-data';
 import Header from '../../components/header/header';
 import LoginForm from '../../components/login-form/login-form';
-import {getRandomPositiveInteger} from '../../utils';
+import {getRandomPositiveInteger} from '../../utils/utils';
 import {LOCATIONS} from '../../components/location-list/location-list';
 import {AppRoute, AuthorizationStatus} from '../../const';
 

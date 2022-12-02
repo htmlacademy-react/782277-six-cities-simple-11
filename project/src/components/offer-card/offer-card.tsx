@@ -3,7 +3,7 @@ import cn from 'classnames';
 import {useAppDispatch} from '../../hooks/useAppDispatch';
 import {selectOffer} from '../../store/offers-data/offers-data';
 import {Offer} from '../../types/offer';
-import {formatFirstLetter, calculateRatingWidth} from '../../utils';
+import {formatFirstLetter, calculateRatingWidth} from '../../utils/utils';
 import {AppRoute} from '../../const';
 
 type OfferCardProps = {
