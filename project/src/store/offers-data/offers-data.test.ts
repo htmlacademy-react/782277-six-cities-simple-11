@@ -53,12 +53,12 @@ describe('Reducer: offersData', () => {
   });
 
   describe('Action: fetchOffersAction', () => {
-    it('should update loading status to "true" if fetchOffersAction pending', () => {
+    it('should update loading status to "true" if action pending', () => {
       expect(offersData.reducer(state, {type: fetchOffersAction.pending.type}))
         .toEqual({...state, isOffersLoading: true});
     });
 
-    it('should update loading status to "false" and loaded offers if fetchOffersAction fulfilled', () => {
+    it('should update loading status to "false" and loaded offers if action fulfilled', () => {
       expect(offersData.reducer(state, {type: fetchOffersAction.fulfilled.type, payload: fakeOffers}))
         .toEqual({...state, isOffersLoading: false, offers: fakeOffers});
     });
