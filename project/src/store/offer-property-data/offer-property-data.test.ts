@@ -1,5 +1,5 @@
 import {offerPropertyData} from './offer-property-data';
-import {fetchOfferPropertyAction, fetchNearOffersAction, fetchReviewAction, sendReviewAction} from './api-action';
+import {fetchOfferPropertyAction, fetchNearOffersAction, fetchReviewAction, sendReviewAction} from './api-actions';
 import {OfferPropertyDataState} from '../../types/state';
 import {makeFakeOffer, makeFakeOffers, makeFakeReviews} from '../../utils/mocks';
 
@@ -63,9 +63,9 @@ describe('Reducer: offerPropertyData', () => {
         .toEqual({...state, isReviewFormBlocked: true});
     });
 
-    it('should update form block status to "false" if action fulfilled', () => {
-      expect(offerPropertyData.reducer(state, {type: sendReviewAction.fulfilled.type, payload: fakeOffer}))
-        .toEqual({...state, isReviewFormBlocked: false});
+    it('should update form block status to "false" and loaded reviews if action fulfilled', () => {
+      expect(offerPropertyData.reducer(state, {type: sendReviewAction.fulfilled.type, payload: fakeReviews}))
+        .toEqual({...state, reviews: fakeReviews, isReviewFormBlocked: false});
     });
 
     it('should update form block status to "false" if action rejected', () => {
