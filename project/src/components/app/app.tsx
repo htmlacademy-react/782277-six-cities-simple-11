@@ -1,6 +1,4 @@
-import HistoryRouter from '../history-route/history-route';
-import {Routes, Route} from 'react-router-dom';
-import {browserHistory} from '../../browser-history';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import {HelmetProvider} from 'react-helmet-async';
 import MainPage from '../../pages/main-page/main-page';
 import LoginPage from '../../pages/login-page/login-page';
@@ -11,7 +9,7 @@ import {AppRoute} from '../../const';
 function App(): JSX.Element {
   return (
     <HelmetProvider>
-      <HistoryRouter history={browserHistory}>
+      <BrowserRouter>
         <Routes>
           <Route
             path={AppRoute.Main}
@@ -30,7 +28,7 @@ function App(): JSX.Element {
             element={<NotFoundPage />}
           />
         </Routes>
-      </HistoryRouter>
+      </BrowserRouter>
     </HelmetProvider>
   );
 }
