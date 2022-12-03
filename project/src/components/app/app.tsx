@@ -1,4 +1,4 @@
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import {Routes, Route} from 'react-router-dom';
 import {HelmetProvider} from 'react-helmet-async';
 import MainPage from '../../pages/main-page/main-page';
 import LoginPage from '../../pages/login-page/login-page';
@@ -9,26 +9,24 @@ import {AppRoute} from '../../const';
 function App(): JSX.Element {
   return (
     <HelmetProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route
-            path={AppRoute.Main}
-            element={<MainPage />}
-          />
-          <Route
-            path={AppRoute.Login}
-            element={<LoginPage />}
-          />
-          <Route
-            path={`${AppRoute.Offer}/:id`}
-            element={<OfferPage />}
-          />
-          <Route
-            path={AppRoute.NotFound}
-            element={<NotFoundPage />}
-          />
-        </Routes>
-      </BrowserRouter>
+      <Routes>
+        <Route
+          path={AppRoute.Main}
+          element={<MainPage />}
+        />
+        <Route
+          path={AppRoute.Login}
+          element={<LoginPage />}
+        />
+        <Route
+          path={`${AppRoute.Offer}/:id`}
+          element={<OfferPage />}
+        />
+        <Route
+          path={AppRoute.NotFound}
+          element={<NotFoundPage />}
+        />
+      </Routes>
     </HelmetProvider>
   );
 }
