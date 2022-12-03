@@ -73,6 +73,7 @@ function ReviewForm({offerId}: ReviewFormProps): JSX.Element {
                 checked={Number(formData.rating) === gradeValue}
                 onChange={handleFieldChange}
                 disabled={isReviewFormBlocked}
+                data-testid={`rating-${gradeValue}`}
               />
               <label
                 className="reviews__rating-label form__rating-label"
@@ -95,6 +96,7 @@ function ReviewForm({offerId}: ReviewFormProps): JSX.Element {
         value={formData.review}
         onChange={handleFieldChange}
         disabled={isReviewFormBlocked}
+        data-testid="review"
       >
       </textarea>
       <div className="reviews__button-wrapper">
