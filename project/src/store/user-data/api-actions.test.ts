@@ -23,7 +23,7 @@ describe('Async actions: userData', () => {
     ThunkDispatch<State, typeof api, Action>
   >(middlewares);
 
-  it('should authorization status is "AUTHORIZED" when server return 200', async () => {
+  it('should authorization status is "AUTHORIZED" and loaded user data when server return 200', async () => {
     mockAPI
       .onGet(APIRoute.Login)
       .reply(StatusCodes.OK, fakeUserData);
@@ -31,7 +31,7 @@ describe('Async actions: userData', () => {
     const store = mockStore();
     expect(store.getActions()).toEqual([]);
 
-    await store.dispatch(checkAuthorizationAction());
+    const {payload} = await store.dispatch(checkAuthorizationAction());
 
     const actions = store.getActions().map(({type}) => type);
 
@@ -39,9 +39,11 @@ describe('Async actions: userData', () => {
       checkAuthorizationAction.pending.type,
       checkAuthorizationAction.fulfilled.type
     ]);
+
+    expect(payload).toEqual(fakeUserData);
   });
 
-  it('should dispatch RequriedAuthorization when POST /login', async () => {
+  it('should save token and load user data when POST /login', async () => {
     const fakeUser: AuthorizationData = {login: 'test@test.ru', password: '123456'};
 
     mockAPI
@@ -51,7 +53,7 @@ describe('Async actions: userData', () => {
     const store = mockStore();
     Storage.prototype.setItem = jest.fn();
 
-    await store.dispatch(loginAction(fakeUser));
+    const {payload} = await store.dispatch(loginAction(fakeUser));
 
     const actions = store.getActions().map(({type}) => type);
 
@@ -60,11 +62,13 @@ describe('Async actions: userData', () => {
       loginAction.fulfilled.type
     ]);
 
+    expect(payload).toEqual(fakeUserData);
+
     expect(Storage.prototype.setItem).toBeCalledTimes(1);
     expect(Storage.prototype.setItem).toBeCalledWith('six-cities-token', fakeUserData.token);
   });
 
-  it('should dispatch Logout when Delete /logout', async () => {
+  it('should remove token when Delete /logout', async () => {
     mockAPI
       .onDelete(APIRoute.Logout)
       .reply(StatusCodes.NO_CONTENT);

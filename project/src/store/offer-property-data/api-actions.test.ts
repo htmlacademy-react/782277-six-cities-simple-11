@@ -33,7 +33,7 @@ describe('Async actions: offerProperty', () => {
     const store = mockStore();
     expect(store.getActions()).toEqual([]);
 
-    await store.dispatch(fetchOfferPropertyAction(fakeOfferId));
+    const {payload} = await store.dispatch(fetchOfferPropertyAction(fakeOfferId));
 
     const actions = store.getActions().map(({type}) => type);
 
@@ -41,6 +41,8 @@ describe('Async actions: offerProperty', () => {
       fetchOfferPropertyAction.pending.type,
       fetchOfferPropertyAction.fulfilled.type
     ]);
+
+    expect(payload).toEqual(fakeOffer);
   });
 
   it('should loaded nearest offers when server return 200', async () => {
@@ -51,7 +53,7 @@ describe('Async actions: offerProperty', () => {
     const store = mockStore();
     expect(store.getActions()).toEqual([]);
 
-    await store.dispatch(fetchNearOffersAction(fakeOfferId));
+    const {payload} = await store.dispatch(fetchNearOffersAction(fakeOfferId));
 
     const actions = store.getActions().map(({type}) => type);
 
@@ -59,6 +61,8 @@ describe('Async actions: offerProperty', () => {
       fetchNearOffersAction.pending.type,
       fetchNearOffersAction.fulfilled.type
     ]);
+
+    expect(payload).toEqual(fakeOffers);
   });
 
   it('should loaded reviews when server return 200', async () => {
@@ -69,7 +73,7 @@ describe('Async actions: offerProperty', () => {
     const store = mockStore();
     expect(store.getActions()).toEqual([]);
 
-    await store.dispatch(fetchReviewAction(fakeOfferId));
+    const {payload} = await store.dispatch(fetchReviewAction(fakeOfferId));
 
     const actions = store.getActions().map(({type}) => type);
 
@@ -77,18 +81,20 @@ describe('Async actions: offerProperty', () => {
       fetchReviewAction.pending.type,
       fetchReviewAction.fulfilled.type
     ]);
+
+    expect(payload).toEqual(fakeReviews);
   });
 
-  it('should send review when server return 200', async () => {
+  it('should send review and loaded update reviews when server return 200', async () => {
     const fakeReview = {rating: 5, comment: 'It is a new review.'};
 
     mockAPI
       .onPost(`${APIRoute.Reviews}/${fakeOfferId}`)
-      .reply(StatusCodes.OK, fakeReview);
+      .reply(StatusCodes.OK, fakeReviews);
 
     const store = mockStore();
 
-    await store.dispatch(sendReviewAction({...fakeReview, id: fakeOfferId}));
+    const {payload} = await store.dispatch(sendReviewAction({...fakeReview, id: fakeOfferId}));
 
     const actions = store.getActions().map(({type}) => type);
 
@@ -96,5 +102,7 @@ describe('Async actions: offerProperty', () => {
       sendReviewAction.pending.type,
       sendReviewAction.fulfilled.type
     ]);
+
+    expect(payload).toEqual(fakeReviews);
   });
 });
