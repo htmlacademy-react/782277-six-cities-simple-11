@@ -75,6 +75,7 @@ function LoginForm(): JSX.Element {
               name={field}
               placeholder={formatFirstLetter(field)}
               onChange={handleFieldChange}
+              data-testid={field}
               required
             />
           </div>
