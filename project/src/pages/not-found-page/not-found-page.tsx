@@ -5,7 +5,7 @@ import {AppRoute} from '../../const';
 
 function NotFoundPage(): JSX.Element {
   return (
-    <div className="page page--gray">
+    <div className="page page--gray" data-testid="not-found-page">
       <Helmet>
         <title>Six cities: page not found</title>
       </Helmet>

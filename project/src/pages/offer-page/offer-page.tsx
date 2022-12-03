@@ -47,7 +47,7 @@ function OfferPage(): JSX.Element {
   }
 
   return (
-    <div className="page">
+    <div className="page" data-testid="offer-page">
       <Helmet>
         <title>{`Six cities: ${offerProperty.title}`}</title>
       </Helmet>

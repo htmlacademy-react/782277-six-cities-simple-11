@@ -32,7 +32,7 @@ function MainPage(): JSX.Element {
   }
 
   return (
-    <div className="page page--gray page--main">
+    <div className="page page--gray page--main" data-testid="main-page">
       <Helmet>
         <title>{`Six cities /${location}/`}</title>
       </Helmet>

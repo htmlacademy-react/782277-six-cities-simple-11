@@ -21,7 +21,7 @@ function LoginPage(): JSX.Element {
   const getRandomLocation = LOCATIONS[getRandomPositiveInteger(0, LOCATIONS.length - 1)];
 
   return (
-    <div className="page page--gray page--login">
+    <div className="page page--gray page--login" data-testid="login-page">
       <Helmet>
         <title>Six cities: sign in</title>
       </Helmet>
