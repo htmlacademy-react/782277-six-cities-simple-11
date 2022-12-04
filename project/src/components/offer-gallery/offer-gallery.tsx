@@ -9,7 +9,7 @@ function OfferGallery({offer}: OfferGalleryProps): JSX.Element {
   const images = getRandomNumberOfElements(offer.images);
 
   return (
-    <div className="property__gallery-container container">
+    <div className="property__gallery-container container" data-testid="offer-gallery">
       <div className="property__gallery">
         {images && images.map((source) => (
           <div className="property__image-wrapper" key={source}>

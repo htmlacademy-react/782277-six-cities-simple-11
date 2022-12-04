@@ -14,7 +14,7 @@ function OfferProperty({offer}: OfferPropertyProps): JSX.Element {
         <span>Premium</span>
       </div>}
 
-      <div className="property__name-wrapper">
+      <div className="property__name-wrapper" data-testid="offer-property">
         <h1 className="property__name">{offer.title}</h1>
       </div>
 

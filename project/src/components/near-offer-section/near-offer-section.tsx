@@ -7,7 +7,7 @@ type NearOfferSectionProps = {
 
 function NearOfferSection({offers}: NearOfferSectionProps): JSX.Element {
   return (
-    <div className="container">
+    <div className="container" data-testid="near-offer-section">
       <section className="near-places places">
         <h2 className="near-places__title">Other places in the neighborhood</h2>
 

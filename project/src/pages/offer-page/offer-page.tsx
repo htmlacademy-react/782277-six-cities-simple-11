@@ -63,7 +63,7 @@ function OfferPage(): JSX.Element {
               <OfferProperty offer={offerProperty} />
               <OfferHost offer={offerProperty} />
 
-              {reviews && <ReviewList offerId={offerId} reviews={reviews} />}
+              <ReviewList offerId={offerId} reviews={reviews} />
             </div>
           </div>
 
