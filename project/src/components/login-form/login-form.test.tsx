@@ -25,15 +25,15 @@ describe('Component: LoginForm', () => {
     );
 
     const headerElement = screen.getAllByText(/Sign in/i);
-    const buttonElement = screen.getByRole('button');
-
     expect(headerElement[0]).toBeInTheDocument();
+
+    const buttonElement = screen.getByRole('button');
     expect(buttonElement).toBeInTheDocument();
 
     await userEvent.type(screen.getByTestId('email'), 'test');
-    await userEvent.type(screen.getByTestId('password'), '123456');
-
     expect(screen.getByDisplayValue(/test/i)).toBeInTheDocument();
+
+    await userEvent.type(screen.getByTestId('password'), '123456');
     expect(screen.getByDisplayValue(/123456/i)).toBeInTheDocument();
   });
 });
