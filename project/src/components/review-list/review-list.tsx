@@ -16,7 +16,7 @@ function ReviewList({reviews, offerId}: ReviewListProps): JSX.Element {
   const shouldDisplayReviews = authorizationStatus === AuthorizationStatus.Authorized;
 
   return (
-    <section className="property__reviews reviews" data-testid="offer-reviews">
+    <section className="property__reviews reviews" data-testid="review-list">
       <h2 className="reviews__title">
         Reviews &middot;
         <span className="reviews__amount">{reviews?.length}</span>

@@ -59,7 +59,7 @@ describe('Component: OfferPropertyPage', () => {
     expect(screen.getByTestId('offer-gallery')).toBeInTheDocument();
     expect(screen.getByTestId('offer-property')).toBeInTheDocument();
     expect(screen.getByTestId('offer-host')).toBeInTheDocument();
-    expect(screen.getByTestId('offer-reviews')).toBeInTheDocument();
+    expect(screen.getByTestId('review-list')).toBeInTheDocument();
     expect(screen.getByTestId('map')).toBeInTheDocument();
     expect(screen.getByTestId('near-offer-section')).toBeInTheDocument();
   });
