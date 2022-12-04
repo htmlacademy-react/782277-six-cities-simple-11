@@ -19,6 +19,7 @@ describe('Component: EmptyOfferSection', () => {
     const headerElement = screen.getByText(/No places to stay available/i);
     const paragraphElement = screen.getByText(/We could not find any property available at the moment in Dusseldorf/i);
 
+    expect(screen.getByTestId('empty-offer-section')).toBeInTheDocument();
     expect(headerElement).toBeInTheDocument();
     expect(paragraphElement).toBeInTheDocument();
   });
