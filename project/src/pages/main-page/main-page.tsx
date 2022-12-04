@@ -39,20 +39,20 @@ function MainPage(): JSX.Element {
 
       <Header withNavigation />
 
-      <main className={cn('page__main page__main--index', {'page__main--index-empty': !offers})}>
+      <main className={cn('page__main page__main--index', {'page__main--index-empty': !offers.length})}>
         <h1 className="visually-hidden">Cities</h1>
 
         <LocationList />
 
         <div className="cities">
-          <div className={cn('cities__places-container container', {'cities__places-container--empty': !offers})}>
+          <div className={cn('cities__places-container container', {'cities__places-container--empty': !offers.length})}>
 
-            {offers
+            {offers.length
               ? <OfferSection location={location} sortType={sortType} offers={offers} />
               : <EmptyOfferSection />}
 
             <div className="cities__right-section">
-              {offers && <Map offers={offers} selectedOffer={selectedOffer} isMainMap />}
+              {offers.length && <Map offers={offers} selectedOffer={selectedOffer} isMainMap />}
             </div>
           </div>
         </div>

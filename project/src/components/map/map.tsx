@@ -85,6 +85,7 @@ function Map({offers, selectedOffer, isMainMap}: MapProps): JSX.Element {
       })}
       ref={mapRef}
       style={{minHeight: '100%'}}
+      data-testid="map"
     >
     </section>
   );

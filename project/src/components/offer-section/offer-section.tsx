@@ -11,7 +11,7 @@ type OfferSectionProps = {
 
 function OfferSection({location, sortType, offers}: OfferSectionProps): JSX.Element {
   return (
-    <section className="cities__places places">
+    <section className="cities__places places" data-testid="offer-section">
       <h2 className="visually-hidden">Places</h2>
 
       <b className="places__found">
