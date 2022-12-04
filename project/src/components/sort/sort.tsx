@@ -45,6 +45,7 @@ function Sort({sortType}: SortProps): JSX.Element {
               setToggleList(false);
               dispatch(changeSort(sort));
             }}
+            data-testid="sort-item"
           >
             {sort}
           </li>
