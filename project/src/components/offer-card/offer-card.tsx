@@ -23,6 +23,7 @@ function OfferCard({offer, isMainOffer, isNearOffer}: OfferCardProps): JSX.Eleme
       })}
       onMouseEnter={() => dispatch(selectOffer(offer))}
       onMouseLeave={() => dispatch(selectOffer(null))}
+      data-testid="offer-card"
     >
 
       {offer.isPremium &&
