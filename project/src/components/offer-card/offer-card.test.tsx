@@ -6,33 +6,22 @@ import {HelmetProvider} from 'react-helmet-async';
 import {createMemoryHistory} from 'history';
 import HistoryRouter from '../../components/history-route/history-route';
 import OfferCard from './offer-card';
-import {makeFakeOffers} from '../../utils/mocks';
-import {Location, SortType} from '../../const';
+import {makeFakeOffer} from '../../utils/mocks';
 
-const fakeOffers = makeFakeOffers();
-
-const fakeState = {
-  OFFERS: {
-    location: Location.Paris,
-    sortType: SortType.Popular,
-    offers: fakeOffers,
-    selectedOffer: fakeOffers[0],
-    isOffersLoading: false
-  }
-};
+const fakeOffer = makeFakeOffer();
 
 const mockStore = configureMockStore();
 const history = createMemoryHistory();
 
 describe('Component: OfferCard', () => {
   it('should render correctly main card offer', () => {
-    const store = mockStore(fakeState);
+    const store = mockStore();
 
     render(
       <Provider store={store}>
         <HistoryRouter history={history}>
           <HelmetProvider>
-            <OfferCard offer={fakeOffers[0]} isMainOffer />
+            <OfferCard offer={fakeOffer} isMainOffer />
           </HelmetProvider>
         </HistoryRouter>
       </Provider>
@@ -43,17 +32,17 @@ describe('Component: OfferCard', () => {
     expect(articleElement).toBeInTheDocument();
     expect(articleElement.classList.contains('cities__card')).toBe(true);
     expect(articleElement.classList.contains('near-places__card')).toBe(false);
-    expect(screen.getByText(fakeOffers[0].title)).toBeInTheDocument();
+    expect(screen.getByText(fakeOffer.title)).toBeInTheDocument();
   });
 
   it('should render correctly near card offer', () => {
-    const store = mockStore(fakeState);
+    const store = mockStore();
 
     render(
       <Provider store={store}>
         <HistoryRouter history={history}>
           <HelmetProvider>
-            <OfferCard offer={fakeOffers[0]} isNearOffer />
+            <OfferCard offer={fakeOffer} isNearOffer />
           </HelmetProvider>
         </HistoryRouter>
       </Provider>
@@ -64,14 +53,14 @@ describe('Component: OfferCard', () => {
     expect(articleElement).toBeInTheDocument();
     expect(articleElement.classList.contains('cities__card')).toBe(false);
     expect(articleElement.classList.contains('near-places__card')).toBe(true);
-    expect(screen.getByText(fakeOffers[0].title)).toBeInTheDocument();
+    expect(screen.getByText(fakeOffer.title)).toBeInTheDocument();
   });
 
   it('should render correctly premium label', () => {
-    const store = mockStore(fakeState);
+    const store = mockStore();
 
     const offerWithPremiumLabel = {
-      ...fakeOffers[0],
+      ...fakeOffer,
       isPremium: true
     };
 
@@ -88,15 +77,14 @@ describe('Component: OfferCard', () => {
     expect(screen.getByText(/Premium/i)).toBeInTheDocument();
   });
 
-
   it('should dispatch action if user hover on the card', async () => {
-    const store = mockStore(fakeState);
+    const store = mockStore();
 
     render(
       <Provider store={store}>
         <HistoryRouter history={history}>
           <HelmetProvider>
-            <OfferCard offer={fakeOffers[0]} isMainOffer />
+            <OfferCard offer={fakeOffer} isMainOffer />
           </HelmetProvider>
         </HistoryRouter>
       </Provider>
