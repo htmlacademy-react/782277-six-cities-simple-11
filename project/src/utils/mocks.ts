@@ -42,7 +42,7 @@ export const makeFakeOffer = (): Offer => ({
   images: Array.from({length: 2}, () => image.imageUrl(260, 200, 'cat', true)),
   bedrooms: datatype.number({min: 1, max: 10}),
   maxAdults: datatype.number({min: 1, max: 5}),
-  goods: Array.from({length: 2}, () => commerce.product()),
+  goods: [commerce.product()],
   description: commerce.productDescription(),
   host: makeFakeUser(),
   city: makeFakeCity(),
