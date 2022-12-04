@@ -42,7 +42,7 @@ const history = createMemoryHistory();
 describe('Component: OfferPropertyPage', () => {
   it('should render correctly', () => {
     const store = mockStore(fakeState);
-    history.push(AppRoute.Main);
+    history.push(`${AppRoute.Offer}/${fakeOffer.id}`);
 
     render(
       <Provider store={store}>
