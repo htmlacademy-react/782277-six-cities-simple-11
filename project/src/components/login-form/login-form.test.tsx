@@ -24,8 +24,8 @@ describe('Component: LoginForm', () => {
       </Provider>
     );
 
-    const headerElement = screen.getAllByText(/Sign in/i);
-    expect(headerElement[0]).toBeInTheDocument();
+    const headerElements = screen.getAllByText(/Sign in/i);
+    expect(headerElements[0]).toBeInTheDocument();
 
     const buttonElement = screen.getByRole('button');
     expect(buttonElement).toBeInTheDocument();
