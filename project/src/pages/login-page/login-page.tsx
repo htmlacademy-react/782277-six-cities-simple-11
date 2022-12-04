@@ -38,6 +38,7 @@ function LoginPage(): JSX.Element {
                 className="locations__item-link"
                 to={AppRoute.Main}
                 onClick={() => dispatch(changeLocation(getRandomLocation))}
+                data-testid="locations-link"
               >
                 <span>{getRandomLocation}</span>
               </Link>
