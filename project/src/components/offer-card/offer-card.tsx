@@ -3,7 +3,7 @@ import cn from 'classnames';
 import {useAppDispatch} from '../../hooks/useAppDispatch';
 import {selectOffer} from '../../store/offers-data/offers-data';
 import {Offer} from '../../types/offer';
-import {formatFirstLetter, calculateRatingWidth} from '../../utils';
+import {formatFirstLetter, calculateRatingWidth} from '../../utils/utils';
 import {AppRoute} from '../../const';
 
 type OfferCardProps = {
@@ -23,6 +23,7 @@ function OfferCard({offer, isMainOffer, isNearOffer}: OfferCardProps): JSX.Eleme
       })}
       onMouseEnter={() => dispatch(selectOffer(offer))}
       onMouseLeave={() => dispatch(selectOffer(null))}
+      data-testid="offer-card"
     >
 
       {offer.isPremium &&

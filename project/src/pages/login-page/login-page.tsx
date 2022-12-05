@@ -6,7 +6,7 @@ import {getAuthorizationStatus} from '../../store/user-data/selectors';
 import {changeLocation} from '../../store/offers-data/offers-data';
 import Header from '../../components/header/header';
 import LoginForm from '../../components/login-form/login-form';
-import {getRandomPositiveInteger} from '../../utils';
+import {getRandomPositiveInteger} from '../../utils/utils';
 import {LOCATIONS} from '../../components/location-list/location-list';
 import {AppRoute, AuthorizationStatus} from '../../const';
 
@@ -21,7 +21,7 @@ function LoginPage(): JSX.Element {
   const getRandomLocation = LOCATIONS[getRandomPositiveInteger(0, LOCATIONS.length - 1)];
 
   return (
-    <div className="page page--gray page--login">
+    <div className="page page--gray page--login" data-testid="login-page">
       <Helmet>
         <title>Six cities: sign in</title>
       </Helmet>
@@ -38,6 +38,7 @@ function LoginPage(): JSX.Element {
                 className="locations__item-link"
                 to={AppRoute.Main}
                 onClick={() => dispatch(changeLocation(getRandomLocation))}
+                data-testid="locations-link"
               >
                 <span>{getRandomLocation}</span>
               </Link>

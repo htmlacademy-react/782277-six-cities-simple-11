@@ -1,5 +1,5 @@
 import {Review} from '../../types/review';
-import {calculateRatingWidth, formatDate} from '../../utils';
+import {calculateRatingWidth, formatDate} from '../../utils/utils';
 
 type ReviewItemProps = {
   review: Review;
@@ -7,7 +7,7 @@ type ReviewItemProps = {
 
 function ReviewItem({review}: ReviewItemProps): JSX.Element {
   return (
-    <li className="reviews__item">
+    <li className="reviews__item" data-testid="review-item">
       <div className="reviews__user user">
         <div className="reviews__avatar-wrapper user__avatar-wrapper">
           <img

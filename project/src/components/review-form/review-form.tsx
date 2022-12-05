@@ -1,7 +1,7 @@
 import {Fragment, useState, FormEvent, ChangeEvent} from 'react';
 import {useAppDispatch} from '../../hooks/useAppDispatch';
 import {useAppSelector} from '../../hooks/useAppSelector';
-import {sendReviewAction} from '../../store/offer-property-data/api-action';
+import {sendReviewAction} from '../../store/offer-property-data/api-actions';
 import {getReviewFormBlockedStatus} from '../../store/offer-property-data/selectors';
 import {OfferId} from '../../types/offer';
 
@@ -56,7 +56,7 @@ function ReviewForm({offerId}: ReviewFormProps): JSX.Element {
   || isReviewFormBlocked;
 
   return (
-    <form className="reviews__form form" action="#" method="post" onSubmit={handleFormSubmit}>
+    <form className="reviews__form form" action="#" method="post" onSubmit={handleFormSubmit} data-testid="review-form">
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         {GRADES.map((grade, index) => {
@@ -73,6 +73,7 @@ function ReviewForm({offerId}: ReviewFormProps): JSX.Element {
                 checked={Number(formData.rating) === gradeValue}
                 onChange={handleFieldChange}
                 disabled={isReviewFormBlocked}
+                data-testid="rating"
               />
               <label
                 className="reviews__rating-label form__rating-label"
@@ -95,6 +96,7 @@ function ReviewForm({offerId}: ReviewFormProps): JSX.Element {
         value={formData.review}
         onChange={handleFieldChange}
         disabled={isReviewFormBlocked}
+        data-testid="review"
       >
       </textarea>
       <div className="reviews__button-wrapper">

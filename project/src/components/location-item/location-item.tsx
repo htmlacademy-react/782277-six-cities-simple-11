@@ -14,7 +14,7 @@ function LocationItem({location}: LocationItemProps): JSX.Element {
   const dispatch = useAppDispatch();
 
   return (
-    <li className="locations__item">
+    <li className="locations__item" data-testid="locations-item">
       <a
         className={cn('locations__item-link tabs__item', {
           'tabs__item--active': location === currentLocation

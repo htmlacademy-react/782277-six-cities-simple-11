@@ -3,7 +3,7 @@ import {useParams} from 'react-router-dom';
 import {Helmet} from 'react-helmet-async';
 import {store} from '../../store/store';
 import {useAppSelector} from '../../hooks/useAppSelector';
-import {fetchNearOffersAction, fetchOfferPropertyAction, fetchReviewAction} from '../../store/offer-property-data/api-action';
+import {fetchNearOffersAction, fetchOfferPropertyAction, fetchReviewAction} from '../../store/offer-property-data/api-actions';
 import {
   getOfferProperty,
   getOfferPropertyLoadingStatus,
@@ -47,7 +47,7 @@ function OfferPage(): JSX.Element {
   }
 
   return (
-    <div className="page">
+    <div className="page" data-testid="offer-page">
       <Helmet>
         <title>{`Six cities: ${offerProperty.title}`}</title>
       </Helmet>
@@ -63,7 +63,7 @@ function OfferPage(): JSX.Element {
               <OfferProperty offer={offerProperty} />
               <OfferHost offer={offerProperty} />
 
-              {reviews && <ReviewList offerId={offerId} reviews={reviews} />}
+              <ReviewList offerId={offerId} reviews={reviews} />
             </div>
           </div>
 

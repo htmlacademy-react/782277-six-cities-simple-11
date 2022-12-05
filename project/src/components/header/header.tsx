@@ -9,11 +9,11 @@ type HeaderProps = {
 
 function Header({withNavigation}: HeaderProps): JSX.Element {
   return (
-    <header className="header">
+    <header className="header" data-testid="header">
       <div className="container">
         <div className="header__wrapper">
           <div className="header__left">
-            <Link className="header__logo-link header__logo-link--active" to={AppRoute.Main}>
+            <Link className="header__logo-link header__logo-link--active" to={AppRoute.Main} data-testid="logo-link">
               <img className="header__logo" src="img/logo.svg" width="81" height="41" alt="Six cities logo." />
             </Link>
           </div>

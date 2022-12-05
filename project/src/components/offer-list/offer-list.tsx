@@ -16,6 +16,7 @@ function OfferList({offers, isMainOffer, isNearOffer}: OfferListProps): JSX.Elem
         'tabs__content': isMainOffer,
         'near-places__list': isNearOffer
       })}
+      data-testid="offer-list"
     >
       {offers && offers.map((offer) => (
         <OfferCard

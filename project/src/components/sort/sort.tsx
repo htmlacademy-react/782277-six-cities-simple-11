@@ -15,7 +15,7 @@ function Sort({sortType}: SortProps): JSX.Element {
   const SORTS: SortType[] = Object.values(SortType);
 
   return (
-    <form className="places__sorting" action="#" method="get">
+    <form className="places__sorting" action="#" method="get" data-testid="sort">
       <span className="places__sorting-caption">Sort by</span>
       <span
         className="places__sorting-type"
@@ -45,6 +45,7 @@ function Sort({sortType}: SortProps): JSX.Element {
               setToggleList(false);
               dispatch(changeSort(sort));
             }}
+            data-testid="sort-item"
           >
             {sort}
           </li>

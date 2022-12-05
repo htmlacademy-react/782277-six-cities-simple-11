@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {fetchOfferPropertyAction, fetchNearOffersAction, fetchReviewAction, sendReviewAction} from './api-action';
+import {fetchOfferPropertyAction, fetchNearOffersAction, fetchReviewAction, sendReviewAction} from './api-actions';
 import {OfferPropertyDataState} from '../../types/state';
 import {Reducer} from '../../const';
 
@@ -39,7 +39,8 @@ export const offerPropertyData = createSlice({
       .addCase(sendReviewAction.pending, (state) => {
         state.isReviewFormBlocked = true;
       })
-      .addCase(sendReviewAction.fulfilled, (state) => {
+      .addCase(sendReviewAction.fulfilled, (state, action) => {
+        state.reviews = action.payload;
         state.isReviewFormBlocked = false;
       })
       .addCase(sendReviewAction.rejected, (state) => {

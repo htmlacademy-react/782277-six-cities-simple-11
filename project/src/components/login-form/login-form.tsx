@@ -3,7 +3,7 @@ import {useNavigate} from 'react-router-dom';
 import {toast} from 'react-toastify';
 import {useAppDispatch} from '../../hooks/useAppDispatch';
 import {loginAction} from '../../store/user-data/api-actions';
-import {formatFirstLetter} from '../../utils';
+import {formatFirstLetter} from '../../utils/utils';
 import {AppRoute} from '../../const';
 
 type FormData = {
@@ -62,7 +62,7 @@ function LoginForm(): JSX.Element {
   };
 
   return (
-    <section className="login">
+    <section className="login" data-testid="login-form">
       <h1 className="login__title">Sign in</h1>
 
       <form className="login__form form" action="#" method="post" onSubmit={handleFormSubmit}>
@@ -75,6 +75,7 @@ function LoginForm(): JSX.Element {
               name={field}
               placeholder={formatFirstLetter(field)}
               onChange={handleFieldChange}
+              data-testid={field}
               required
             />
           </div>
