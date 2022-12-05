@@ -24,7 +24,7 @@ const fakeState = {
 
 const api = createAPI();
 const middlewares = [thunk.withExtraArgument(api)];
-const mockStore = configureMockStore<State,AnyAction>(middlewares);
+const mockStore = configureMockStore<State, AnyAction>(middlewares);
 
 const history = createMemoryHistory();
 

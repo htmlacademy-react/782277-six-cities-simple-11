@@ -1,11 +1,15 @@
 import userEvent from '@testing-library/user-event';
 import {render, screen} from '@testing-library/react';
+import {AnyAction} from 'redux';
 import {Provider} from 'react-redux';
+import thunk from 'redux-thunk';
+import {createAPI} from '../../services/api';
 import {configureMockStore} from '@jedmao/redux-mock-store';
 import {HelmetProvider} from 'react-helmet-async';
 import {createMemoryHistory} from 'history';
 import HistoryRouter from '../../components/history-route/history-route';
 import ReviewForm from './review-form';
+import {State} from '../../types/state';
 
 const offerId = 1;
 
@@ -15,8 +19,11 @@ const fakeState = {
   }
 };
 
+const api = createAPI();
+const middlewares = [thunk.withExtraArgument(api)];
+const mockStore = configureMockStore<State, AnyAction>(middlewares);
+
 const history = createMemoryHistory();
-const mockStore = configureMockStore();
 
 describe('Component: ReviewForm', () => {
   it('should render correctly', async () => {
@@ -110,5 +117,31 @@ describe('Component: ReviewForm', () => {
     const buttonElement = screen.getByRole('button');
     expect(buttonElement).toBeInTheDocument();
     expect(buttonElement).toHaveAttribute('disabled');
+  });
+
+  it('should dispatch action "sendReview" if user correctly write review', async () => {
+    const store = mockStore(fakeState);
+
+    render(
+      <Provider store={store}>
+        <HelmetProvider>
+          <HistoryRouter history={history}>
+            <ReviewForm offerId={offerId} />
+          </HistoryRouter>
+        </HelmetProvider>
+      </Provider>
+    );
+
+    const inputElement = screen.getByDisplayValue('1');
+    await userEvent.click(inputElement);
+
+    const textareaElement = screen.getByTestId('review');
+    await userEvent.type(textareaElement, 'What an amazing view! The house is stunning and in an amazing location. The large glass wall had an amazing view of the river!');
+
+    const buttonElement = screen.getByRole('button');
+    await userEvent.click(buttonElement);
+
+    const actions = store.getActions();
+    expect(actions[0].type).toBe('data/sendReviewAction/pending');
   });
 });

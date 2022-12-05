@@ -45,7 +45,7 @@ describe('Component: LoginPage', () => {
     expect(screen.getByTestId('login-form')).toBeInTheDocument();
   });
 
-  it('should redirect to "main-page" if user click on the link with location', async () => {
+  it('should redirect to "main-page" if user click to the "location" link', async () => {
     const store = mockStore(fakeState);
     history.push(AppRoute.Login);
 
@@ -70,6 +70,26 @@ describe('Component: LoginPage', () => {
 
     await userEvent.click(screen.getByTestId('locations-link'));
     expect(screen.getByText(/Main page./i)).toBeInTheDocument();
+  });
+
+  it('should dispatch action "changeLocation" if user click to the "location" link', async () => {
+    const store = mockStore(fakeState);
+    history.push(AppRoute.Login);
+
+    render(
+      <Provider store={store}>
+        <HistoryRouter history={history}>
+          <HelmetProvider>
+            <LoginPage />
+          </HelmetProvider>
+        </HistoryRouter>
+      </Provider>
+    );
+
+    await userEvent.click(screen.getByTestId('locations-link'));
+
+    const actions = store.getActions();
+    expect(actions[0].type).toBe('OFFERS/changeLocation');
   });
 
   it('should redirect to "main-page" if user status is authorized', () => {

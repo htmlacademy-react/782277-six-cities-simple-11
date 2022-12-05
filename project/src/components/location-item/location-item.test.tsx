@@ -53,7 +53,7 @@ describe('Component: LocationItem', () => {
     expect(screen.getByRole('link')).toHaveClass('tabs__item--active');
   });
 
-  it('should dispatch action if user click on the link', async () => {
+  it('should dispatch action "changeLocation" if user click on the link', async () => {
     const store = mockStore(fakeState);
     const fakeLocationItem = Location.Brussels;
 

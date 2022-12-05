@@ -47,7 +47,7 @@ describe('Component: Sort', () => {
     expect(screen.getByTestId('sort')).toBeInTheDocument();
   });
 
-  it('should dispatch action change sort if user click to sort item', async () => {
+  it('should dispatch action "changeSort" if user click to sort item', async () => {
     const store = mockStore(fakeState);
 
     render(

@@ -77,7 +77,7 @@ describe('Component: OfferCard', () => {
     expect(screen.getByText(/Premium/i)).toBeInTheDocument();
   });
 
-  it('should dispatch action if user hover on the card', async () => {
+  it('should dispatch action "selectOffer" if user hover on the card', async () => {
     const store = mockStore();
 
     render(
