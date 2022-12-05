@@ -29,8 +29,8 @@ describe('Component: Map', () => {
     const mapElement = screen.getByTestId('map');
 
     expect(mapElement).toBeInTheDocument();
-    expect(mapElement.classList.contains('cities__map')).toBe(true);
-    expect(mapElement.classList.contains('property__map')).toBe(false);
+    expect(mapElement).toHaveClass('cities__map');
+    expect(mapElement).not.toHaveClass('property__map');
   });
 
   it('should render correctly near map', () => {
@@ -49,7 +49,7 @@ describe('Component: Map', () => {
     const mapElement = screen.getByTestId('map');
 
     expect(mapElement).toBeInTheDocument();
-    expect(mapElement.classList.contains('cities__map')).toBe(false);
-    expect(mapElement.classList.contains('property__map')).toBe(true);
+    expect(mapElement).not.toHaveClass('cities__map');
+    expect(mapElement).toHaveClass('property__map');
   });
 });

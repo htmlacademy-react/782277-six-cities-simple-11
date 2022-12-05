@@ -30,8 +30,8 @@ describe('Component: OfferCard', () => {
     const articleElement = screen.getByTestId('offer-card');
 
     expect(articleElement).toBeInTheDocument();
-    expect(articleElement.classList.contains('cities__card')).toBe(true);
-    expect(articleElement.classList.contains('near-places__card')).toBe(false);
+    expect(articleElement).toHaveClass('cities__card');
+    expect(articleElement).not.toHaveClass('near-places__card');
     expect(screen.getByText(fakeOffer.title)).toBeInTheDocument();
   });
 
@@ -51,8 +51,8 @@ describe('Component: OfferCard', () => {
     const articleElement = screen.getByTestId('offer-card');
 
     expect(articleElement).toBeInTheDocument();
-    expect(articleElement.classList.contains('cities__card')).toBe(false);
-    expect(articleElement.classList.contains('near-places__card')).toBe(true);
+    expect(articleElement).not.toHaveClass('cities__card');
+    expect(articleElement).toHaveClass('near-places__card');
     expect(screen.getByText(fakeOffer.title)).toBeInTheDocument();
   });
 

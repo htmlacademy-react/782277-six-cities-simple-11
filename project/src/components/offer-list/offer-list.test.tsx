@@ -29,8 +29,8 @@ describe('Component: OfferList', () => {
     const articleElement = screen.getByTestId('offer-list');
 
     expect(articleElement).toBeInTheDocument();
-    expect(articleElement.classList.contains('cities__places-list')).toBe(true);
-    expect(articleElement.classList.contains('near-places__list')).toBe(false);
+    expect(articleElement).toHaveClass('cities__places-list');
+    expect(articleElement).not.toHaveClass('near-places__list');
   });
 
   it('should render correctly near card offer', () => {
@@ -49,7 +49,7 @@ describe('Component: OfferList', () => {
     const articleElement = screen.getByTestId('offer-list');
 
     expect(articleElement).toBeInTheDocument();
-    expect(articleElement.classList.contains('cities__places-list')).toBe(false);
-    expect(articleElement.classList.contains('near-places__list')).toBe(true);
+    expect(articleElement).not.toHaveClass('cities__places-list');
+    expect(articleElement).toHaveClass('near-places__list');
   });
 });

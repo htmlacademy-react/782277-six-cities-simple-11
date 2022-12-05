@@ -50,7 +50,7 @@ describe('Component: LocationItem', () => {
     );
 
     expect(screen.getByText(fakeLocationItem)).toBeInTheDocument();
-    expect(screen.getByRole('link').classList.contains('tabs__item--active')).toBe(true);
+    expect(screen.getByRole('link')).toHaveClass('tabs__item--active');
   });
 
   it('should dispatch action if user click on the link', async () => {
