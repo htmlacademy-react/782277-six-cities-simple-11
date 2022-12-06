@@ -1,5 +1,7 @@
-import {configureMockStore} from '@jedmao/redux-mock-store';
 import {AnyAction} from 'redux';
+import thunk from 'redux-thunk';
+import {createAPI} from '../../services/api';
+import {configureMockStore} from '@jedmao/redux-mock-store';
 import {redirect} from './redirect';
 import {redirectToRoute} from '../action';
 import {State} from '../../types/state';
@@ -14,7 +16,8 @@ const fakeHistory = {
 
 jest.mock('../../services/browser-history', () => fakeHistory);
 
-const middlewares = [redirect];
+const api = createAPI();
+const middlewares = [thunk.withExtraArgument(api), redirect];
 const mockStore = configureMockStore<State, AnyAction>(middlewares);
 const store = mockStore();
 
