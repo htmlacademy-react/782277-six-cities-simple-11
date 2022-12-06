@@ -1,10 +1,10 @@
 import {useState, FormEvent, ChangeEvent} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {toast} from 'react-toastify';
-import {useAppDispatch} from '../../hooks/useAppDispatch';
+import {useAppDispatch} from '../../hooks/use-app-dispatch';
 import {loginAction} from '../../store/user-data/api-actions';
 import {formatFirstLetter} from '../../utils/utils';
-import {AppRoute} from '../../const';
+import {AppRoute} from '../../constants';
 
 type FormData = {
   email: string;
@@ -12,6 +12,22 @@ type FormData = {
 };
 
 const LOGIN_FIELDS = ['email', 'password'];
+
+const validateForm = (formField: FormData): boolean => {
+  const isEmailCorrect: boolean = (/^([a-z0-9_.-]+)@([\da-z.-]+).([a-z.]{2,6})$/).test(formField.email);
+  const isPasswordCorrect: boolean = (/([0-9].*[a-z])|([a-z].*[0-9])/).test(formField.password);
+
+  if (!isEmailCorrect) {
+    toast.info('Введите корректный Email, например six-cities@gmail.com');
+    return false;
+  }
+  if (!isPasswordCorrect) {
+    toast.info('Пароль должен состоять минимум из одной буквы и цифры');
+    return false;
+  }
+
+  return true;
+};
 
 function LoginForm(): JSX.Element {
   const navigate = useNavigate();
@@ -22,23 +38,7 @@ function LoginForm(): JSX.Element {
     password: ''
   });
 
-  const validateForm = (formField: FormData): boolean => {
-    const emailPattern: boolean = (/^([a-z0-9_.-]+)@([\da-z.-]+).([a-z.]{2,6})$/).test(formField.email);
-    const passwordPattern: boolean = (/([0-9].*[a-z])|([a-z].*[0-9])/).test(formField.password);
-
-    if (!emailPattern) {
-      toast.info('Введите корректный Email, например six-cities@gmail.com');
-      return false;
-    }
-    if (!passwordPattern) {
-      toast.info('Пароль должен состоять минимум из одной буквы и цифры');
-      return false;
-    }
-
-    return true;
-  };
-
-  const handleFieldChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const {name, value} = event.target;
     setFormData({...formData, [name]: value});
   };
@@ -74,7 +74,7 @@ function LoginForm(): JSX.Element {
               type={field}
               name={field}
               placeholder={formatFirstLetter(field)}
-              onChange={handleFieldChange}
+              onChange={handleInputChange}
               data-testid={field}
               required
             />
