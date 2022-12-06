@@ -3,7 +3,7 @@ import {fetchOffersAction} from './api-actions';
 import {OffersDataState} from '../../types/state';
 import {Offers} from '../../types/offer';
 import {makeFakeOffer, makeFakeOffers} from '../../utils/mocks';
-import {Location, SortType} from '../../const';
+import {Location, SortType} from '../../constants';
 
 const fakeOffer = makeFakeOffer();
 const fakeOffers = makeFakeOffers();

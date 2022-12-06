@@ -1,13 +1,13 @@
 import {Helmet} from 'react-helmet-async';
 import cn from 'classnames';
-import {useAppSelector} from '../../hooks/useAppSelector';
+import {useAppSelector} from '../../hooks/use-app-selector';
 import {getAuthorizationStatus} from '../../store/user-data/selectors';
 import {
   getLocation,
   getSortType,
   getSelectedOffer,
   getOffersData,
-  getOffersLoadingStatus
+  checkOffersLoadingStatus
 } from '../../store/offers-data/selectors';
 import Loader from '../../components/loader/loader';
 import Header from '../../components/header/header';
@@ -15,17 +15,16 @@ import LocationList from '../../components/location-list/location-list';
 import OfferSection from '../../components/offer-section/offer-section';
 import EmptyOfferSection from '../../components/empty-offer-section/empty-offer-section';
 import Map from '../../components/map/map';
-import {AuthorizationStatus} from '../../const';
+import {AuthorizationStatus} from '../../constants';
 
 function MainPage(): JSX.Element {
-  const authorizationStatus = useAppSelector(getAuthorizationStatus);
-
   const location = useAppSelector(getLocation);
   const sortType = useAppSelector(getSortType);
   const offers = useAppSelector(getOffersData);
-
-  const isOffersLoading = useAppSelector(getOffersLoadingStatus);
   const selectedOffer = useAppSelector(getSelectedOffer);
+
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const isOffersLoading = useAppSelector(checkOffersLoadingStatus);
 
   if (isOffersLoading || authorizationStatus === AuthorizationStatus.Unknown) {
     return <Loader />;

@@ -1,8 +1,8 @@
 import {Fragment, useState, FormEvent, ChangeEvent} from 'react';
-import {useAppDispatch} from '../../hooks/useAppDispatch';
-import {useAppSelector} from '../../hooks/useAppSelector';
+import {useAppDispatch} from '../../hooks/use-app-dispatch';
+import {useAppSelector} from '../../hooks/use-app-selector';
 import {sendReviewAction} from '../../store/offer-property-data/api-actions';
-import {getReviewFormBlockedStatus} from '../../store/offer-property-data/selectors';
+import {checkReviewFormBlockedStatus} from '../../store/offer-property-data/selectors';
 import {OfferId} from '../../types/offer';
 
 type FormData = {
@@ -16,14 +16,14 @@ type ReviewFormProps = {
 
 const GRADES = ['perfect', 'good', 'not bad', 'badly', 'terribly'];
 
-const REVIEW_LENGTH = {
-  min: 50,
-  max: 300
-};
+enum ReviewLength {
+  Min = 50,
+  Max = 300
+}
 
 function ReviewForm({offerId}: ReviewFormProps): JSX.Element {
   const dispatch = useAppDispatch();
-  const isReviewFormBlocked = useAppSelector(getReviewFormBlockedStatus);
+  const isReviewFormBlocked = useAppSelector(checkReviewFormBlockedStatus);
 
   const [formData, setFormData] = useState<FormData>({
     rating: '',
@@ -51,8 +51,8 @@ function ReviewForm({offerId}: ReviewFormProps): JSX.Element {
   };
 
   const isButtonBlocked = !formData.rating
-  || formData.review.length < REVIEW_LENGTH.min
-  || formData.review.length > REVIEW_LENGTH.max
+  || formData.review.length < ReviewLength.Min
+  || formData.review.length > ReviewLength.Max
   || isReviewFormBlocked;
 
   return (
@@ -102,7 +102,7 @@ function ReviewForm({offerId}: ReviewFormProps): JSX.Element {
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your
-          stay with at least <b className="reviews__text-amount">{REVIEW_LENGTH.min} characters</b>.
+          stay with at least <b className="reviews__text-amount">{ReviewLength.Min} characters</b>.
         </p>
         <button
           className="reviews__submit form__submit button"

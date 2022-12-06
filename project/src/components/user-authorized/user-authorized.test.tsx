@@ -11,7 +11,7 @@ import HistoryRouter from '../../components/history-route/history-route';
 import UserAuthorized from './user-authorized';
 import {State} from '../../types/state';
 import {makeFakeUserData} from '../../utils/mocks';
-import {AuthorizationStatus} from '../../const';
+import {AuthorizationStatus} from '../../constants';
 
 const fakeUserData = makeFakeUserData();
 

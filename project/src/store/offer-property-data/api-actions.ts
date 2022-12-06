@@ -3,7 +3,7 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AppDispatch, State} from '../../types/state';
 import {Reviews, ReviewData} from '../../types/review';
 import {Offers, Offer, OfferId} from '../../types/offer';
-import {APIRoute,} from '../../const';
+import {APIRoute,} from '../../constants';
 
 export const fetchOfferPropertyAction = createAsyncThunk<Offer, OfferId, {
   dispatch: AppDispatch;

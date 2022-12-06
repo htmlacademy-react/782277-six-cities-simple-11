@@ -2,7 +2,7 @@ import {store} from '../store/store';
 import {UserData} from './user';
 import {Offers, Offer} from './offer';
 import {Reviews} from './review';
-import {AuthorizationStatus, Location, SortType} from '../const';
+import {AuthorizationStatus, Location, SortType} from '../constants';
 
 export type AppDispatch = typeof store.dispatch;
 export type State = ReturnType<typeof store.getState>;

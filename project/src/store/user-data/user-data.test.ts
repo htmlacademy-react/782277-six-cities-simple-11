@@ -3,7 +3,7 @@ import {checkAuthorizationAction, loginAction, logoutAction} from './api-actions
 import {UserDataState} from '../../types/state';
 import {UserData} from '../../types/user';
 import {makeFakeUserData} from '../../utils/mocks';
-import {AuthorizationStatus} from '../../const';
+import {AuthorizationStatus} from '../../constants';
 
 const fakeUserData = makeFakeUserData();
 

@@ -1,7 +1,7 @@
 import './user-authorized.css';
-import {Fragment, MouseEvent} from 'react';
-import {useAppDispatch} from '../../hooks/useAppDispatch';
-import {useAppSelector} from '../../hooks/useAppSelector';
+import {MouseEvent} from 'react';
+import {useAppDispatch} from '../../hooks/use-app-dispatch';
+import {useAppSelector} from '../../hooks/use-app-selector';
 import {getUserData} from '../../store/user-data/selectors';
 import {logoutAction} from '../../store/user-data/api-actions';
 
@@ -10,7 +10,7 @@ function UserAuthorized(): JSX.Element {
   const userData = useAppSelector(getUserData);
 
   return (
-    <Fragment>
+    <>
       <li className="header__nav-item user">
         <div className="header__nav-profile">
           <div className="header__avatar-wrapper user__avatar-wrapper">
@@ -38,7 +38,7 @@ function UserAuthorized(): JSX.Element {
           <span className="header__signout">Sign out</span>
         </a>
       </li>
-    </Fragment>
+    </>
   );
 }
 

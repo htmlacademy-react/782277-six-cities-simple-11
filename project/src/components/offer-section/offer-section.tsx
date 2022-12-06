@@ -1,7 +1,7 @@
 import Sort from '../../components/sort/sort';
 import OfferList from '../../components/offer-list/offer-list';
 import {Offers} from '../../types/offer';
-import {Location, SortType} from '../../const';
+import {Location, SortType} from '../../constants';
 
 type OfferSectionProps = {
   location: Location;

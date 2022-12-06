@@ -6,7 +6,7 @@ import {createMemoryHistory} from 'history';
 import HistoryRouter from '../../components/history-route/history-route';
 import LocationList from './location-list';
 import {makeFakeOffers} from '../../utils/mocks';
-import {Location, SortType} from '../../const';
+import {Location, SortType} from '../../constants';
 
 const fakeOffers = makeFakeOffers();
 

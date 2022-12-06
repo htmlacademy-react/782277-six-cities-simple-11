@@ -1,4 +1,3 @@
-import {Fragment} from 'react';
 import {Offer} from '../../types/offer';
 import {formatFirstLetter, calculateRatingWidth} from '../../utils/utils';
 
@@ -8,7 +7,7 @@ type OfferPropertyProps = {
 
 function OfferProperty({offer}: OfferPropertyProps): JSX.Element {
   return (
-    <Fragment>
+    <>
       {offer.isPremium &&
       <div className="property__mark">
         <span>Premium</span>
@@ -54,7 +53,7 @@ function OfferProperty({offer}: OfferPropertyProps): JSX.Element {
           ))}
         </ul>
       </div>}
-    </Fragment>
+    </>
   );
 }
 

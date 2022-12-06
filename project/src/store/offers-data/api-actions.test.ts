@@ -7,7 +7,7 @@ import {fetchOffersAction} from './api-actions';
 import {State} from '../../types/state';
 import {StatusCodes} from 'http-status-codes';
 import {makeFakeOffers} from '../../utils/mocks';
-import {APIRoute} from '../../const';
+import {APIRoute} from '../../constants';
 
 const fakeOffers = makeFakeOffers();
 

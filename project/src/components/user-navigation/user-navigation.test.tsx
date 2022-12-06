@@ -6,7 +6,7 @@ import {createMemoryHistory} from 'history';
 import HistoryRouter from '../../components/history-route/history-route';
 import UserNavigation from './user-navigation';
 import {makeFakeUserData} from '../../utils/mocks';
-import {AuthorizationStatus} from '../../const';
+import {AuthorizationStatus} from '../../constants';
 
 const fakeUserData = makeFakeUserData();
 

@@ -7,7 +7,7 @@ import {fetchOfferPropertyAction, fetchNearOffersAction, fetchReviewAction, send
 import {State} from '../../types/state';
 import {StatusCodes} from 'http-status-codes';
 import {makeFakeOffer, makeFakeOffers, makeFakeReviews} from '../../utils/mocks';
-import {APIRoute} from '../../const';
+import {APIRoute} from '../../constants';
 
 const fakeOfferId = 1;
 const fakeOffer = makeFakeOffer();

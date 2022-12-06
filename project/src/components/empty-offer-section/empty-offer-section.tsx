@@ -1,5 +1,5 @@
-import { useAppSelector } from '../../hooks/useAppSelector';
-import { getLocation } from '../../store/offers-data/selectors';
+import {useAppSelector} from '../../hooks/use-app-selector';
+import {getLocation} from '../../store/offers-data/selectors';
 
 function EmptyOfferSection(): JSX.Element {
   const location = useAppSelector(getLocation);

@@ -1,7 +1,7 @@
 import {createSelector} from '@reduxjs/toolkit';
 import {State} from '../../types/state';
 import {Offers, Offer} from '../../types/offer';
-import {Reducer, Location, SortType} from '../../const';
+import {Reducer, Location, SortType} from '../../constants';
 
 const compareOffers: Record<SortType, (offer: Offer, nextOffer: Offer) => number> = {
   [SortType.Popular]: () => 0,
@@ -15,7 +15,7 @@ export const getSortType = (state: State): SortType => state[Reducer.Offers].sor
 
 export const getOffers = (state: State): Offers => state[Reducer.Offers].offers;
 export const getSelectedOffer = (state: State): Offer | null => state[Reducer.Offers].selectedOffer;
-export const getOffersLoadingStatus = (state: State): boolean => state[Reducer.Offers].isOffersLoading;
+export const checkOffersLoadingStatus = (state: State): boolean => state[Reducer.Offers].isOffersLoading;
 
 export const getOffersData = createSelector(
   [getLocation, getSortType, getOffers],

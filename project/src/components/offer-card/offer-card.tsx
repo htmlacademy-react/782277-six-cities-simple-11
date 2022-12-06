@@ -1,10 +1,10 @@
 import {Link} from 'react-router-dom';
 import cn from 'classnames';
-import {useAppDispatch} from '../../hooks/useAppDispatch';
+import {useAppDispatch} from '../../hooks/use-app-dispatch';
 import {selectOffer} from '../../store/offers-data/offers-data';
 import {Offer} from '../../types/offer';
 import {formatFirstLetter, calculateRatingWidth} from '../../utils/utils';
-import {AppRoute} from '../../const';
+import {AppRoute} from '../../constants';
 
 type OfferCardProps = {
   offer: Offer;
