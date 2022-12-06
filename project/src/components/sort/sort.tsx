@@ -1,8 +1,8 @@
 import {memo, useState} from 'react';
 import cn from 'classnames';
-import {useAppDispatch} from '../../hooks/useAppDispatch';
+import {useAppDispatch} from '../../hooks/use-app-dispatch';
 import {changeSort} from '../../store/offers-data/offers-data';
-import {SortType} from '../../const';
+import {SortType, SORTS} from '../../constants';
 
 type SortProps = {
   sortType: SortType;
@@ -12,16 +12,15 @@ function Sort({sortType}: SortProps): JSX.Element {
   const dispatch = useAppDispatch();
   const [toggleList, setToggleList] = useState<boolean>(false);
 
-  const SORTS: SortType[] = Object.values(SortType);
-
   return (
     <form className="places__sorting" action="#" method="get" data-testid="sort">
       <span className="places__sorting-caption">Sort by</span>
+      {' '}
       <span
         className="places__sorting-type"
         tabIndex={0}
         onClick={() => {
-          setToggleList(!toggleList);
+          setToggleList((prevState) => !prevState);
         }}
       >
         {sortType}
@@ -34,7 +33,7 @@ function Sort({sortType}: SortProps): JSX.Element {
           'places__options--opened': toggleList
         })}
       >
-        {SORTS && SORTS.map((sort) => (
+        {SORTS.map((sort) => (
           <li
             key={sort}
             className={cn('places__option', {
