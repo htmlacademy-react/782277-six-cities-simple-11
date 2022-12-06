@@ -1,7 +1,7 @@
 import {useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import {Helmet} from 'react-helmet-async';
-import {store} from '../../store/store';
+import {useAppDispatch} from '../../hooks/use-app-dispatch';
 import {useAppSelector} from '../../hooks/use-app-selector';
 import {fetchNearOffersAction, fetchOfferPropertyAction, fetchReviewAction} from '../../store/offer-property-data/api-actions';
 import {
@@ -25,11 +25,21 @@ function OfferPage(): JSX.Element {
   const {id} = useParams();
   const offerId = Number(id);
 
+  const dispatch = useAppDispatch();
+
   useEffect(() => {
-    store.dispatch(fetchOfferPropertyAction(offerId));
-    store.dispatch(fetchReviewAction(offerId));
-    store.dispatch(fetchNearOffersAction(offerId));
-  }, [offerId]);
+    let isMounted = true;
+
+    if (isMounted) {
+      dispatch(fetchOfferPropertyAction(offerId));
+      dispatch(fetchReviewAction(offerId));
+      dispatch(fetchNearOffersAction(offerId));
+    }
+
+    return () => {
+      isMounted = false;
+    };
+  }, [offerId, dispatch]);
 
   const offerProperty = useAppSelector(getOfferProperty);
   const isOfferPropertyLoading = useAppSelector(checkOfferPropertyLoadingStatus);
