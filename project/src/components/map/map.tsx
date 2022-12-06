@@ -2,7 +2,7 @@ import {useRef, useEffect} from 'react';
 import cn from 'classnames';
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import useMap from '../../hooks/useMap';
+import useMap from '../../hooks/use-map';
 import {Offers, Offer} from '../../types/offer';
 
 type MapProps = {
@@ -31,7 +31,7 @@ const activeMarkerIcon = leaflet.icon({
 
 function Map({offers, selectedOffer, isMainMap}: MapProps): JSX.Element {
   const mapRef = useRef(null);
-  const mapLocation = offers.length ? offers[0].city.location : DEFAULT_COORDINATE;
+  const mapLocation = offers[0]?.city?.location ?? DEFAULT_COORDINATE;
   const map = useMap(mapRef, mapLocation);
 
   useEffect(() => {

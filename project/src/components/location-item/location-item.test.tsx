@@ -6,7 +6,7 @@ import {HelmetProvider} from 'react-helmet-async';
 import {createMemoryHistory} from 'history';
 import HistoryRouter from '../../components/history-route/history-route';
 import LocationItem from './location-item';
-import {Location} from '../../const';
+import {Location} from '../../constants';
 
 const fakeState = {
   OFFERS: {location: Location.Paris}

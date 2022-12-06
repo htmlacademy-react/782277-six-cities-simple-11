@@ -2,12 +2,12 @@ import {useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import {Helmet} from 'react-helmet-async';
 import {store} from '../../store/store';
-import {useAppSelector} from '../../hooks/useAppSelector';
+import {useAppSelector} from '../../hooks/use-app-selector';
 import {fetchNearOffersAction, fetchOfferPropertyAction, fetchReviewAction} from '../../store/offer-property-data/api-actions';
 import {
   getOfferProperty,
-  getOfferPropertyLoadingStatus,
-  getOfferPropertyErrorStatus,
+  checkOfferPropertyLoadingStatus,
+  checkOfferPropertyErrorStatus,
   getSelectedReviews,
   getNearOffers
 } from '../../store/offer-property-data/selectors';
@@ -32,8 +32,8 @@ function OfferPage(): JSX.Element {
   }, [offerId]);
 
   const offerProperty = useAppSelector(getOfferProperty);
-  const isOfferPropertyLoading = useAppSelector(getOfferPropertyLoadingStatus);
-  const hasOfferPropertyError = useAppSelector(getOfferPropertyErrorStatus);
+  const isOfferPropertyLoading = useAppSelector(checkOfferPropertyLoadingStatus);
+  const hasOfferPropertyError = useAppSelector(checkOfferPropertyErrorStatus);
 
   const reviews = useAppSelector(getSelectedReviews);
   const nearOffers = useAppSelector(getNearOffers);

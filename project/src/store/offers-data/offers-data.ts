@@ -2,7 +2,7 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {fetchOffersAction} from './api-actions';
 import {OffersDataState} from '../../types/state';
 import {Offers, Offer} from '../../types/offer';
-import {Reducer, Location, SortType} from '../../const';
+import {Reducer, Location, SortType} from '../../constants';
 
 const initialState: OffersDataState = {
   location: Location.Paris,
@@ -34,6 +34,9 @@ export const offersData = createSlice({
       .addCase(fetchOffersAction.fulfilled, (state, action) => {
         state.isOffersLoading = false;
         state.offers = action.payload;
+      })
+      .addCase(fetchOffersAction.rejected, (state) => {
+        state.isOffersLoading = false;
       });
   }
 });

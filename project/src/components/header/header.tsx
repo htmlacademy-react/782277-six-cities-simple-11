@@ -1,7 +1,7 @@
 import {memo} from 'react';
 import {Link} from 'react-router-dom';
 import UserNavigation from '../user-navigation/user-navigation';
-import {AppRoute} from '../../const';
+import {AppRoute} from '../../constants';
 
 type HeaderProps = {
   withNavigation?: boolean;

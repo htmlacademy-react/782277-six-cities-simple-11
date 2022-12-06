@@ -39,3 +39,6 @@ export enum SortType {
   PriceToLow = 'Price: high to low',
   RatingToLow = 'Top rated first'
 }
+
+export const LOCATIONS: Location[] = Object.values(Location);
+export const SORTS: SortType[] = Object.values(SortType);

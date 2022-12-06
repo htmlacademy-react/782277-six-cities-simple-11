@@ -1,8 +1,6 @@
 import {memo} from 'react';
 import LocationItem from '../location-item/location-item';
-import {Location} from '../../const';
-
-export const LOCATIONS: Location[] = Object.values(Location);
+import {LOCATIONS} from '../../constants';
 
 function LocationList(): JSX.Element {
   return (

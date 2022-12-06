@@ -18,7 +18,7 @@ function OfferList({offers, isMainOffer, isNearOffer}: OfferListProps): JSX.Elem
       })}
       data-testid="offer-list"
     >
-      {offers && offers.map((offer) => (
+      {offers.map((offer) => (
         <OfferCard
           key={offer.id.toString()}
           offer={offer}

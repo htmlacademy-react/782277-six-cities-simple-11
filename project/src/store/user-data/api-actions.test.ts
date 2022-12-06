@@ -8,7 +8,7 @@ import {AuthorizationData} from '../../types/authorization';
 import {State} from '../../types/state';
 import {makeFakeUserData} from '../../utils/mocks';
 import {StatusCodes} from 'http-status-codes';
-import {APIRoute} from '../../const';
+import {APIRoute} from '../../constants';
 
 const fakeUserData = makeFakeUserData();
 

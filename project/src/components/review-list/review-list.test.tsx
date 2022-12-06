@@ -6,7 +6,7 @@ import {createMemoryHistory} from 'history';
 import HistoryRouter from '../../components/history-route/history-route';
 import ReviewList from './review-list';
 import {makeFakeUserData, makeFakeOffer, makeFakeReviews} from '../../utils/mocks';
-import {AuthorizationStatus} from '../../const';
+import {AuthorizationStatus} from '../../constants';
 
 const offerId = 1;
 

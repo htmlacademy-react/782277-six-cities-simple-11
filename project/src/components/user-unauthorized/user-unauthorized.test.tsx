@@ -7,7 +7,7 @@ import {createMemoryHistory} from 'history';
 import HistoryRouter from '../../components/history-route/history-route';
 import UserUnauthorized from './user-unauthorized';
 import { Route, Routes } from 'react-router-dom';
-import { AppRoute } from '../../const';
+import { AppRoute } from '../../constants';
 
 const mockStore = configureMockStore();
 const history = createMemoryHistory();

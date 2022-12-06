@@ -1,7 +1,7 @@
 import {renderHook} from '@testing-library/react';
 import {useRef} from 'react';
 import {Map} from 'leaflet';
-import useMap from './useMap';
+import useMap from './use-map';
 import {makeFakeOffer} from '../utils/mocks';
 
 const fakeOffer = makeFakeOffer();

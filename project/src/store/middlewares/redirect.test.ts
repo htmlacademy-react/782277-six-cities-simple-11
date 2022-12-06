@@ -3,7 +3,7 @@ import {AnyAction} from 'redux';
 import {redirect} from './redirect';
 import {redirectToRoute} from '../action';
 import {State} from '../../types/state';
-import {AppRoute} from '../../const';
+import {AppRoute} from '../../constants';
 
 const fakeHistory = {
   location: {pathname: ''},
@@ -12,7 +12,7 @@ const fakeHistory = {
   },
 };
 
-jest.mock('../../browser-history', () => fakeHistory);
+jest.mock('../../services/browser-history', () => fakeHistory);
 
 const middlewares = [redirect];
 const mockStore = configureMockStore<State, AnyAction>(middlewares);

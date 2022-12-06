@@ -1,9 +1,9 @@
 import cn from 'classnames';
-import {useAppDispatch} from '../../hooks/useAppDispatch';
-import {useAppSelector} from '../../hooks/useAppSelector';
+import {useAppDispatch} from '../../hooks/use-app-dispatch';
+import {useAppSelector} from '../../hooks/use-app-selector';
 import {getLocation} from '../../store/offers-data/selectors';
 import {changeLocation} from '../../store/offers-data/offers-data';
-import {Location} from '../../const';
+import {Location} from '../../constants';
 
 type LocationItemProps = {
   location: Location;

@@ -1,14 +1,17 @@
 import {Helmet} from 'react-helmet-async';
 import {Link, Navigate} from 'react-router-dom';
-import {useAppDispatch} from '../../hooks/useAppDispatch';
-import {useAppSelector} from '../../hooks/useAppSelector';
+import {useAppDispatch} from '../../hooks/use-app-dispatch';
+import {useAppSelector} from '../../hooks/use-app-selector';
 import {getAuthorizationStatus} from '../../store/user-data/selectors';
 import {changeLocation} from '../../store/offers-data/offers-data';
 import Header from '../../components/header/header';
 import LoginForm from '../../components/login-form/login-form';
-import {getRandomPositiveInteger} from '../../utils/utils';
-import {LOCATIONS} from '../../components/location-list/location-list';
-import {AppRoute, AuthorizationStatus} from '../../const';
+import {AppRoute, AuthorizationStatus, Location, LOCATIONS} from '../../constants';
+
+const getRandomLocation = (locations: Location[]): Location => {
+  const randomIndex = Math.floor(Math.random() * locations.length);
+  return locations[randomIndex];
+};
 
 function LoginPage(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -18,7 +21,7 @@ function LoginPage(): JSX.Element {
     return <Navigate to={AppRoute.Main} />;
   }
 
-  const getRandomLocation = LOCATIONS[getRandomPositiveInteger(0, LOCATIONS.length - 1)];
+  const randomLocation = getRandomLocation(LOCATIONS);
 
   return (
     <div className="page page--gray page--login" data-testid="login-page">
@@ -37,10 +40,10 @@ function LoginPage(): JSX.Element {
               <Link
                 className="locations__item-link"
                 to={AppRoute.Main}
-                onClick={() => dispatch(changeLocation(getRandomLocation))}
+                onClick={() => dispatch(changeLocation(randomLocation))}
                 data-testid="locations-link"
               >
-                <span>{getRandomLocation}</span>
+                <span>{randomLocation}</span>
               </Link>
             </div>
           </section>

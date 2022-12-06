@@ -8,7 +8,7 @@ import {createMemoryHistory} from 'history';
 import HistoryRouter from '../../components/history-route/history-route';
 import LoginPage from './login-page';
 import {makeFakeUserData} from '../../utils/mocks';
-import {AppRoute, AuthorizationStatus, Location} from '../../const';
+import {AppRoute, AuthorizationStatus, Location} from '../../constants';
 
 const fakeUserData = makeFakeUserData();
 
