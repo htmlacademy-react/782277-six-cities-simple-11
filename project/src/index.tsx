@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {Provider} from 'react-redux';
 import HistoryRouter from './components/history-route/history-route';
-import browserHistory from './browser-history';
+import browserHistory from './services/browser-history';
 
 import {store} from './store/store';
 import {checkAuthorizationAction} from './store/user-data/api-actions';
