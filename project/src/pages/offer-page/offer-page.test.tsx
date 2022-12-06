@@ -1,10 +1,14 @@
 import {render, screen} from '@testing-library/react';
 import {configureMockStore} from '@jedmao/redux-mock-store';
+import {AnyAction} from 'redux';
 import {Provider} from 'react-redux';
+import thunk from 'redux-thunk';
+import {createAPI} from '../../services/api';
 import {HelmetProvider} from 'react-helmet-async';
 import {createMemoryHistory} from 'history';
 import HistoryRouter from '../../components/history-route/history-route';
 import OfferPage from './offer-page';
+import {State} from '../../types/state';
 import {makeFakeUserData, makeFakeOffers, makeFakeOffer, makeFakeNearOffers, makeFakeReviews} from '../../utils/mocks';
 import {AppRoute, AuthorizationStatus, Location, SortType} from '../../constants';
 
@@ -36,7 +40,10 @@ const fakeState = {
   }
 };
 
-const mockStore = configureMockStore();
+const api = createAPI();
+const middlewares = [thunk.withExtraArgument(api)];
+const mockStore = configureMockStore<State, AnyAction>(middlewares);
+
 const history = createMemoryHistory();
 
 describe('Component: OfferPropertyPage', () => {
